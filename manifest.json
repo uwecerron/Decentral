@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "manifest_version": 2,
   "browser_action": {
-    "default_title": "Thematic"
+    "default_title": "Colored Coins Wallet"
 
   },
   "background": {
