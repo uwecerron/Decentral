@@ -32,33 +32,12 @@ label{
   <script src="lib/aes.js"></script>
 
 <script src="lib/bitcoinjs-min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-route.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.js"></script>
+<script src="bower_components/angular//angular.min.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="js/angular-animate.js"></script>
 <link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
 <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
 <script src="js/app.js"></script>
-<script>
-  /*  function createPrivateKeyBytes() {
-      var privateKeyBytes = [];
-      var randArr = new Uint8Array( 32 );
-      crypto.getRandomValues( randArr );
-      for ( var i = 0; i < randArr.length; i++ ) {
-        privateKeyBytes[ i ] = randArr[ i ];
-      }
-      return privateKeyBytes;
-    }
-var privateKeyBytes = createPrivateKeyBytes();
-      var key = new Bitcoin.ECKey( privateKeyBytes );
-
-// Print your private key (a hex string)
-//console.log(key.toString())
-// => 8c112cf628362ecf4d482f68af2dbb50c8a2cb90d226215de925417aa9336a48
-
-// Print your public key (defaults to a Bitcoin address)
-console.log(key.getBitcoinAddress().toString()*/
-// => 14bZ7YWde4KdRb5YN7GYkToz3EHVCvRxkF
-</script>
 <body ng-app='ChromaWallet'>
   <script type="text/ng-template" id="trade.html">
   <div id="trade_main" class="panel panel-default vcenter">
@@ -267,29 +246,6 @@ height:35px;" type="submit" class="btn btn-default">Sell</button>
 
 </script>
 <script  type="text/ng-template" id="asset.html">
-
-   <div id="addform" class="panel panel-default col-md-4">
-   <div class="panel-heading" ><span class="panel-title">Add Asset</span></div>
-    <div class="panel-body">
-      <form novalidate name="itemForm">
-        <table>
-          <tr>
-                        <td>Asset/Currency Name: </td>
-            <td><input name="name" type="text" ng-model="item.Name" required ng-pattern="name" /></td>
-          </tr>
-          <tr>
-            <td>BTC: </td>
-            <td><input name="price" type="text" ng-model="item.BTC" required  valid-price /></td>
-          </tr>
-          <tr>
-            <td>Unit: </td>
-                        <td><input name="quantity" type="number" ng-model="item.Units" min="1" ng-pattern="integerval" required /></td>
-          </tr>
-          <tr>
-            <td colspan="2"><input type="Button" class="btn square " value="Add" ng-click="addItem(item)" ng-disabled="itemForm.$invalid" /> </td>
-          </tr>
-        </table>
-      </form></div></div><!--add form-->
 <form ng-controller="IssueController" ng-submit="processForm()" id="issue" role="form">
   <div class="form-group">
     <label for="exampleInputEmail1">Asset/currency name:</label>
