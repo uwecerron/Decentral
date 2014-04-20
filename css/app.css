@@ -1,0 +1,239 @@
+/* BASE STYLES
+============================================================================= */
+body{
+    background-color: #333;
+}
+#topnavigation{
+  margin-left: 15%;
+}
+.panel-heading{
+  color: #333;
+background-color: #f5f5f5;
+border-color: #ddd;
+}
+#lepanel{
+  width:200px;
+  height:100%;
+    margin-top: -12%;
+
+}
+#receive{
+  margin-top: -10%;
+}
+#asset_select{
+  margin-left: -4%;
+}
+table{
+   color:#000;
+}
+#trade_main{
+margin-left: 20px; 
+margin-right: 20px;
+margin-top: -10%;
+}
+#overview{
+
+  width:800px;
+  margin-left: 25%;
+  margin-top: -30%;
+}
+#sell{
+  width:300px;
+
+}
+#tradepane{
+  padding-left: 20%;
+}
+#buy{
+width: 300px;
+margin-left: 40%;
+}
+#pane{
+  background: rgba(0, 0, 0, 0.5);
+        margin-top: -12%;
+    height:100%;
+    color:#fff;
+}
+.col-md-8 ,.col-md-2{
+  padding:10px;
+}
+#issue{
+  width:80%;
+  margin-top: -10%;
+  padding-left: 10%;
+}
+#sendasset{
+  width:100%;
+  left:0px;
+  background-color: #333;
+  color:#fff;
+}
+
+.nav li a{
+  color:#fff;
+}
+.page {
+padding: 4em 0 2em;
+background-color: #fff;
+/*background: -webkit-linear-gradient(70deg, #080f1f 30%, #2b4b5a 87%, #435e67 100%);
+background: -o-linear-gradient(70deg, #080f1f 30%, #2b4b5a 87%, #435e67 100%);
+background: -ms-linear-gradient(70deg, #080f1f 30%, #2b4b5a 87%, #435e67 100%);
+background: -moz-linear-gradient(70deg, #080f1f 30%, #2b4b5a 87%, #435e67 100%);
+background: linear-gradient(20deg, #080f1f 30%, #2b4b5a 87%, #435e67 100%);
+background-attachment: fixed;*/
+color: #000;
+text-align: center;
+}
+.page        { 
+   
+    bottom:0; 
+    padding-top:200px;
+    left:0px;
+    position:absolute; 
+    text-align:center;
+    top:0; 
+    width:100%; 
+    background-color: #fff;
+ 
+      color:#000;
+}
+
+.page h1    { font-size:60px; }
+.page a     { margin-top:50px; }
+/* PAGES
+============================================================================= */
+
+/* ANIMATIONS
+============================================================================= */
+
+
+/* page specific animations ------------------------ */
+
+/* home -------------------------- */
+.page-home.ng-leave         {
+    -webkit-animation: scaleDown .6s ease both;
+    -moz-animation: scaleDown .6s ease both;
+    animation: scaleDown .6s ease both;
+}
+.page-home.ng-enter         {  
+ -webkit-animation: moveFromTop .6s ease both;
+    -moz-animation: moveFromTop .6s ease both;
+    animation: moveFromTop .6s ease both;
+
+}
+
+/* about ------------------------ */
+.page-receive.ng-leave        {
+    -webkit-animation: scaleDown .6s ease both;
+    -moz-animation: scaleDown .6s ease both;
+    animation: scaleDown .6s ease both;
+}
+.page-receive.ng-enter        {  
+   -webkit-animation: moveFromTop .6s ease both;
+    -moz-animation: moveFromTop .6s ease both;
+    animation: moveFromTop .6s ease both;
+    
+}
+
+/* contact ---------------------- */
+.page-send.ng-leave      {
+    -webkit-animation: scaleDown .6s ease both;
+    -moz-animation: scaleDown .6s ease both;
+    animation: scaleDown .6s ease both;
+}
+.page-send.ng-enter      { 
+  -webkit-animation: moveFromTop .6s ease both;
+    -moz-animation: moveFromTop .6s ease both;
+    animation: moveFromTop .6s ease both;
+}
+
+.page-assets.ng-leave      {
+    -webkit-animation: scaleDown .6s ease both;
+    -moz-animation: scaleDown .6s ease both;
+    animation: scaleDown .6s ease both;
+}
+.page-assets.ng-enter      { 
+  -webkit-animation: moveFromTop .6s ease both;
+    -moz-animation: moveFromTop .6s ease both;
+    animation: moveFromTop .6s ease both;
+}
+.page-trade.ng-leave      {
+    -webkit-animation: scaleDown .6s ease both;
+    -moz-animation: scaleDown .6s ease both;
+    animation: scaleDown .6s ease both;
+}
+.page-trade.ng-enter      { 
+  -webkit-animation: moveFromTop .6s ease both;
+    -moz-animation: moveFromTop .6s ease both;
+    animation: moveFromTop .6s ease both;
+}
+
+@-webkit-keyframes scaleDown {
+    to { opacity: 0; -webkit-transform: scale(.8); }
+}
+@-moz-keyframes scaleDown {
+    to { opacity: 0; -moz-transform: scale(.8); }
+}
+@keyframes scaleDown {
+    to { opacity: 0; transform: scale(.8); }
+}
+@-webkit-keyframes moveFromTop {
+    from { -webkit-transform: translateY(-100%); }
+}
+@-moz-keyframes moveFromTop {
+    from { -moz-transform: translateY(-100%); }
+}
+@keyframes moveFromTop {
+    from { transform: translateY(-100%); }
+}
+
+@-webkit-keyframes moveToBottom {
+    to { -webkit-transform: translateY(100%); }
+}
+@-moz-keyframes moveToBottom {
+    to { -moz-transform: translateY(100%); }
+}
+@keyframes moveToBottom {
+    to { transform: translateY(100%); }
+}
+
+
+
+.tabs-left > .nav-tabs > li,
+.tabs-right > .nav-tabs > li {
+  float: none;
+  height:5px;
+}
+
+
+.tabs-left > .nav-tabs > li > a,
+.tabs-right > .nav-tabs > li > a {
+  min-width: 74px;
+  margin-right: 0;
+  margin-bottom: 0px;
+}
+
+.tabs-left > .nav-tabs {
+  float: left;
+  margin-right: 19px;
+ 
+}
+
+.tabs-left > .nav-tabs > li > a {
+  margin-right: -1px;
+  /*-webkit-border-radius: 4px 0 0 4px;
+     -moz-border-radius: 4px 0 0 4px;
+          border-radius: 4px 0 0 4px;*/
+}
+
+.tabs-left > .nav-tabs > li > a:hover,
+.tabs-left > .nav-tabs > li > a:focus {
+ /* border-color: #eeeeee #dddddd #eeeeee #eeeeee;*/
+}
+
+.tabs-left > .nav-tabs .active > a,
+.tabs-left > .nav-tabs .active > a:hover,
+.tabs-left > .nav-tabs .active > a:focus {
+ /* border-color: #ddd transparent #ddd #ddd;
+  *border-right-color: #ffffff;*/
+}

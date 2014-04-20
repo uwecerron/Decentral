@@ -1,0 +1,369 @@
+<html>
+
+<style>
+
+#demo {
+    margin-left: 400px;
+    width: 700px;
+    margin:20px;
+    background-color: #fff;
+    z-index: 99999;
+}
+
+
+#wrapper{
+  padding:100px;
+  height:200px;
+  
+}
+label{
+  color:#000;
+}
+#issue{
+  margin-top: -100px;
+}
+
+
+</style>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.11/angular-csp.css"/>
+
+<link rel="stylesheet" type="text/css" href="css/app.css"/>
+  <script src="lib/aes.js"></script>
+
+<script src="lib/bitcoinjs-min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-route.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.js"></script>
+<link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
+<script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+<script src="js/app.js"></script>
+<script>
+  /*  function createPrivateKeyBytes() {
+      var privateKeyBytes = [];
+      var randArr = new Uint8Array( 32 );
+      crypto.getRandomValues( randArr );
+      for ( var i = 0; i < randArr.length; i++ ) {
+        privateKeyBytes[ i ] = randArr[ i ];
+      }
+      return privateKeyBytes;
+    }
+var privateKeyBytes = createPrivateKeyBytes();
+      var key = new Bitcoin.ECKey( privateKeyBytes );
+
+// Print your private key (a hex string)
+//console.log(key.toString())
+// => 8c112cf628362ecf4d482f68af2dbb50c8a2cb90d226215de925417aa9336a48
+
+// Print your public key (defaults to a Bitcoin address)
+console.log(key.getBitcoinAddress().toString()*/
+// => 14bZ7YWde4KdRb5YN7GYkToz3EHVCvRxkF
+</script>
+<body ng-app='ChromaWallet'>
+  <script type="text/ng-template" id="trade.html">
+  <div id="trade_main" class="panel panel-default vcenter">
+    <div class="panel">
+    <div class="panel-heading" ><span class="panel-title">Trade</span></div>
+      <!--Asset Selector-->
+       <div class="row ">
+     <div id="asset_select" class="panel panel-default col-md-2 col-md-push-3">
+     <div class="panel-heading" ><span class="panel-title">Select an Asset</span></div>
+    <div class="panel-body">
+ 
+    <select class="selectpicker" data-size="auto">
+      <option>Tent</option>
+      <option>Flashlight</option>
+      <option>Toilet Paper</option>
+  </select>
+ </div></div>
+</div>
+  <!--Asset Selector-->
+  <div id="tradepane" class="row">
+  <div class="col-xs-6 col-md-3 ">
+
+<div id="sell"  class="panel panel-primary">
+    <div class="panel">
+    <div class="panel-heading" ><span class="panel-title">Sell</span></div>
+    <div class="panel-body">
+ <input type="text"  id="quantity" placeholder="Quantity">
+  <input type="text" id="price" placeholder="Price">
+
+</div>
+<button style="width: 250px;
+height:35px;" type="submit" class="btn btn-default">Buy</button>
+
+</div>
+{{ message }}
+</div>
+</div><!--col-xs-->
+  <div class="col-xs-6 col-md-3">
+<div id="buy" class="panel panel-primary">
+    <div class="panel">
+    <div class="panel-heading" ><span class="panel-title">Buy</span></div>
+    <div class="panel-body">
+    <span>
+ <input type="text" id="quantity" placeholder="Quantity">
+ </span>
+ <span>
+  <input type="text" id="price" placeholder="Price"></div></span>
+  <button style="width: 250px;
+height:35px;" type="submit" class="btn btn-default">Sell</button>
+</div>
+</div>
+</div><!--col-xs-->
+
+</div>
+</div>
+  </script>
+  <script type="text/ng-template" id="sidemenu.html">
+<div id ="lepanel" class="panel panel-default">
+    <div  class="panel-heading clearfix">
+      <h4 class="panel-title pull-left" style="padding-top: 7.5px; height:200px;">Panel header</h4>
+      <div >
+</div>
+<!--Add Wallet-->
+<div ng-controller="TextBtnCtrl">
+ <span editable-text="user.name" e-form="textBtnForm">
+    {{ user.name || 'empty' }}
+  </span>
+  <button class="btn btn-default" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible">
+    Create
+  </button></div>
+    </div>
+<!--Add Wallet-->
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th class="col-md-1">Column 1</th>
+                <th>Message</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>Data</td>
+                    <td>Content</td>
+                </tr>
+                <tr>
+                    <td>Data</td>
+                    <td>Content</td>
+                </tr>
+                <tr>
+                    <td>Data</td>
+                    <td>Content</td>
+                </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+  </script>
+  <script type="text/ng-template" id="home.html">
+  <div ng-include="'sidemenu.html'"></div>
+
+<div id="overview" class="panel panel-default">
+    <div class="panel">
+   <div class="panel-heading" ><span class="panel-title">Wallet</span></div>
+    <div class="panel-body">
+ <select class="selectpicker" data-size="auto">
+    <optgroup label="Camping">
+      <option>Tent</option>
+      <option>Flashlight</option>
+      <option>Toilet Paper</option>
+    </optgroup>
+  </select>
+{{ message }}</div>
+</div>
+
+<!--Add Address-->
+<div id="receive" class="ng-scope">
+  <div class="h3 text-center">
+      <span class="label label-grey square">
+        <strong style="color:#000;">YOUR CURRENT ADDRESS:</strong>
+      </span>
+    </div>
+    <p class="lead text-center" id="current-address">
+      <textarea readonly selected style="width:500px;" placeholder="1ZudX9CGM1fpQfYaqWRWHxUomXAnCxNfv7" class="ng-binding">{{currentAddress}}</textarea>
+    </p>
+     <form ng-submit="generateLeAddress()" class="ng-pristine ng-valid">
+      <input class="btn square " type="submit" value="Generate Address">
+    </form>
+  </div>
+<!--Add Address-->
+</div>
+
+
+   
+
+</div><!--end overview-->
+</script>
+ <script type="text/ng-template" id="receive.html">
+ <div id="receive" class="panel panel-default">
+    <div class="panel">
+   <div class="panel-heading" ><span class="panel-title">Wallet</span></div>
+    <div class="panel-body">
+ <div >
+<div ng-controller="ReceiveAssets">
+    <div>Sort by: 
+            <select ng-model="sortExpression">
+          <option value="Name">Name</option>
+          <option value="BTC">BTC Amount</option>
+          <option value="Units">Units</option>
+        </select>
+            </div>
+      <br />
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <td>Name</td>
+            <td>Balance</td>
+            <td>Units</td>
+            <td>Address</td>
+            <td>Remove</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in items | orderBy:mySortFunction | filter:search">
+            <td>{{item.Name}}</td>
+            <td>{{item.BTC | btc}}</td>   
+            <td>{{item.Units}}</td>
+               <td>{{item.Address}}</td>
+            <td><input type="button" value="Remove" ng-click="removeItem($index)" /></td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+      <div>Total Balance: {{totalBTC()}}</div>
+      <br />
+       <div id="addform" class="panel panel-default col-md-4">
+   <div class="panel-heading" ><span class="panel-title">Add Asset</span></div>
+    <div class="panel-body">
+      <form novalidate name="itemForm">
+        <table>
+          <tr>
+                        <td>Asset/Currency Name: </td>
+            <td><input name="name" type="text" ng-model="item.Name" required ng-pattern="name" /></td>
+          </tr>
+          <tr>
+            <td>BTC: </td>
+            <td><input name="price" type="text" ng-model="item.BTC" required  valid-price /></td>
+          </tr>
+          <tr>
+            <td>Unit: </td>
+                        <td><input name="quantity" type="number" ng-model="item.Units" min="1" ng-pattern="integerval" required /></td>
+          </tr>
+          <tr>
+            <td colspan="2"><input type="Button" class="btn square " value="Add" ng-click="addItem(item)" ng-disabled="itemForm.$invalid" /> </td>
+          </tr>
+        </table>
+      </form></div></div><!--add form-->
+           
+    </div>
+
+</div><!--receive-->
+</div>
+</div>
+</div>
+
+</script>
+<script  type="text/ng-template" id="asset.html">
+
+<form ng-controller="IssueController" ng-submit="processForm()" id="issue" role="form">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Asset/currency name:</label>
+    <input type="text" ng-model="formData.moniker" class="form-control" id="monikerinput" placeholder="Land">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Amount:</label>
+    <input type="text" ng-model="formData.amount" class="form-control" id="amountinput" placeholder="10,000">
+  </div>
+   <div class="form-group">
+    <label for="exampleInputPassword1">Units:</label>
+    <input type="text" ng-model="formData.units" class="form-control" id="unitsinput" placeholder="10,000,000">
+  </div>
+  <button style="width: 300px;
+height:50px;" type="submit" class="btn btn-default">Issue</button>  <button style="width: 300px;
+height:50px;"  type="submit" class="btn btn-default">Cancel</button>
+ <pre>
+    {{ formData }}
+    <span class="help-block" ng-show="error">{{ error }}</span>
+    <div id="messages" ng-show="message">{{ message }}</div>
+  </pre>
+<input type="text" name="fruitName" ng-model="data.fruitName" blacklist="coconuts,bananas,pears" required/>
+       <span class="invalid" ng-show="myForm.fruitName.$error.blacklist">
+          The phrase "{{data.fruitName}}" is blacklisted</span>
+       <span class="invalid" ng-show="myForm.fruitName.$error.required">required</span>
+       <br/>
+       <button type="submit" ng-disabled="myForm.$invalid">Submit</button>
+</form>
+</script>
+  <script type="text/ng-template" id="send.html">
+
+
+
+<!--<form ng-controller="SendController" ng-submit="processForm()" id="issue" role="form">-->
+  <form id="issue">
+  <div class="form-group" role="form">
+
+    <div class="col-md-8">
+    <input type="text" class="form-control" id="tosend" placeholder="10.00 btc"></div>   <div class="col-md-2"><select id="sendasset" class="form-control" data-size="auto">
+      <option>Land</option>
+      <option>XYX coin</option>
+      <option>storage</option>
+  </select></div>
+  </div>
+  <div class="form-group">
+   <div class="col-md-8">
+    <input type="text" class="form-control" id="tosend" placeholder="1Xsdtwafg2342dsfs4gsfgsdFDg"></div>
+  </div>
+   <div class="col-xs-9" style=" padding-top:40px;">
+  <button style="width: 400px;
+height:50px;" type="submit" class="btn btn-default">Send</button> </div>
+</form>
+
+
+
+</script>
+<script type="text/ng-template" id="header.html">
+<!--<div ng-controller="NavigationController" ng-init="getNavData()">-->
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="navbar-header">
+      <a class="navbar-brand" href="#">ChromaWallet</a>
+      </div>
+      <div >
+        <div class="navbar-collapse collapse">
+        <ul id="topnavigation" class="nav navbar-nav">
+         <li ng-class="{active:isActive('/Home')}" ng-click="i=1"><a href="#Home">Wallet</a></li>
+    <li ng-class="{active:isActive('/Receive')}" ng-click="i=2"><a href="#Receive">Receive</a></li>
+    <li ng-class="{active:isActive('/Send')}" ng-click="i=3"><a href="#Send">Send</a></li>
+     <li ng-class="{active:isActive('/Assets')}" ng-click="i=4"><a href="#Assets">Issue</a></li>
+     <li ng-class="{active:isActive('/Trade')}" ng-click="i=5"><a href="#Trade">Trade</a></li>
+         <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+               Settings 
+               <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+               <li><a href="#">Backup</a></li>
+            </ul>
+         </li>
+      </ul>
+        </div>
+      </div>
+  </nav>
+<!--</div>-->
+
+</script>
+
+
+<div class="header">
+           <div ng-include="'header.html'"></div> 
+
+
+         </div>
+       
+  <div class="page {{ pageClass }}" ng-view></div>
+
+ 
+</body>
+</html>

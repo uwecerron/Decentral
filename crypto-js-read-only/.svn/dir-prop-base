@@ -1,0 +1,17 @@
+K 13
+bugtraq:label
+V 7
+Issue #
+K 15
+bugtraq:message
+V 14
+Issue #%BUGID%
+K 14
+bugtraq:number
+V 3
+yes
+K 11
+bugtraq:url
+V 59
+http://code.google.com/p/crypto-js/issues/detail?id=%BUGID%
+END

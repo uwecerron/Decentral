@@ -1,0 +1,25 @@
+<div title="Add assets" class="add-color-dialog block">
+  <input class="add-color-dialog__search-field" placeholder="Choose" />
+  <button class="add-color-dialog__show-all-button"></button>
+  <button class="add-color-dialog__add-button">Add</button>
+</div>
+    <div ng-controller="assets">
+<table class="table">
+    <thead>
+        <tr>
+            <th ng-repeat="itemA in items[0]">
+                {{itemA}}
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td ng-repeat="itemB in items[1]">{{itemB}}</td> 
+        </tr> 
+         <tr>
+            <td ng-repeat="itemC in items[2]">{{itemC}}</td> 
+        </tr> 
+    </tbody>
+</table>
+    </div>

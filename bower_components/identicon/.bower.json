@@ -1,0 +1,13 @@
+{
+  "name": "identicon",
+  "homepage": "https://github.com/stewartlord/identicon.js",
+  "_release": "master",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "fba02b61b99bf4d7b520ce4a283149c83b367cf1"
+  },
+  "_source": "https://github.com/stewartlord/identicon.js.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/stewartlord/identicon.js.git"
+}

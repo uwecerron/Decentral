@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/611/tags/3.1.2/builder/lib/symfony/src/Symfony/Component/ClassLoader
+END
+composer.json
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/611/tags/3.1.2/builder/lib/symfony/src/Symfony/Component/ClassLoader/composer.json
+END
+ApcUniversalClassLoader.php
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/!svn/ver/611/tags/3.1.2/builder/lib/symfony/src/Symfony/Component/ClassLoader/ApcUniversalClassLoader.php
+END
+MapClassLoader.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/611/tags/3.1.2/builder/lib/symfony/src/Symfony/Component/ClassLoader/MapClassLoader.php
+END
+ClassMapGenerator.php
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/!svn/ver/611/tags/3.1.2/builder/lib/symfony/src/Symfony/Component/ClassLoader/ClassMapGenerator.php
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/611/tags/3.1.2/builder/lib/symfony/src/Symfony/Component/ClassLoader/LICENSE
+END
+DebugUniversalClassLoader.php
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/!svn/ver/611/tags/3.1.2/builder/lib/symfony/src/Symfony/Component/ClassLoader/DebugUniversalClassLoader.php
+END
+UniversalClassLoader.php
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/611/tags/3.1.2/builder/lib/symfony/src/Symfony/Component/ClassLoader/UniversalClassLoader.php
+END
+README.md
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/611/tags/3.1.2/builder/lib/symfony/src/Symfony/Component/ClassLoader/README.md
+END
+ClassCollectionLoader.php
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/!svn/ver/611/tags/3.1.2/builder/lib/symfony/src/Symfony/Component/ClassLoader/ClassCollectionLoader.php
+END

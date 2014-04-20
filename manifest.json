@@ -1,0 +1,19 @@
+{
+  "name": "ChromaWallet",
+  "description": "Issue Assets, Crowdfund anything",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "icons": {
+    "128": "images/icon_128.png"
+  },
+  "browser_action": {
+    "default_icon": "images/icon_128.png",
+    "default_popup": "html/popup.html"
+  },
+  "background": {
+    "page": "index.html"
+  },
+  "permissions": [
+    "tabs", "storage", "clipboardRead", "clipboardWrite", "contextMenus", "notifications"
+  ],
+}
