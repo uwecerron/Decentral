@@ -1,0 +1,40 @@
+<div id ="lepanel" class="panel panel-default">
+    <div  class="panel-heading clearfix">
+      <h4 class="panel-title pull-left" style="padding-top: 7.5px; height:200px;">Panel header</h4>
+      <div >
+</div>
+<!--Add Wallet-->
+<div ng-controller="TextBtnCtrl">
+ <span editable-text="user.name" e-form="textBtnForm">
+    {{ user.name || 'empty' }}
+  </span>
+  <button class="btn btn-default" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible">
+    Create
+  </button></div>
+    </div>
+<!--Add Wallet-->
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th class="col-md-1">Column 1</th>
+                <th>Message</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>Data</td>
+                    <td>Content</td>
+                </tr>
+                <tr>
+                    <td>Data</td>
+                    <td>Content</td>
+                </tr>
+                <tr>
+                    <td>Data</td>
+                    <td>Content</td>
+                </tr>
+        </tbody>
+    </table>
+</div>
+
+

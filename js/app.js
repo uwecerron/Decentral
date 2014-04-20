@@ -3,23 +3,23 @@ var cApp =angular.module('ChromaWallet', ['ngRoute', 'ngAnimate','xeditable']);
 cApp.config(function ($routeProvider) {
     $routeProvider.
      when('/Home', {
-        templateUrl: 'home.html',
+        templateUrl: 'view/home.html',
         controller: 'Home'
     }).
       when('/Receive', {
-        templateUrl: 'receive.html',
-        controller: 'Receive'
+        templateUrl: 'view/receive.html',
+        controller: 'ReceiveAssets'
     }).
       when('/Send', {
-        templateUrl: 'send.html',
+        templateUrl: 'view/send.html',
         controller: 'Send'
     }).
       when('/Assets', {
-        templateUrl: 'asset.html',
+        templateUrl: 'view/asset.html',
         controller: 'Assets'
     }).
       when('/Trade', {
-        templateUrl: 'trade.html',
+        templateUrl: 'view/trade.html',
         controller: 'Trade'
       })
       .otherwise({
@@ -54,28 +54,7 @@ cApp.controller('TextBtnCtrl', function($scope) {
       }
       return privateKeyBytes;
     }
-cApp.controller('Home', function($scope, $rootScope ) {
-         $scope.pageClass = 'page-home';
-    $scope.message = 'This is the homer screen';
-    $rootScope.$watch( 'balance', function() {
-    $scope.balance = $rootScope.balance
-  } )
 
-
-
-    $scope.generateLeAddress = function() {
-      var privateKeyBytes = createPrivateKeyBytes();
-      var key = new Bitcoin.ECKey( privateKeyBytes );
-      //$scope.$apply( function() {
-            $scope.currentAddress =  key.getBitcoinAddress().toString()
-            //$scope.currentImgURL = baseURL + $scope.currentAddress
-          //} )
-      //console.log($scope.currentAddress);
-    }
-
-  //} )
-     
-});//end Home Controller
  
  cApp.factory('Wallet', function() {
   var Wallet = {};
@@ -90,33 +69,6 @@ cApp.controller('Home', function($scope, $rootScope ) {
 
 
 
-cApp.directive('validAmoun',function(){
-        return{
-          require: "ngModel",
-          link: function(scope, elm, attrs, ctrl){
-            
-            var regex=/^\d{1,8}(\.\d{1,8})?$/;
-            ctrl.$parsers.unshift(function(viewValue){
-              var floatValue = parseFloat(viewValue);
-              if( floatValue >= 0.0001 && floatValue <=100000 && regex.test(viewValue)){
-                ctrl.$setValidity('validPrice',true);
-                //return viewValue;
-              }
-                            else{
-                  ctrl.$setValidity('validPrice',false);
-                            }
-              return viewValue;
-            });
-          }
-        };
-      });
-
-
-cApp.controller('Receive', function($scope) {
-     $scope.pageClass = 'page-receive';
-    $scope.message = 'This is Show receive screen';
- 
-});
 
 cApp.controller('Send', function($scope, $routeParams) {
       $scope.pageClass = 'page-send';    $scope.message = 'This is Show send screen';
@@ -229,64 +181,3 @@ $scope.processForm = function() {
 
 
 
-cApp.value('ReceiveTable',{
-        items : [
-          {Name: "XYZ Corp", BTC: "25",Address:"mhRYQjHSu4QQRr8yi5m2eiSznsUt4HrJSy", Units: "10"},
-          {Name: "Land", BTC: "50",Address:"mhRYQjHSu4QQRr8yi5m2eiSznsUt4HrJSy", Units: "15"},
-          {Name: "Burger King", BTC: "100",Address:"mhRYQjHSu4QQRr8yi5m2eiSznsUt4HrJSy", Units: "5"}
-          ],
-        addItem: function(item){
-          this.items.push(item);
-        },
-        totalBTC: function(){
-          var total = 0;
-          for(count=0;count<this.items.length;count++){
-            total += this.items[count].BTC*this.items[count].Units;
-          }
-          return total;
-        },
-        removeItem: function(index){
-          this.items.splice(index,1);
-        }
-        
-      })
-      .filter('btc',function(){
-        return function(item){
-          return item;
-        }
-      })
-
-
-function ReceiveAssets($scope,ReceiveTable)  {
-    $scope.items = ReceiveTable.items;
-    $scope.item = {};
-
-    $scope.addItem = function(item) {
-       var privateKeyBytes = createPrivateKeyBytes();
-      var key = new Bitcoin.ECKey( privateKeyBytes );
-       $scope.item.Address =key.getBitcoinAddress().toString();
-      ReceiveTable.addItem(item);
-      $scope.item = {};    
-      $scope.itemForm.$setPristine();
-      
-      //$scope.$apply( function() {
-     
-    };
-   
-    $scope.totalBTC = ReceiveTable.totalBTC;
-    
-  
-    $scope.mySortFunction = function(item) {
-      if(isNaN(item[$scope.sortExpression]))
-        return item[$scope.sortExpression];
-      return parseInt(item[$scope.sortExpression]);
-    };
-    
-      $scope.removeItem = function(index){
-      ReceiveTable.removeItem(index);
-    };
-    
-    $scope.name=/^[a-zA-Z ]*$/;
-    
-        $scope.integerval=/^\d*$/;
-  }

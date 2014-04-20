@@ -1,0 +1,53 @@
+<div id="trade_main" class="panel panel-default vcenter">
+    <div class="panel">
+    <div class="panel-heading" ><span class="panel-title">Trade</span></div>
+      <!--Asset Selector-->
+       <div class="row ">
+     <div id="asset_select" class="panel panel-default col-md-2 col-md-push-3">
+     <div class="panel-heading" ><span class="panel-title">Select an Asset</span></div>
+    <div class="panel-body">
+ 
+    <select class="selectpicker" data-size="auto">
+      <option>Tent</option>
+      <option>Flashlight</option>
+      <option>Toilet Paper</option>
+  </select>
+ </div></div>
+</div>
+  <!--Asset Selector-->
+  <div id="tradepane" class="row">
+  <div class="col-xs-6 col-md-3 ">
+
+<div id="sell"  class="panel panel-primary">
+    <div class="panel">
+    <div class="panel-heading" ><span class="panel-title">Sell</span></div>
+    <div class="panel-body">
+ <input type="text"  id="quantity" placeholder="Quantity">
+  <input type="text" id="price" placeholder="Price">
+
+</div>
+<button style="width: 250px;
+height:35px;" type="submit" class="btn btn-default">Buy</button>
+
+</div>
+{{ message }}
+</div>
+</div><!--col-xs-->
+  <div class="col-xs-6 col-md-3">
+<div id="buy" class="panel panel-primary">
+    <div class="panel">
+    <div class="panel-heading" ><span class="panel-title">Buy</span></div>
+    <div class="panel-body">
+    <span>
+ <input type="text" id="quantity" placeholder="Quantity">
+ </span>
+ <span>
+  <input type="text" id="price" placeholder="Price"></div></span>
+  <button style="width: 250px;
+height:35px;" type="submit" class="btn btn-default">Sell</button>
+</div>
+</div>
+</div><!--col-xs-->
+
+</div>
+</div>
