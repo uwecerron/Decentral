@@ -1,3 +1,37 @@
-<h2>homepage</h2>
- 
-{{ herroooooo }}
+<div ng-include="'sidemenu.html'"></div>
+
+<div id="overview" class="panel panel-default">
+    <div class="panel">
+   <div class="panel-heading" ><span class="panel-title">Wallet</span></div>
+    <div class="panel-body">
+ <select class="selectpicker" data-size="auto">
+    <optgroup label="Camping">
+      <option>Tent</option>
+      <option>Flashlight</option>
+      <option>Toilet Paper</option>
+    </optgroup>
+  </select>
+{{ message }}</div>
+</div>
+
+<!--Add Address-->
+<div id="current-address" class="ng-scope">
+  <div class="h3 text-center">
+      <span class="label label-grey square">
+        <strong style="color:#000;">YOUR CURRENT ADDRESS:</strong>
+      </span>
+    </div>
+    <p class="lead text-center" id="current-address">
+      <textarea readonly selected style="width:500px;" placeholder="1ZudX9CGM1fpQfYaqWRWHxUomXAnCxNfv7" class="ng-binding">{{currentAddress}}</textarea>
+    </p>
+     <form ng-submit="generateLeAddress()" class="ng-pristine ng-valid">
+      <input class="btn square " type="submit" value="Generate Address">
+    </form>
+  </div>
+<!--Add Address-->
+</div>
+
+
+   
+
+</div><!--end overview-->

@@ -1,27 +1,27 @@
- <nav class="navbar navbar-default navbar-fixed-top">
-      <ul class="title-area">
-        <li class="name">
-          <h1><a href="#dashboard"><img id="logo" src="../images/logo.svg" width="32" height="32" />Dark Wallet</a></h1>
-        </li>
-        <li class="toggle-topbar menu-icon"><a href="">Menu</a></li>
+<!--<div ng-controller="NavigationController" ng-init="getNavData()">-->
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="navbar-header">
+      <a class="navbar-brand" href="#">ChromaWallet</a>
+      </div>
+      <div >
+        <div class="navbar-collapse collapse">
+        <ul id="topnavigation" class="nav navbar-nav">
+         <li ng-class="{active:isActive('/Home')}" ng-click="i=1"><a href="#Home">Wallet</a></li>
+    <li ng-class="{active:isActive('/Receive')}" ng-click="i=2"><a href="#Receive">Receive</a></li>
+    <li ng-class="{active:isActive('/Send')}" ng-click="i=3"><a href="#Send">Send</a></li>
+     <li ng-class="{active:isActive('/Assets')}" ng-click="i=4"><a href="#Assets">Issue</a></li>
+     <li ng-class="{active:isActive('/Trade')}" ng-click="i=5"><a href="#Trade">Trade</a></li>
+         <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+               Settings 
+               <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+               <li><a href="#">Backup</a></li>
+            </ul>
+         </li>
       </ul>
-      <section class="top-bar-section">
-        <!-- Right Nav Section -->
-        <ul ng-cloak ng-show="identity.name" class="right">
-          <li id="settings" ng-class="{active:isActive('/settings')}"><a href="#settings"><i class="fa fa-cog"></i> Settings</a></li>
-          <li ng-class="{active:isActive('/identities')}"><a href="#identities"><i class="fa fa-user"></i> {{identity.name}}</a></li>
-        </ul>
-        <!-- Left Nav Section -->
-        <ul class="left">
-          <li ng-class="{active:isActive('/wallet')}"><a href="#wallet"><i class="fa fa-th-list"></i> Wallet</a></li>
-          <li ng-class="{active:isActive('/send')}"><a href="#send"><i class="fa fa-share"></i> Send</a></li>
-          <li ng-class="{active:isActive('/contacts')}"><a href="#contacts"><i class="fa fa-users"></i> Contacts</a></li>
-      <li ng-class="{active:isActive('/lobby')}"><a href="#lobby"><i class="fa fa-comments"></i> Lobby</a></li>
-        </ul>
-      </section>
-    </nav>    
-
-
-
-
-
+        </div>
+      </div>
+  </nav>
+<!--</div>-->

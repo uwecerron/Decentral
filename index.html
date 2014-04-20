@@ -176,7 +176,7 @@ height:35px;" type="submit" class="btn btn-default">Sell</button>
 </div>
 
 <!--Add Address-->
-<div id="receive" class="ng-scope">
+<div id="current-address" class="ng-scope">
   <div class="h3 text-center">
       <span class="label label-grey square">
         <strong style="color:#000;">YOUR CURRENT ADDRESS:</strong>
@@ -268,6 +268,28 @@ height:35px;" type="submit" class="btn btn-default">Sell</button>
 </script>
 <script  type="text/ng-template" id="asset.html">
 
+   <div id="addform" class="panel panel-default col-md-4">
+   <div class="panel-heading" ><span class="panel-title">Add Asset</span></div>
+    <div class="panel-body">
+      <form novalidate name="itemForm">
+        <table>
+          <tr>
+                        <td>Asset/Currency Name: </td>
+            <td><input name="name" type="text" ng-model="item.Name" required ng-pattern="name" /></td>
+          </tr>
+          <tr>
+            <td>BTC: </td>
+            <td><input name="price" type="text" ng-model="item.BTC" required  valid-price /></td>
+          </tr>
+          <tr>
+            <td>Unit: </td>
+                        <td><input name="quantity" type="number" ng-model="item.Units" min="1" ng-pattern="integerval" required /></td>
+          </tr>
+          <tr>
+            <td colspan="2"><input type="Button" class="btn square " value="Add" ng-click="addItem(item)" ng-disabled="itemForm.$invalid" /> </td>
+          </tr>
+        </table>
+      </form></div></div><!--add form-->
 <form ng-controller="IssueController" ng-submit="processForm()" id="issue" role="form">
   <div class="form-group">
     <label for="exampleInputEmail1">Asset/currency name:</label>
@@ -364,6 +386,6 @@ height:50px;" type="submit" class="btn btn-default">Send</button> </div>
        
   <div class="page {{ pageClass }}" ng-view></div>
 
- 
+   <div ng-include="'view/footer.html'"></div> 
 </body>
 </html>

@@ -77,15 +77,15 @@ cApp.controller('Home', function($scope, $rootScope ) {
      
 });//end Home Controller
  
- cApp.factory('ListService', function() {
-  var ListService = {};
+ cApp.factory('Wallet', function() {
+  var Wallet = {};
   var list = [];
-  ListService.getItem = function(index) { return list[index]; }
-  ListService.addItem = function(item) { list.push(item); }
-  ListService.removeItem = function(item) { list.splice(list.indexOf(item), 1) }
-  ListService.size = function() { return list.length; }
+  Wallet.getItem = function(index) { return list[index]; }
+  Wallet.addItem = function(item) { list.push(item); }
+  Wallet.removeItem = function(item) { list.splice(list.indexOf(item), 1) }
+  Wallet.size = function() { return list.length; }
 
-  return ListService;
+  return Wallet;
 });
 
 
@@ -163,12 +163,6 @@ function NavigationController($scope, $http, $modal, userService) {
      
     $scope.user = userService.data;
 }
-/*
-function assets($scope){
-//  $scope.items = [{Color:'blue' ,Balance:'2000000' ,Address: 'test'}}];
-$scope.items = [['Color', 'Balance', 'Address'], ['item1', 'item2', 'item3'], ['item4', 'item5', 'item6']];
-}
-*/
 
 var mockDataForThisTest = [
     {
@@ -199,19 +193,6 @@ function assets($scope, $http) {
 
 }
 
-/*
-var mockDataForThisTest = "json=" + encodeURI(JSON.stringify([
-    {
-    color: 'blue',
-    moniker:'land',
-    balance: "200000.000000",
-    address: "1ra"},
-{
-    color: 'orange',
-    moniker:'house',
-    balance: "140.12304",
-    address: "1be"}
-]));*/
 
 var data2=[]
 function IssueController($scope,$http) {
@@ -243,19 +224,6 @@ $scope.processForm = function() {
 
 
 };
-/*
-  if(data2!=null){
-$scope.a1 = data2[0];
-  $scope.a2 = data2[1];
-  $scope.a3 = data2[2];
-
-  }else{
-  $scope.a1 = 1;
-  $scope.a2 = 2;
-  $scope.a3 = 3;
-  }
-  $scope.q = [$scope.a1, $scope.a2,$scope.a3];
-  $scope.q=data2;*/
 }
 
 

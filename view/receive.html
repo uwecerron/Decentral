@@ -1,37 +1,66 @@
-<div class="block" id="panel-receive">
-  <div class="block_head">
-    <div class="bheadl"></div>
-    <div class="bheadr"></div>
-    <h2>Receive</h2>
-  </div><!-- END .block_head -->
-  <div class="block_content">
-    <section class="receive-panel">
-       <h3>Assets</h3>
-       <table class="color-table">
-         <thead>
-           <tr>
-             <td class="color-table__color-name-heading">Color</td>
-             <td>Balance</td>
-             <td>Address</td>
-             <td>
-               <button class="color-table__add-color-button">Add color</button>
-             </td>
-           </tr>
-         </thead>
-         <tbody>
-           <tr class="color-table__clone-row color-table__color">
-             <td class="color-table__color-name">???</td>
-             <td class="color-table__color-balance"></td>
-             <td class="color-table__color-address">
-               <input class="color-table__color-address-field"
-                      type="text" readonly/>
-             </td>
-             <td class="color-table__color-action"><a class="color-table__color-hide-button" href="#">Hide</a></td>
-           </tr>
-         </tbody>
-       <table>
-    </section>
-  </div><!-- END .block_content -->
-  <div class="bendl"></div>
-  <div class="bendr"></div>
-</div><!-- END .block -->
+<div id="receive" class="panel panel-default">
+    <div class="panel">
+   <div class="panel-heading" ><span class="panel-title">Wallet</span></div>
+    <div class="panel-body">
+ <div >
+<div ng-controller="ReceiveAssets">
+    <div>Sort by: 
+            <select ng-model="sortExpression">
+          <option value="Name">Name</option>
+          <option value="BTC">BTC Amount</option>
+          <option value="Units">Units</option>
+        </select>
+            </div>
+      <br />
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <td>Name</td>
+            <td>Balance</td>
+            <td>Units</td>
+            <td>Address</td>
+            <td>Remove</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in items | orderBy:mySortFunction | filter:search">
+            <td>{{item.Name}}</td>
+            <td>{{item.BTC | btc}}</td>   
+            <td>{{item.Units}}</td>
+               <td>{{item.Address}}</td>
+            <td><input type="button" value="Remove" ng-click="removeItem($index)" /></td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+      <div>Total Balance: {{totalBTC()}}</div>
+      <br />
+       <div id="addform" class="panel panel-default col-md-4">
+   <div class="panel-heading" ><span class="panel-title">Add Asset</span></div>
+    <div class="panel-body">
+      <form novalidate name="itemForm">
+        <table>
+          <tr>
+                        <td>Asset/Currency Name: </td>
+            <td><input name="name" type="text" ng-model="item.Name" required ng-pattern="name" /></td>
+          </tr>
+          <tr>
+            <td>BTC: </td>
+            <td><input name="price" type="text" ng-model="item.BTC" required  valid-price /></td>
+          </tr>
+          <tr>
+            <td>Unit: </td>
+                        <td><input name="quantity" type="number" ng-model="item.Units" min="1" ng-pattern="integerval" required /></td>
+          </tr>
+          <tr>
+            <td colspan="2"><input type="Button" class="btn square " value="Add" ng-click="addItem(item)" ng-disabled="itemForm.$invalid" /> </td>
+          </tr>
+        </table>
+      </form></div></div><!--add form-->
+           
+    </div>
+
+</div><!--receive-->
+</div>
+</div>
+</div>
