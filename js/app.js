@@ -1,4 +1,6 @@
 
+"use strict";
+
 var cApp =angular.module('ChromaWallet', ['ngRoute', 'ngAnimate','xeditable']);
 cApp.config(function ($routeProvider) {
     $routeProvider.
@@ -8,19 +10,19 @@ cApp.config(function ($routeProvider) {
     }).
       when('/Receive', {
         templateUrl: 'view/receive.html',
-        controller: 'ReceiveAssets'
+        controller: 'ReceiveController'
     }).
       when('/Send', {
         templateUrl: 'view/send.html',
-        controller: 'Send'
+        controller: 'SendController'
     }).
-      when('/Assets', {
-        templateUrl: 'view/asset.html',
-        controller: 'Assets'
+      when('/Issue', {
+        templateUrl: 'view/issue.html',
+        controller: 'IssueController'
     }).
       when('/Trade', {
         templateUrl: 'view/trade.html',
-        controller: 'Trade'
+        controller: 'TradeController'
       })
       .otherwise({
         redirectTo: '/Home'
@@ -67,54 +69,27 @@ cApp.controller('TextBtnCtrl', function($scope) {
   return Wallet;
 });
 
-
-
-
+/*()
 cApp.controller('Send', function($scope, $routeParams) {
       $scope.pageClass = 'page-send';    $scope.message = 'This is Show send screen';
 });
-cApp.controller('Assets', function($scope, $routeParams) {
-      $scope.pageClass = 'page-assets';
-  //$scope.message = 'This is Show assets screen';
-});
-cApp.controller('Trade', function($scope, $routeParams) {
-      $scope.pageClass = 'page-trade';
+*/
+
+function TradeController($scope,$http){
+   $scope.pageClass = 'page-trade';
    $scope.message = 'This is Show trade screen';
-});
 
-function NavigationController($scope, $http, $modal, userService) {
-    
-    $scope.getNavData = function() {
-      console.log('init 0');
-    }
+     $scope.buy = function(item) {
+      console.log('hero');
+     }
 
-    $scope.openCreateModal = function() {
-      $modal.open({
-        templateUrl: '/partials/wallet_create_modal.html',
-        controller: CreateWalletController
-      });
-    }
+       $scope.sell = function(item) {
 
-    $scope.openImportModal = function() {
-      $modal.open({
-        templateUrl: '/partials/wallet_import_modal.html',
-        controller: WalletController
-      });
-    }
+       }
 
-    $scope.openLoginModal = function() {
-      $modal.open({
-        templateUrl: '/partials/login_modal.html',
-        controller: LoginController 
-      });
-    }
 
-    $scope.logout = function() {
-      userService.logout();
-    }
-     
-    $scope.user = userService.data;
 }
+
 
 var mockDataForThisTest = [
     {
@@ -146,37 +121,6 @@ function assets($scope, $http) {
 }
 
 
-var data2=[]
-function IssueController($scope,$http) {
-
-
-  $scope.formData={}
-
-$scope.processForm = function() {
-  console.log('submitted');
-   //$scope.formData;
-  $http({
-        method  : 'POST',
-        url     : 'https:/localhost/process.php',
-        data    : encodeURI(JSON.stringify($scope.formData)),  // pass in data as strings
-        headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
-    })
-        .success(function(data) {
-            console.log(data);
-
-            if (!data.success) {
-              // if not successful, bind errors to error variables
-                $scope.errorName = data.errors.name;
-                $scope.errorSuperhero = data.errors.superheroAlias;
-            } else {
-              // if successful, bind success message to message
-                $scope.message = data.message;
-            }
-        });
-
-
-};
-}
 
 
 

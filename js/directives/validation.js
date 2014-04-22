@@ -1,3 +1,6 @@
+"use strict";
+
+
 cApp.directive('validAmount',function(){
         return{
           require: "ngModel",

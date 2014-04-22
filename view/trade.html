@@ -1,4 +1,4 @@
-<div id="trade_main" class="panel panel-default vcenter">
+<div ng-controller="TradeController" id="trade_main" class="panel panel-default vcenter">
     <div class="panel">
     <div class="panel-heading" ><span class="panel-title">Trade</span></div>
       <!--Asset Selector-->
@@ -20,14 +20,14 @@
 
 <div id="sell"  class="panel panel-primary">
     <div class="panel">
-    <div class="panel-heading" ><span class="panel-title">Sell</span></div>
+    <div class="panel-heading" ><span class="panel-title">Buy</span></div>
     <div class="panel-body">
  <input type="text"  id="quantity" placeholder="Quantity">
   <input type="text" id="price" placeholder="Price">
 
 </div>
 <button style="width: 250px;
-height:35px;" type="submit" class="btn btn-default">Buy</button>
+height:35px;" ng-click="buy(item)" type="submit" class="btn btn-default">Buy</button>
 
 </div>
 {{ message }}
@@ -36,7 +36,7 @@ height:35px;" type="submit" class="btn btn-default">Buy</button>
   <div class="col-xs-6 col-md-3">
 <div id="buy" class="panel panel-primary">
     <div class="panel">
-    <div class="panel-heading" ><span class="panel-title">Buy</span></div>
+    <div class="panel-heading" ><span class="panel-title">Sell</span></div>
     <div class="panel-body">
     <span>
  <input type="text" id="quantity" placeholder="Quantity">
@@ -44,7 +44,7 @@ height:35px;" type="submit" class="btn btn-default">Buy</button>
  <span>
   <input type="text" id="price" placeholder="Price"></div></span>
   <button style="width: 250px;
-height:35px;" type="submit" class="btn btn-default">Sell</button>
+height:35px;" ng-click="sell(item)" type="submit" class="btn btn-default">Sell</button>
 </div>
 </div>
 </div><!--col-xs-->

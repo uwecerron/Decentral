@@ -1,3 +1,6 @@
+"use strict";
+
+
 cApp.value('ReceiveTable',{
         items : [
           {Name: "XYZ Corp", BTC: "25",Address:"mhRYQjHSu4QQRr8yi5m2eiSznsUt4HrJSy", Units: "10"},
@@ -9,7 +12,7 @@ cApp.value('ReceiveTable',{
         },
         totalBTC: function(){
           var total = 0;
-          for(count=0;count<this.items.length;count++){
+          for(var count=0;count<this.items.length;count++){
             total += this.items[count].BTC*this.items[count].Units;
           }
           return total;
@@ -26,7 +29,8 @@ cApp.value('ReceiveTable',{
       })
 
 
-function ReceiveAssets($scope,ReceiveTable)  {
+function ReceiveController($scope,ReceiveTable)  {
+   $scope.pageClass = 'page-receive';
     $scope.items = ReceiveTable.items;
     $scope.item = {};
 
