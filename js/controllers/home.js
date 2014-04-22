@@ -1,6 +1,6 @@
 cApp.controller('Home', function($scope, $rootScope ) {
          $scope.pageClass = 'page-home';
-    $scope.message = 'This is the homer screen';
+    $scope.message = 'Choose Your Wallet';
     $rootScope.$watch( 'balance', function() {
     $scope.balance = $rootScope.balance
   } )

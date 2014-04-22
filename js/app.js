@@ -75,20 +75,6 @@ cApp.controller('Send', function($scope, $routeParams) {
 });
 */
 
-function TradeController($scope,$http){
-   $scope.pageClass = 'page-trade';
-   $scope.message = 'This is Show trade screen';
-
-     $scope.buy = function(item) {
-      console.log('hero');
-     }
-
-       $scope.sell = function(item) {
-
-       }
-
-
-}
 
 
 var mockDataForThisTest = [

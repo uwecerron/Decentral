@@ -1,17 +1,17 @@
 <div ng-include="'view/sidemenu.html'"></div>
 
-<div id="overview" class="panel panel-default">
+<div id="overview" class="panel panel-default col-xs-8">
     <div class="panel">
    <div class="panel-heading" ><span class="panel-title">Wallet</span></div>
     <div class="panel-body">
- <select class="selectpicker" data-size="auto">
-    <optgroup label="Camping">
-      <option>Tent</option>
-      <option>Flashlight</option>
-      <option>Toilet Paper</option>
-    </optgroup>
+   <div class="btn-group col-xs-3">
+<select id="sendasset" class="form-control" data-size="auto">
+      <option>Land</option>
+      <option>XYX coin</option>
+      <option>storage</option>
   </select>
-{{ message }}</div>
+</div>
+</div>
 </div>
 
 <!--Add Address-->
@@ -29,9 +29,19 @@
     </form>
   </div>
 <!--Add Address-->
+<div class="col-md-12">
+    <div class="col-md-4 text-left">
+      <button  class="btn btn-default" >Import Addresses</button>
+    </div>
+    <div class="col-md-4 text-center">
+      <button class="btn btn-default" ng-click="generateLeAddress()">Generate New Address</button>
+    </div>
+    <div class="col-md-4 text-right">
+      <button class="btn btn-default" ng-click="backupWallet()">Download Backup Wallet</button>
+    </div>
+</div>
 </div>
 
+  
 
-   
 
-</div><!--end overview-->

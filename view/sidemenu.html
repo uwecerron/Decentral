@@ -1,19 +1,25 @@
 <div id ="lepanel" class="panel panel-default">
     <div  class="panel-heading clearfix">
-      <h4 class="panel-title pull-left" style="padding-top: 7.5px; height:200px;">Panel header</h4>
-      <div >
+      <h4 class="panel-title pull-center" >Wallet</h4>
+      </div>
+      <div>
+      <ul class="list-group">
+    <a href="#"><li  class="list-group-item">Overview</li></a>
+    <a href="#"><li  class="list-group-item" >Addresses</li></a>
+    <a href="#"><li  class="list-group-item">History</li></a>
+ </ul>
 </div>
+
 <!--Add Wallet-->
 <div ng-controller="TextBtnCtrl">
  <span editable-text="user.name" e-form="textBtnForm">
     {{ user.name || 'empty' }}
   </span>
-  <button class="btn btn-default" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible">
+  <a  ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible">
     Create
-  </button></div>
-    </div>
-<!--Add Wallet-->
-    <table class="table table-condensed">
+  </a></div>
+
+<table class="table table-condensed">
         <thead>
             <tr>
                 <th class="col-md-1">Column 1</th>
@@ -35,6 +41,9 @@
                 </tr>
         </tbody>
     </table>
-</div>
+
+    </div>
+<!--Add Wallet-->
+
 
 

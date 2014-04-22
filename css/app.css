@@ -14,7 +14,8 @@ border-color: #ddd;
 #lepanel{
   width:200px;
   height:100%;
-    margin-top: -12%;
+    margin-top: -10%;
+    margin-left: 2%;
 
 }
 #receive{
@@ -32,10 +33,9 @@ margin-right: 20px;
 margin-top: -10%;
 }
 #overview{
+  margin-top: -35%;
+margin-left: 25%;
 
-  width:800px;
-  margin-left: 25%;
-  margin-top: -30%;
 }
 #sell{
   width:300px;
@@ -63,10 +63,10 @@ margin-left: 40%;
   padding-left: 10%;
 }
 #sendasset{
-  width:100%;
+  width:150px;
   left:0px;
-  background-color: #333;
-  color:#fff;
+  background-color: $fff;
+  color:#000;
 }
 
 .nav li a{
@@ -98,8 +98,6 @@ text-align: center;
       color:#000;
 }
 
-.page h1    { font-size:60px; }
-.page a     { margin-top:50px; }
 /* PAGES
 ============================================================================= */
 
@@ -197,43 +195,3 @@ text-align: center;
     to { transform: translateY(100%); }
 }
 
-
-
-.tabs-left > .nav-tabs > li,
-.tabs-right > .nav-tabs > li {
-  float: none;
-  height:5px;
-}
-
-
-.tabs-left > .nav-tabs > li > a,
-.tabs-right > .nav-tabs > li > a {
-  min-width: 74px;
-  margin-right: 0;
-  margin-bottom: 0px;
-}
-
-.tabs-left > .nav-tabs {
-  float: left;
-  margin-right: 19px;
- 
-}
-
-.tabs-left > .nav-tabs > li > a {
-  margin-right: -1px;
-  /*-webkit-border-radius: 4px 0 0 4px;
-     -moz-border-radius: 4px 0 0 4px;
-          border-radius: 4px 0 0 4px;*/
-}
-
-.tabs-left > .nav-tabs > li > a:hover,
-.tabs-left > .nav-tabs > li > a:focus {
- /* border-color: #eeeeee #dddddd #eeeeee #eeeeee;*/
-}
-
-.tabs-left > .nav-tabs .active > a,
-.tabs-left > .nav-tabs .active > a:hover,
-.tabs-left > .nav-tabs .active > a:focus {
- /* border-color: #ddd transparent #ddd #ddd;
-  *border-right-color: #ffffff;*/
-}

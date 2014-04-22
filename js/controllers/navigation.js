@@ -8,7 +8,7 @@ function NavigationController($scope, $http, $location, $modal) {
     $scope.openSettings = function() {
       $modal.open({
         templateUrl: 'view/partials/settings.html',
-        controller: SettingsController
+        controller: 'SettingsController'
       });
     }
 

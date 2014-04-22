@@ -3,32 +3,35 @@
 <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.11/angular-csp.css"/>
 <link rel="stylesheet" type="text/css" href="css/app.css"/>
   <script src="lib/aes.js"></script>
-
 <script src="lib/bitcoinjs-min.js"></script>
+<script src="js/jquery-1.11.0.min.js"></script>
+
+
 <script src="bower_components/angular//angular.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="lib/angular-animate.js"></script>
 <link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
 <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
-<script src="js/app.js"></script>
+   <script src="js/app.js"></script>
+    
 <body ng-app='ChromaWallet'>
-      <script src="js/controllers/navigation.js"></script> 
-<div class="header">
-           <div ng-include="'view/header.html'"></div> 
 
+<div ng-include="'view/header.html'"></div> 
 
-         </div>
        
   <div class="page {{ pageClass }}" ng-view></div>
 
    <div ng-include="'view/footer.html'"></div>
 
+
+      <script src="js/controllers/navigation.js"></script> 
     <script src="js/controllers/home.js"></script>
     <script src="js/controllers/send.js"></script>
+          <script src="js/controllers/trade.js"></script> 
   <script src="js/controllers/receive.js"></script>
    <script src="js/controllers/issue.js"></script>
    <script src="js/directives/validation.js"></script>
- 
 </body>
 
 </html>
