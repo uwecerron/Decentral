@@ -25,7 +25,7 @@
         <tbody>
           <tr ng-repeat="item in items | orderBy:mySortFunction | filter:search">
             <td>{{item.Name}}</td>
-            <td>{{item.BTC | btc}}</td>   
+            <td>{{item.BTC | number:8}}</td>   
             <td>{{item.Units}}</td>
                <td>{{item.Address}}</td>
             <td><input type="button" value="Remove" ng-click="removeItem($index)" /></td>

@@ -29,13 +29,17 @@ cApp.config(function ($routeProvider) {
       });
   });
 
+//Add this to have access to a global variable
+cApp.run(function ($rootScope) {
+    $rootScope.globalVariable = 'Amadou'; //global variable
+});
 
 cApp.directive("selected", function($timeout) {
   return function($scope, element, attrs) {
     $scope.$watch('currentAddress', function() {
       $(element).focus()
       $(element).select()
-      console.log(element);
+     // console.log(element);
     })
   }
 })
@@ -68,12 +72,6 @@ cApp.controller('TextBtnCtrl', function($scope) {
 
   return Wallet;
 });
-
-/*()
-cApp.controller('Send', function($scope, $routeParams) {
-      $scope.pageClass = 'page-send';    $scope.message = 'This is Show send screen';
-});
-*/
 
 
 

@@ -4,7 +4,7 @@ function SendController($scope,$http){
 
     $scope.send = function(item) {
      console.log('submitted');
-   //$scope.formData;
+    
   $http({
         method  : 'POST',
         url     : 'https:/localhost/mainpage/index.php',

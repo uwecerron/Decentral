@@ -3,6 +3,7 @@ function TradeController($scope,$http){
    $scope.message = 'This is Show trade screen';
 
      $scope.buy = function(item) {
+     	console.log(person1);
       console.log('hero');
       $http({
         method  : 'POST',

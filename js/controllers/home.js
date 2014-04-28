@@ -8,13 +8,14 @@ cApp.controller('Home', function($scope, $rootScope ) {
 
 
     $scope.generateLeAddress = function() {
-      var privateKeyBytes = createPrivateKeyBytes();
-      var key = new Bitcoin.ECKey( privateKeyBytes );
+    //  var privateKeyBytes = createPrivateKeyBytes();
+     // var key = new Bitcoin.ECKey( privateKeyBytes );
       //$scope.$apply( function() {
-            $scope.currentAddress =  key.getBitcoinAddress().toString()
+    $scope.currentAddress =  wallet1.generateAddress();
             //$scope.currentImgURL = baseURL + $scope.currentAddress
           //} )
       //console.log($scope.currentAddress);
+      console.log(wallet1.Addresses)
     }
 
   //} )

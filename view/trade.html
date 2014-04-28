@@ -1,35 +1,11 @@
 <div ng-controller="TradeController" id="trade_main" class="panel panel-default vcenter">
     <div class="panel">
-    <div class="panel-heading" ><span class="panel-title">Trade</span></div>
-      <!--Asset Selector-->
-       <div class="row ">
-     <div id="asset_select" class="panel panel-default col-md-2 col-md-push-3">
-     <div class="panel-heading" ><span class="panel-title">Select an Asset</span></div>
-    <div class="panel-body">
- 
-    <select class="selectpicker" data-size="auto">
+    <div class="panel-heading" ><span class="panel-title pull-left">Select an Asset&nbsp;&nbsp;<select class="selectpicker"  data-size="auto">
       <option>Tent</option>
       <option>Flashlight</option>
       <option>Toilet Paper</option>
-  </select>
- </div></div>
-</div>
+  </select></span><span class="panel-title">Trade</span></div>
 
-<div class="input-group col-xs-12">
-  <span class="input-group-addon">@</span>
-  <input type="text" class="form-control" placeholder="Username">
-</div>
-
-<div class="input-group col-xs-12">
-  <input type="text" class="form-control">
-  <span class="input-group-addon">.00</span>
-</div>
-
-<div class="input-group col-xs-12">
-  <span class="input-group-addon">$</span>
-  <input type="text" class="form-control">
-  <span class="input-group-addon">.00</span>
-</div>
   <!--Asset Selector-->
   <div id="tradepane" class="row">
   <div class="col-xs-6 col-md-3 ">
@@ -38,15 +14,16 @@
     <div class="panel">
     <div class="panel-heading" ><span class="panel-title">Buy</span></div>
     <div class="panel-body">
- <input type="text"  id="quantity" placeholder="Quantity">
-  <input type="text" id="price" placeholder="Price">
-
+      <div class="input-group">
+ <input class="form-control" type="text"  id="quantity" placeholder="Quantity">
+  <input class="form-control" type="text" id="price" placeholder="Price">
+</div>
 </div>
 <button style="width: 250px;
 height:35px;" ng-click="buy(item)" type="submit" class="btn btn-default">Buy</button>
 
 </div>
-{{ message }}
+
 </div>
 </div><!--col-xs-->
   <div class="col-xs-6 col-md-3">
@@ -55,10 +32,10 @@ height:35px;" ng-click="buy(item)" type="submit" class="btn btn-default">Buy</bu
     <div class="panel-heading" ><span class="panel-title">Sell</span></div>
     <div class="panel-body">
     <span>
- <input type="text" id="quantity" placeholder="Quantity">
+ <input class="form-control" type="text" id="quantity" placeholder="Quantity">
  </span>
  <span>
-  <input type="text" id="price" placeholder="Price"></div></span>
+  <input class="form-control" type="text" id="price" placeholder="Price"></div></span>
   <button style="width: 250px;
 height:35px;" ng-click="sell(item)" type="submit" class="btn btn-default">Sell</button>
 </div>

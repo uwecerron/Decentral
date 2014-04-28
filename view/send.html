@@ -1,5 +1,5 @@
 
-<form ng-controller="SendController" ng-submit="processForm()" id="issue" role="form">
+<form  name="form" ng-controller="SendController" ng-submit="processForm()" id="issue" role="form">
   <!--<form id="issue">-->
    
      <div class="input-group  col-xs-12">
@@ -13,17 +13,22 @@
   </select>
 </div>
   </div>
-  <input type="text" class="form-control" ng-model="item.btc" id="tosend" placeholder="10.00 btc">
+  <input type="text" name="min" class="form-control" ng-model="item.btc" id="tosend" placeholder="{{10| number:8}} BTC" lower-than >
 </div>
 
   <div class="form-group ">
   <input type="text" class="form-control col-xs-12" ng-model="item.address" id="tosend" placeholder="Address"></div>
      <div  class="col-xs-4" id="sendBalance">Available Balance: {{totalBTC}}</div>
+      <span class="error" ng-show="form.min.$error.lowerThan">
+       Amount must be at least be .001 btc
+      </span>
+        <span class="error" ng-show="form.min.$error.higherthan">
+        Please check the Amount again.
+      </span>
    <div class="col-xs-9"  style=" padding-left:300px;padding-top:40px;">
 
   <button style="width: 400px;
-height:50px;" type="submit" ng-click="send(item)" class="btn btn-default">Send</button> </div>
+height:50px;" type="submit" ng-click="send(item)" ng-disabled="form.$invalid" class="btn btn-default">Send</button> </div>
 </form>
-
 
 
