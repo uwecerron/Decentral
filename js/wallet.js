@@ -119,9 +119,3 @@ var wallet1 = new Wallet('uwe2');
 container.add(wallet1);
 console.log(container);
 
-
-
-
-
-
-

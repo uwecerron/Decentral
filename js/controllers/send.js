@@ -1,7 +1,8 @@
+
 function SendController($scope,$http){
   $scope.pageClass = 'page-send';
     $scope.item = {};
-
+console.log('logged');
     $scope.send = function(item) {
      console.log('submitted');
     

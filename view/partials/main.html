@@ -1,0 +1,29 @@
+
+<div id="current-address" class="ng-scope">
+
+  <div class="h3 text-center">
+
+      <span class="label label-grey square col-md-offset-1">
+
+        <strong style="color:#000;">YOUR CURRENT ADDRESS:</strong>
+      </span>
+    </div>
+    <p class="lead text-center" id="current-address">
+      <qr-code class="col-md-2 col-md-offset-5"  data="{{currentAddress}}"></qr-code>
+      <p  class="col-md-2 col-md-offset-4"   class="ng-binding">{{currentAddress}}</p>
+    </p>
+
+    
+  </div>
+
+<div class="col-md-12">
+    <div class="col-md-4 text-left">
+      <button  class="btn btn-default" >Import Addresses</button>
+    </div>
+    <div class="col-md-4 text-center">
+      <button class="btn btn-default" ng-click="generateLeAddress()">Generate New Address</button>
+    </div>
+    <div class="col-md-4 text-right">
+       <button class="btn btn-default"  href="data:{{url}}" download="backup.json" ng-click="downloadWallet()">Backup Wallet</button>
+    </div>
+</div>

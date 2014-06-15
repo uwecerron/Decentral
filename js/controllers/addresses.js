@@ -1,0 +1,2 @@
+function AddressesController($scope, $filter) {
+ }

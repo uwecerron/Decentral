@@ -1,23 +1,41 @@
 
-<form  name="form" ng-controller="SendController" ng-submit="processForm()" id="issue" role="form">
+<form  name="form"  ng-submit="processForm()" id="issue" role="form">
   <!--<form id="issue">-->
-   
-     <div class="input-group  col-xs-12">
-  <div class="input-group-btn">
+  <div class="row">
     <!-- Button and dropdown menu -->
-    <div class="btn-group">
-<select id="sendasset" class="form-control" data-size="auto">
-      <option>Land</option>
-      <option>XYX coin</option>
-      <option>storage</option>
-  </select>
+    <div class="col-md-2 form-group">
+      <label>Token</label>
+<select id="send_asset_selector"  name="sport" class="form-control input-sm validate[required]" data-size='auto'>
+                                    <option value="">BTC</option>
+                                    <option value="option1"></option>
+                                    <option value="option2">Football</option>
+                                    <option value="option3">Golf</option>
+                                </select>
 </div>
-  </div>
-  <input type="text" name="min" class="form-control" ng-model="item.btc" id="tosend" placeholder="{{10| number:8}} BTC" lower-than >
+ 
+<div class="col-md-8 form-group">
+      <label class="control-label">
+        Amount: </label> 
+        <p id="input_message" >{{form.amount.message}}</p>
+     
+  <input type="number" class="form-control input-sm" ng-model="inputAmount"
+        min="0"
+        placeholder="0.001 BTC"
+        validate-amount >
 </div>
+ </div>
 
-  <div class="form-group ">
-  <input type="text" class="form-control col-xs-12" ng-model="item.address" id="tosend" placeholder="Address"></div>
+<div class="clearfix"></div>
+<div class="form-group m-b-10">
+ <label>Address</label><p id="input_message">{{form.address.message}}</p>
+  <input type="text" class="form-control input-sm"  
+        name="address"
+        type="text"
+        tabindex="1"
+        placeholder="{{form.address.example}}"
+        ng-model="inputAddress"
+        ng-change="setTemp()"
+        validate-address></div>
      <div  class="col-xs-4" id="sendBalance">Available Balance: {{totalBTC}}</div>
       <span class="error" ng-show="form.min.$error.lowerThan">
        Amount must be at least be .001 btc
@@ -25,10 +43,7 @@
         <span class="error" ng-show="form.min.$error.higherthan">
         Please check the Amount again.
       </span>
-   <div class="col-xs-9"  style=" padding-left:300px;padding-top:40px;">
-
-  <button style="width: 400px;
-height:50px;" type="submit" ng-click="send(item)" ng-disabled="form.$invalid" class="btn btn-default">Send</button> </div>
+ <button style="width: 400px;
+height:50px;" type="submit" ng-click="send(item)" ng-disabled="form.$invalid" class="btn btn-block btn-alt">Send</button>
 </form>
-
 

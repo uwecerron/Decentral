@@ -1,16 +1,16 @@
 
 "use strict";
 
-var cApp =angular.module('ChromaWallet', ['ngRoute', 'ngAnimate','xeditable']);
+var cApp =angular.module('ChromaWallet', ['ngRoute','ngAnimate','xeditable','ngGrid',"ui.router", "ui.bootstrap",]);
 cApp.config(function ($routeProvider) {
     $routeProvider.
      when('/Home', {
         templateUrl: 'view/home.html',
         controller: 'Home'
     }).
-      when('/Receive', {
-        templateUrl: 'view/receive.html',
-        controller: 'ReceiveController'
+      when('/Assets', {
+        templateUrl: 'view/assets.html',
+        controller: 'AssetsController'
     }).
       when('/Send', {
         templateUrl: 'view/send.html',
@@ -23,6 +23,10 @@ cApp.config(function ($routeProvider) {
       when('/Trade', {
         templateUrl: 'view/trade.html',
         controller: 'TradeController'
+      }).
+      when('/Settings',{
+              templateUrl: 'view/settings.html',
+        controller: 'SettingsController'
       })
       .otherwise({
         redirectTo: '/Home'
@@ -44,13 +48,22 @@ cApp.directive("selected", function($timeout) {
   }
 })
 
+cApp.directive('inlineEdit', function() {
 
-cApp.controller('TextBtnCtrl', function($scope) {
-  $scope.user = {
-    name: 'awesome user'
-  };  
+    return function(scope, element, attrs) {
+        element.bind('click', function(){
+            element.toggleClass('inactive');
+            if(element.hasClass('inactive')){
+                $(element).blur();
+            }
+        });
+         element.bind('keyup', function(event) {
+          if(event.keyCode==13) handler(event)
+        });
+     
+    };
+
 });
- 
     function createPrivateKeyBytes() {
       var privateKeyBytes = [];
       var randArr = new Uint8Array( 32 );
@@ -62,49 +75,34 @@ cApp.controller('TextBtnCtrl', function($scope) {
     }
 
  
- cApp.factory('Wallet', function() {
-  var Wallet = {};
-  var list = [];
-  Wallet.getItem = function(index) { return list[index]; }
-  Wallet.addItem = function(item) { list.push(item); }
-  Wallet.removeItem = function(item) { list.splice(list.indexOf(item), 1) }
-  Wallet.size = function() { return list.length; }
+ cApp.factory('WalletFactory', function() {
+  var Wallet2 = function(){
+    this.fuck="fucl";
 
-  return Wallet;
+  };
+  var list = [];
+  Wallet2.prototype.getItem = function() { console.log("works");}
+  Wallet2.prototype.addItem = function(item) { list.push(item); }
+  Wallet2.prototype.removeItem = function(item) { list.splice(list.indexOf(item), 1) }
+  Wallet2.prototype.size = function() { return list.length; }
+  Wallet2.prototype.shita="shita";
+
+  return Wallet2;
 });
 
-
-
-var mockDataForThisTest = [
-    {
-    color: 'blue',
-    moniker:'land',
-    balance: "200000.000000",
-    address: "1ra"},
-{
-    color: 'orange',
-    moniker:'house',
-    balance: "140.12304",
-    address: "1be"}
-];
-
-
-function assets($scope, $http) {
-
-    $scope.assets = mockDataForThisTest;
-      //  $scope.assets = data;
-        /*var httpRequest = $http({
-            method: 'POST',
-            url: '/echo/json/',
-            data: mockDataForThisTest
-
-        }).success(function(data, status) {
-        
-        });*/
+var lecrapper= function(Decentralstorage){
+  console.log('lecrpper');
+this.variable=Decentralstorage.getall('cache');
 
 }
+lecrapper.prototype.getit= function(){
+  return this.variable;
+}
 
-
+//var newstorage=new Decentralstorage();
+//var shit= new lecrapper(newstorage);
+//var suckit= shit.getit();
+//console.log();
 
 
 

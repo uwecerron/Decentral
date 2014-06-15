@@ -1,20 +1,10 @@
-<div ng-include="'view/sidemenu.html'"></div>
+<div  class="row">
+<div ng-include="'view/partials/sidemenu.html'"></div>
 
-<div id="overview" class="panel panel-default col-xs-8">
-    <div class="panel">
-   <div class="panel-heading" ><span class="panel-title">Wallet</span></div>
-    <div class="panel-body">
-   <div class="btn-group col-xs-3">
-<select id="sendasset" class="form-control" data-size="auto">
-      <option>Land</option>
-      <option>XYX coin</option>
-      <option>storage</option>
-  </select>
-</div>
-</div>
-</div>
+<!--
+<div id="overview" class="panel col-xs-8">
 
-<!--Add Address-->
+
 <div id="current-address" class="ng-scope">
   <div class="h3 text-center">
       <span class="label label-grey square">
@@ -28,7 +18,7 @@
       <input class="btn square " type="submit" value="Generate Address">
     </form>
   </div>
-<!--Add Address-->
+
 <div class="col-md-12">
     <div class="col-md-4 text-left">
       <button  class="btn btn-default" >Import Addresses</button>
@@ -37,11 +27,47 @@
       <button class="btn btn-default" ng-click="generateLeAddress()">Generate New Address</button>
     </div>
     <div class="col-md-4 text-right">
-      <button class="btn btn-default" ng-click="backupWallet()">Download Backup Wallet</button>
+       <button class="btn btn-default"  href="data:{{url}}" download="backup.json" ng-click="downloadWallet()">Backup Wallet</button>
     </div>
 </div>
-</div>
+
+</div>!-->
+      <div id="overview" class='col-md-8'>
+                        <div class="panel-heading">
+                          <h3 id="overview-title" class="panel-title">
+                                    All Addresses
+                                </h3>
+                              </div>
+                                <hr id="separator">
+                        
+                      <div  class="container">
+
 
   
+
+    <tabset id="letabset">
+        <!-- <tab 
+            ng-repeat="t in tabs" 
+            heading="{{t.heading}}"
+            select="go(t.route)"
+            active="t.active">
+        </tab>-->
+  <tab  id="first" heading="main"  ng-click="subPage='view/partials/main.html'">
+<ng-include src="subPage"></ng-include></tab>
+  <tab heading="transactions" ng-click="subPage='view/partials/transactions.html'"><ng-include src="subPage"></ng-include></tab></tab>
+  <tab heading="addresses" ng-click="subPage='view/partials/addresses.html'"><ng-include src="subPage"></ng-include></tab></tab>
+    </tabset>
+
+
+  <!-- <ng-include src=" 'view/main.html' "></ng-include>-->
+
+</div>
+
+
+</div>
+
+                        </div>
+                   <!--Transactions and Addresses Panel -->
+
 
 

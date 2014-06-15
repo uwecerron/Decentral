@@ -1,10 +1,10 @@
-function NavigationController($scope, $http, $location, $modal) {
+function NavigationController($scope, $location) {
     
      $scope.navClass = function (page) {
         var currentRoute = $location.path().substring(1) || 'home';
         return page === currentRoute ? 'active' : '';
     };        
-
+/*
     $scope.openSettings = function() {
       $modal.open({
         templateUrl: 'view/partials/settings.html',
@@ -14,12 +14,13 @@ function NavigationController($scope, $http, $location, $modal) {
 
    
 }
-
-function SettingsController($scope, $http, $location, $modalInstance){
+function SettingsController($scope, $http, $location){
    $scope.password = function(create) {
     var password ="";
 
 
 
 }
+*/
+
 }
