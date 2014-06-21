@@ -10,7 +10,7 @@
     </div>
     <p class="lead text-center" id="current-address">
       <qr-code class="col-md-2 col-md-offset-5"  data="{{currentAddress}}"></qr-code>
-      <p  class="col-md-2 col-md-offset-4"   class="ng-binding">{{currentAddress}}</p>
+      <p  class="col-md-2 col-md-offset-4" >{{currentAddress}}</p>
     </p>
 
     
@@ -24,6 +24,6 @@
       <button class="btn btn-default" ng-click="generateLeAddress()">Generate New Address</button>
     </div>
     <div class="col-md-4 text-right">
-       <button class="btn btn-default"  href="data:{{url}}" download="backup.json" ng-click="downloadWallet()">Backup Wallet</button>
+       <a class="btn btn-default" ng-click="backup()" >Backup Wallet</a>
     </div>
 </div>

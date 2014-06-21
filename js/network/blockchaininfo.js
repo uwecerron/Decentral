@@ -51,9 +51,7 @@ Blockchain.prototype.pushTx =function( tx_serialized, tx_hash, callback ) {
       format: "plain",
       tx: tx_serialized,
       hash: tx_hash,
-      cors: "true",
     };
-
       $http({method: 'POST', url: _url + 'pushtx',data:post_data,headers : { 'Content-Type': 'application/x-www-form-urlencoded' }}).
     success(function(data, status, headers, config) {
       console.log(data);

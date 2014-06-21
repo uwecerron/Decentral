@@ -1,8 +1,4 @@
-   // var ledecentral = new Decentralstorage();
-  //ledecentral.save( "cache", "currentAddress", "asaca",'more crap');
- //ledecentral.getall();
-  
-cApp.controller('Home', function($scope, $rootScope,WalletFactory,Blockchaininfo) {
+ cApp.controller('Home', function($scope, $rootScope,Blockchaininfo,TransactionFetcher) {
          $scope.pageClass = 'page-home';
     $scope.message = 'Choose Your Wallet';
     $rootScope.$watch( 'balance', function() {
@@ -12,19 +8,30 @@ cApp.controller('Home', function($scope, $rootScope,WalletFactory,Blockchaininfo
 
 console.log('logged');
 
+var example = new TransactionFetcher();
+example.get();
 
-    function sacka(){
-      var shit=new WalletFactory();
-shit.getItem();
-//WalletFactory.getItem();
+//var Block2= new Blockchaininfo();
+//var addresses=['1Af7Xx9hpqS2GBLY6swqe2fsMmNgPxzAPk','1Yj564jDqoB6L7hg5ETYKhqRsB65WrWPB'];
+//Block2.multiAddr(addresses);
+
+    function download(data) {
+    var a = document.createElement("a");
+     var backup = "data:text/csv;charset=utf-8,";
+        backup += escape(data);
+        a.href= backup;
+        a.click();
+    };
+
+
+
+$scope.backup= function(){
+var data =  "herro" ;
+download(data);
+
+
+
 }
-sacka();
-var Block2= new Blockchaininfo();
-var addresses=['1Af7Xx9hpqS2GBLY6swqe2fsMmNgPxzAPk','1Yj564jDqoB6L7hg5ETYKhqRsB65WrWPB'];
-Block2.multiAddr(addresses);
-
-
-
 //onsole.log(Wallet);
 //console.log(shita);
  setTimeout(function() {
@@ -46,12 +53,15 @@ var obj = {a: 123, b: "4 5 6"};
 var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(obj));
 
 $scope.url=data;
-
-    $scope.generateLeAddress = function() {
+/*$scope.$watch('currentAddress', function() {
+       alert('hey, myVar has changed!');
+   });
+  */  $scope.generateLeAddress = function() {
     //  var privateKeyBytes = createPrivateKeyBytes();
      // var key = new Bitcoin.ECKey( privateKeyBytes );
       //$scope.$apply( function() {
- $scope.currentAddress =  wallet1.generateAddress();
+ $scope.currentAddress =  wallet1.generatePublicAddress();
+
             //$scope.currentImgURL = baseURL + $scope.currentAddress
           //} )
       //console.log($scope.currentAddress);
@@ -59,17 +69,4 @@ $scope.url=data;
     }
 
   //} )
-   $scope.addresses = [{id:1,name: "name", address:50,balance:10},
-                     {id:1,name: "name", address: 43,balance:30},
-                     {id:1,name: "name", address: 27,balance:20},
-                     {id:1,name: "name", address: 29,balance:20},
-                     {id:1,name: "name", address: 34,balance:20}];
-       $scope.gridOptions = { 
-      data: 'addresses', 
-      enableCellSelection: true,
-      enableCellEditOnFocus: true,
-      enableRowSelection: false,
-      columnDefs: [{field: 'name', displayName: 'Name', enableCellEdit: true}, {field:'address', displayName:'Address', enableCellEdit: false}, {field:'balance', displayName:'Balance', enableCellEdit: false}]
-    };
-
 });//end Home Controller

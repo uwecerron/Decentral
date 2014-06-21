@@ -5,11 +5,11 @@ var AllWallets = function () {
    
 }
 AllWallets.prototype = {
-    add: function (wallet) {
+    addWallet: function (wallet) {
         this.wallets.push(wallet);
     },
      
-    remove: function (wallet) {    
+    removeWallet: function (wallet) {    
         for (var node, i = 0; node = this.getObject(i); i++) {
             if (node == wallet) {
                 this.children.splice(i, 1);
@@ -25,7 +25,7 @@ AllWallets.prototype = {
         return false;
     },
      
-    getObject: function (i) {
+    getWallet: function (i) {
         return this.children[i];
     }
 }

@@ -1,1 +1,39 @@
-addresses
+  <div ng-controller="AddressesController">
+            <table class="table table-striped table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th class="name">Name&nbsp;<a ng-click="sort_by('name')"><i class="icon-sort"></i></a></th>
+                        <th class="address">Address&nbsp;<a ng-click="sort_by('address')"><i class="icon-sort"></i></a></th>
+                        <th class="balance">Balance&nbsp;<a ng-click="sort_by('balance')"><i class="icon-sort"></i></a></th>
+                        <th class="token">Token&nbsp;<a ng-click="sort_by('token')"><i class="icon-sort"></i></a></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <td colspan="6">
+                        <div class="pagination">
+                            <ul class="pagination">
+                                <li ng-class="{disabled: currentPage == 0}">
+                                    <a href ng-click="prevPage()">« Prev</a>
+                                </li>
+                                <li ng-repeat="n in range(pagedItems.length)"
+                                    ng-class="{active: n == currentPage}"
+                                ng-click="setPage()">
+                                    <a href ng-bind="n + 1">1</a>
+                                </li>
+                                <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+                                    <a href ng-click="nextPage()">Next »</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tfoot>
+                <tbody>
+                    <tr ng-repeat="item in pagedItems[currentPage]">
+                        <td>{{item.name}}</td>
+                        <td>{{item.address}}</td>
+                        <td>{{item.balance}}</td>
+                        <td>{{item.token}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>

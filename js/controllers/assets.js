@@ -29,10 +29,16 @@ cApp.value('ReceiveTable',{
       })
 
 
-function AssetsController($scope,ReceiveTable)  {
+function AssetsController($scope,ReceiveTable,Decentralstorage)  {
    $scope.pageClass = 'page-assets';
     $scope.items = ReceiveTable.items;
     $scope.item = {};
+   var ledecentral = new Decentralstorage();
+   
+   var values ={Name: "Burger2 King2", BTC: "1200",Address:"mhRYQjHSu4QQRr8yi5m2eiSznsUt4HrJSy", Units: "5"};
+    ledecentral.save( "address", values);
+    ledecentral.getall();
+
 
     $scope.addItem = function(item) {
        var privateKeyBytes = createPrivateKeyBytes();
@@ -55,9 +61,9 @@ function AssetsController($scope,ReceiveTable)  {
       return parseInt(item[$scope.sortExpression]);
     };
     
-      $scope.removeItem = function(index){
+      /*$scope.removeItem = function(index){
       ReceiveTable.removeItem(index);
-    };
+    };*/
     
     $scope.name=/^[a-zA-Z ]*$/;
     

@@ -1,43 +1,22 @@
 'use strict';
 
 cApp.factory("Decentralstorage", function() {
-angular.element($window).on('cache', function(event) {
+/*angular.element($window).on('cache', function(event) {
     if (event.key === 'storage') {
       $rootScope.$apply();
     }
-  });
+  });*/
 var Decentralstorage= function() {
     this.addresses = {};
-    //this.loadWallets();
 }    
-/*
-  
-          remove: function( leobject, key, callback ) {
-    var self = this;
-    self.get( leobject, function( data ) {
-      delete data[ key ];
-
-      setObject = {};
-      setObject[ leobject ] = data;
-
-      chrome.storage.local.set( setObject, function() {
-        if ( callback === undefined ) {
-          callback = function() {};
-        }
-        callback();
-      } );
-
-    } )
-  },
- 
-*/
 
 Decentralstorage.prototype.get=function( name, callback) {
-
+    var name=name;
     chrome.storage.local.get(name, function( data ) {
     if ( data === undefined ) {
       callback( {} );
       } else {
+        console.log(data[name]);
       callback(data[name]);
       }
 
@@ -71,23 +50,20 @@ Decentralstorage.prototype.getall=function(callback){
  * @param {Function} callback Callback providing results for the function.
  * @private
  */
-Decentralstorage.prototype.save = function(name, key, value, callback) {
+Decentralstorage.prototype.save = function(name, object, callback) {
     var self = this;
-    self.get(name, function( data ) {
+    var name=name;
+    self.get(name, function(data) {
       if ( data === undefined ) {
         data = {}
-      };
-
-      if ( data.constructor !== Object ) {
+      };if (data.constructor !== Object) {
         throw Error( "can't set on not object" )
       }
-
-      data[key] = value;
-      console.log('set: '+data[ key ])
-      setObject = {};
+      data = object;
+      var setObject = {};
       setObject[name] = data;
-
-      chrome.storage.local.set( name, function() {
+    console.log('set: '+JSON.stringify(setObject))
+      chrome.storage.local.set( setObject, function() {
         if ( callback === undefined ) {
           callback = function() {};
         }

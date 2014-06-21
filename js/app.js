@@ -64,41 +64,6 @@ cApp.directive('inlineEdit', function() {
     };
 
 });
-    function createPrivateKeyBytes() {
-      var privateKeyBytes = [];
-      var randArr = new Uint8Array( 32 );
-      crypto.getRandomValues( randArr );
-      for ( var i = 0; i < randArr.length; i++ ) {
-        privateKeyBytes[ i ] = randArr[ i ];
-      }
-      return privateKeyBytes;
-    }
-
- 
- cApp.factory('WalletFactory', function() {
-  var Wallet2 = function(){
-    this.fuck="fucl";
-
-  };
-  var list = [];
-  Wallet2.prototype.getItem = function() { console.log("works");}
-  Wallet2.prototype.addItem = function(item) { list.push(item); }
-  Wallet2.prototype.removeItem = function(item) { list.splice(list.indexOf(item), 1) }
-  Wallet2.prototype.size = function() { return list.length; }
-  Wallet2.prototype.shita="shita";
-
-  return Wallet2;
-});
-
-var lecrapper= function(Decentralstorage){
-  console.log('lecrpper');
-this.variable=Decentralstorage.getall('cache');
-
-}
-lecrapper.prototype.getit= function(){
-  return this.variable;
-}
-
 //var newstorage=new Decentralstorage();
 //var shit= new lecrapper(newstorage);
 //var suckit= shit.getit();

@@ -1,5 +1,5 @@
 
-function SendController($scope,$http){
+function SendController($scope,$rootScope,$http){
   $scope.pageClass = 'page-send';
     $scope.item = {};
 console.log('logged');
@@ -30,4 +30,6 @@ console.log('logged');
       //$scope.$apply( function() {
      
     };
+
+   
 }

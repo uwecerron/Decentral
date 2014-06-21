@@ -4,8 +4,12 @@
   "version": "0.0.1",
   "manifest_version": 2,
   "browser_action": {
-    "default_title": "Colored Coins Wallet"
+    "default_title": "Colored Coins Wallet",
+     "default_icon": "img/icon128.png"
 
+  },
+    "icons": {
+    "128": "img/icon128.png"
   },
   "background": {
     "scripts": ["background.js"]

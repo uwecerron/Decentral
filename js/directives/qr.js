@@ -1,4 +1,4 @@
-  cApp.directive('qrCode', function($compile) {
+  cApp.directive('qrCode', function() {
     return {
       restrict: 'E',
     replace:true,
