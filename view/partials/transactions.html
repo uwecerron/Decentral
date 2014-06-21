@@ -1,0 +1,47 @@
+  <div ng-controller="TransactionsController">
+                       <ul class="nav nav-pills col-md-8 col-md-push-4">
+                  
+                        <li class="from"><a ng-click="sort_by('from')">From</a></li>
+                        <li class="to"><a ng-click="sort_by('to')">To</a></li>
+                        <li class="transaction"><a ng-click="sort_by('transaction')">Transaction</a></li>
+                        <li class="date"><a ng-click="sort_by('date')">Date</a></li>
+                  
+                </ul>
+            <table class="table table-striped table-condensed table-hover">
+                 <thead>
+                    <tr>
+                        <th class="name">Name&nbsp;</a></th>
+                        <th class="address">Address&nbsp;</a></th>
+                        <th class="balance">Balance&nbsp;</a></th>
+                        <th class="token">Token&nbsp;<a ng-click="sort_by('token')"></a></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <td colspan="6">
+                        <div class="pagination">
+                            <ul class="pagination">
+                                <li ng-class="{disabled: currentPage == 0}">
+                                    <a href ng-click="prevPage()">« Prev</a>
+                                </li>
+                                <li ng-repeat="n in range(pagedTransactions.length)"
+                                    ng-class="{active: n == currentPage}"
+                                ng-click="setPage()">
+                                    <a href ng-bind="n + 1">1</a>
+                                </li>
+                                <li ng-class="{disabled: currentPage == pagedTransactions.length - 1}">
+                                    <a href ng-click="nextPage()">Next »</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tfoot>
+                <tbody>
+                    <tr ng-repeat="transaction in pagedTransactions[currentPage]">
+                        <td>{{transaction.from}}</td>
+                        <td>{{transaction.to}}</td>
+                        <td>{{transaction.transaction}}</td>
+                        <td>{{transaction.date}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
