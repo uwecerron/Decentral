@@ -41,7 +41,7 @@ function TransactionsController($rootScope,$scope, $filter,TransactionFetcher) {
             console.log("works2")
             $scope.filteredtransactions = $filter('orderBy')($scope.filteredtransactions, $scope.sortingOrder, $scope.reverse);
         }
-        $scope.currentPage = 0;
+        // $scope.currentPage = 0;
         // now group by pages
         $scope.groupToPages();
     };
@@ -100,6 +100,26 @@ function TransactionsController($rootScope,$scope, $filter,TransactionFetcher) {
         $scope.search();
        console.log($scope.sortingOrder);
     };
+	
+	function download(data) {
+		var a = document.createElement("a");
+		var backup = "data:text/csv;charset=utf-8,";
+        backup += escape(data);
+		a.href = backup;
+        a.click();
+    };
+	
+	$scope.generate = function() {
+		var outfile = "Name,Address,Balance,Token\n";
+		for(var index = 0; index < $scope.transactions.length; index++)
+		{
+			outfile += $scope.transactions[index]["name"] + ","
+					+  $scope.transactions[index]["address"] + ","
+					+  $scope.transactions[index]["balance"] + ","
+					+  $scope.transactions[index]["token"] + "\n";
+		}
+		download(outfile);
+	};
 };
 
 //TransactionsController.$inject = ['$scope', '$filter'];

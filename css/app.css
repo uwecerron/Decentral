@@ -48,9 +48,7 @@ textarea { resize:none; }
 	color:#333;
 }
 
-
 #overview-title{
-
   cursor: pointer;
   letter-spacing: 0.5px;
 }
@@ -100,7 +98,12 @@ table{
 	margin: 0 auto;
 	padding: 0;
 	background-color: #a9a9a9;
+}
 
+thead{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
 }
 
 #brand{
