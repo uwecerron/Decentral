@@ -1,67 +1,67 @@
 <div id="assets" class="panel">
-
     <div id="assets_main" class="panel col-md-offset-1 col-md-10">
-      
-  <!-- <div class="panel-heading" ><span class="panel-title">Add Asset</span></div>
-    <div class="panel-body">-->
-      <form name="itemForm" novalidate class="row form-columned" role="form">
-                        <div class="col-md-4">
-                              <label>Name</label>
-                             <input name="name" class="form-control input-sm m-b-10" type="text" ng-model="item.Name" required ng-pattern="name"/>
-                        </div>
-                        <div class="col-md-4">
-                           <label>BTC</label>
-                             <input name="price" class="form-control input-sm m-b-10" type="number" ng-model="item.BTC" required  valid-price />
-                        </div>
-                        <div class="col-md-4">
-                              <label>Token Amount</label>
-                            <input name="quantity" class="form-control input-sm m-b-10" type="number" ng-model="item.Units"  ng-pattern="integerval" required />
-                        </div>
-                        <div class="col-md-12">
-                              <label>Description</label>
-                            <textarea class="form-control m-b-10" placeholder="Description"></textarea>
-                        </div>
-              
-                        <div style="margin: 20px;" class="col-md-10">
-                                   <button ng-click="addItem(item)" ng-disabled="itemForm.$invalid" class="btn btn-default  btn-lg">Submit</button>
-                        </div>
-                    </form>
-    <div class="panel-body">
- <div >
-<div >
-    <div>Sort by: 
-            <select ng-model="sortExpression">
-          <option value="Name">Name</option>
-          <option value="BTC">BTC Amount</option>
-          <option value="Units">Units</option>
-        </select>
+        <!-- <div class="panel-heading" ><span class="panel-title">Add Asset</span></div>
+            <div class="panel-body">-->
+        <form name="itemForm" novalidate class="row form-columned" role="form">
+            <div class="col-md-4">
+                <label>Name</label>
+                <input name="name" class="form-control input-sm m-b-10" type="text" ng-model="item.Name" required ng-pattern="name"/>
             </div>
-      <br />
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <td>Name</td>
-            <td>Balance</td>
-            <td>Units</td>
-            <td>Address</td>
-            <td>Remove</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="item in items | orderBy:mySortFunction | filter:search">
-            <td>{{item.Name}}</td>
-            <td>{{item.BTC | number:8}}</td>   
-            <td>{{item.Units}}</td>
-               <td>{{item.Address}}</td>
-            <td><input type="button" value="Remove" ng-click="removeItem($index)" /></td>
-          </tr>
-        </tbody>
-      </table>
-      <br />
-      <div>Total Balance: {{totalBTC()}}</div>
-      <br />          
+            <div class="col-md-4">
+                <label>BTC</label>
+                <input name="price" class="form-control input-sm m-b-10" type="number" ng-model="item.BTC" required  valid-price />
+            </div>
+            <div class="col-md-4">
+                <label>Token Amount</label>
+                <input name="quantity" class="form-control input-sm m-b-10" type="number" ng-model="item.Units"  ng-pattern="integerval" required />
+            </div>
+            <div class="col-md-12">
+                <label>Description</label>
+                <textarea class="form-control m-b-10" placeholder="Description"></textarea>
+            </div>
+            <div style="margin: 20px;" class="col-md-10">
+                <button ng-click="addItem(item)" ng-disabled="itemForm.$invalid" class="btn btn-default  btn-lg">Submit</button>
+            </div>
+        </form>
+        <div class="panel-body">
+            <div >
+                <div >
+                    <div>
+                        Sort by: 
+                        <select ng-model="sortExpression">
+                            <option value="Name">Name</option>
+                            <option value="BTC">BTC Amount</option>
+                            <option value="Units">Units</option>
+                        </select>
+                    </div>
+                    <br />
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <td ng-click='sortExpression = "Name"'>Name</td>
+                                <td ng-click='sortExpression = "BTC"'>Balance</td>
+                                <td ng-click='sortExpression = "Units"'>Units</td>
+                                <td ng-click='sortExpression = "Address"'>Address</td>
+                                <td>Remove</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in items | orderBy:mySortFunction | filter:search">
+                                <td>{{item.Name}}</td>
+                                <td>{{item.BTC | number:8}}</td>
+                                <td>{{item.Units}}</td>
+                                <td>{{item.Address}}</td>
+                                <td><input type="button" value="Remove" ng-click="removeItem($index)" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br />
+                    <div>Total Balance: {{totalBTC()}}</div>
+                    <br />          
+                </div>
+            </div>
+            <!--table-->
+        </div>
     </div>
-</div><!--table-->
-</div>
-</div><!--end table panel-->
+    <!--end table panel-->
 </div>

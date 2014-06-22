@@ -2,31 +2,31 @@
 
 
 cApp.value('ReceiveTable',{
-        items : [
-          {Name: "XYZ Corp", BTC: "25",Address:"mhRYQjHSu4QQRr8yi5m2eiSznsUt4HrJSy", Units: "10"},
-          {Name: "Land", BTC: "50",Address:"mhRYQjHSu4QQRr8yi5m2eiSznsUt4HrJSy", Units: "15"},
-          {Name: "Burger King", BTC: "100",Address:"mhRYQjHSu4QQRr8yi5m2eiSznsUt4HrJSy", Units: "5"}
-          ],
-        addItem: function(item){
-          this.items.push(item);
-        },
-        totalBTC: function(){
-          var total = 0;
-          for(var count=0;count<this.items.length;count++){
-            total += this.items[count].BTC*this.items[count].Units;
-          }
-          return total;
-        },
-        removeItem: function(index){
-          this.items.splice(index,1);
-        }
-        
-      })
-      .filter('btc',function(){
-        return function(item){
-          return item;
-        }
-      })
+	items : [
+		{Name: "XYZ Corp", BTC: "25",Address:"mhRYQjHSu4QQRr8yi5m2eiSznsUt4HrJSy", Units: "10"},
+		{Name: "Land", BTC: "50",Address:"mhRYQjHSu4QQRr8yi5m2eiSznsUt4HrJSy", Units: "15"},
+		{Name: "Burger King", BTC: "100",Address:"mhRYQjHSu4QQRr8yi5m2eiSznsUt4HrJSy", Units: "5"}
+	],
+	addItem: function(item){
+		this.items.push(item);
+	},
+	totalBTC: function(){
+		var total = 0;
+		for(var count=0;count<this.items.length;count++){
+			total += this.items[count].BTC*this.items[count].Units;
+		}
+		return total;
+	},
+	removeItem: function(index){
+		this.items.splice(index,1);
+	}
+
+	})
+	.filter('btc',function(){
+		return function(item){
+		return item;
+	}
+})
 
 
 function AssetsController($scope,ReceiveTable,Decentralstorage)  {
