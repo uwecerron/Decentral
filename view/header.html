@@ -7,12 +7,13 @@
 
 		<div class="navbar-collapse collapse">
 			<ul id="topnavigation" class="nav navbar-nav">
-				<li ng-class="navClass('Home')" ><a href="#Home">Home</a></li>
-				<li ng-class="navClass('Assets')"><a href="#Assets">Assets</a></li>
-				<li ng-class="navClass('Send')" ><a href="#Send">Send</a></li>
-				<li ng-class="navClass('Issue')"><a href="#Issue">Issue</a></li>
-				<li ng-class="navClass('Trade')"><a href="#Trade">Trade</a></li>
-				<li ng-class="navClass('Settings')"><a href="#Settings" >Settings</a></li>
+				<!-- what point of navClass-->
+				<li ng-class="{true:'header-zero'}[true]"><a href="#Home">Home</a></li>
+				<li ng-class="{true:'header-one'}[true]"><a href="#Assets">Assets</a></li>
+				<li ng-class="{true:'header-two'}[true]"><a href="#Send">Send</a></li>
+				<li ng-class="{true:'header-three'}[true]"><a href="#Issue">Issue</a></li>
+				<li ng-class="{true:'header-four'}[true]"><a href="#Trade">Trade</a></li>
+				<li ng-class="{true:'header-five'}[true]"><a href="#Settings" >Settings</a></li>
 			</ul>     
 			<div class="navbar-balance">			
 				<div data-bal data-value="balance"></div>

@@ -33,7 +33,8 @@ function NavigationController($scope,$rootScope, $location,$timeout,$http) {
                $timeout(tick, 20000);
     });
           })();
-
+		  
+	$scope.starts=true;
           //test
          
 }
