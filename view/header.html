@@ -8,12 +8,18 @@
 		<div class="navbar-collapse collapse">
 			<ul id="topnavigation" class="nav navbar-nav">
 				<!-- what point of navClass-->
-				<li ng-class="{true:'header-zero'}[true]"><a href="#Home">Home</a></li>
-				<li ng-class="{true:'header-one'}[true]"><a href="#Assets">Assets</a></li>
-				<li ng-class="{true:'header-two'}[true]"><a href="#Send">Send</a></li>
-				<li ng-class="{true:'header-three'}[true]"><a href="#Issue">Issue</a></li>
-				<li ng-class="{true:'header-four'}[true]"><a href="#Trade">Trade</a></li>
-				<li ng-class="{true:'header-five'}[true]"><a href="#Settings" >Settings</a></li>
+				<li ng-class="navClass('Home')">
+				<a href="#Home" ng-class="{'header-zero':doInit}">Home</a></li>
+				<li ng-class="navClass('Assets')">
+				<a href="#Assets" ng-class="{'header-one':doInit}">Assets</a></li>
+				<li ng-class="navClass('Send')">
+				<a href="#Send" ng-class="{'header-two':doInit}">Send</a></li>
+				<li ng-class="navClass('Issue')">
+				<a href="#Issue" ng-class="{'header-three':doInit}">Issue</a></li>
+				<li ng-class="navClass('Trade')">
+				<a href="#Trade" ng-class="{'header-four':doInit}">Trade</a></li>
+				<li ng-class="navClass('Settings')">
+				<a href="#Settings" ng-class="{'header-five':doInit}">Settings</a></li>
 			</ul>     
 			<div class="navbar-balance">			
 				<div data-bal data-value="balance"></div>

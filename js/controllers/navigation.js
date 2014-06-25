@@ -34,7 +34,7 @@ function NavigationController($scope,$rootScope, $location,$timeout,$http) {
     });
           })();
 		  
-	$scope.starts=true;
+	$scope.doInit=true;
           //test
-         
+    
 }
