@@ -73,7 +73,6 @@ a{
 	width: 800px;
 }
 
-
 #wallet_name{
   color:#333;
 }
@@ -130,6 +129,7 @@ thead{
 	list-style-image: none;
 	font-size: 0;
 	height: 70px;
+	width: 70%;
 	margin: 0;
 	padding: 0;
 
@@ -140,38 +140,40 @@ thead{
 	display: inline-block;
 	list-style: none;
 	border: 0;
-	height: 70px;
+	height: 100%;
+	width: 15%;
 	text-align: center;
+	background-color: #f5f5f5;
 	margin: 0;
 	padding: 0;
 }
 
 #topnavigation li a{ 
 	font-family: "Montserrat", sans-serif;
-	font-size: 12px;
+	font-size: 16px;
 	line-height: 2em;
-	
 	/*background: rgba(0,0,0,0.35);*/
-	margin: 0 1px 0 0;
+	/*margin: 0 1px 0 0;*/
 	display: block;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 	letter-spacing: 0.5px;
 	color: white;
-	width: 80px;
-	height: 70px;
+	width: 100%;
+	height: 100%;
 	border: 0;
 
 	border-top: none;
 	text-decoration: none;
 	text-transform: uppercase;
 	text-shadow: 0 1px 1px rgba(0,0,0,0.5);
-
+	/*
 	padding-top: 25%;
 	.panel-heading{
 		color: #333;
-		background-color: #000000;
+		background-color: #f5f5f5;
 		border-color: #ddd;
 	}
+	*/
 }
 
 #topnavigation li a:hover{
@@ -324,33 +326,39 @@ select:not([multiple]) {
 ============================================================================= */
 
 /* header ----------------------------*/
-.header-zero {
+.header-zero{
 	-webkit-animation: moveFromLeft .4s ease both;
+	z-index: 6;
 }
 
-.header-one {
+.header-one{
 	-webkit-animation: moveFromLeft .4s ease both;
 	-webkit-animation-delay: .3s;
+	z-index: 5;
 }
 
-.header-two {
+.header-two{
 	-webkit-animation: moveFromLeft .4s ease both;
 	-webkit-animation-delay: .6s;
+	z-index: 4;
 }
 
-.header-three {
+.header-three{
 	-webkit-animation: moveFromLeft .4s ease both;
 	-webkit-animation-delay: .9s;
+	z-index: 3;
 }
 
-.header-four {
+.header-four{
 	-webkit-animation: moveFromLeft .4s ease both;
 	-webkit-animation-delay: 1.2s;
+	z-index: 2;
 }
 
-.header-five {
+.header-five{
 	-webkit-animation: moveFromLeft .4s ease both;
 	-webkit-animation-delay: 1.5s;
+	z-index: 1;
 }
 
 /* page specific animations ------------------------ */
@@ -461,4 +469,3 @@ select:not([multiple]) {
 }
 @keyframes moveFromLeft {
     from { transform: translateX(-100%); }
-
