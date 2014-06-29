@@ -318,6 +318,28 @@ select:not([multiple]) {
     width:100%; 
     color:#000;
 }
+/*
+login.html
+*/
+
+#login{
+	margin-top:3%;
+	background-color: #fff;
+		border-radius: 0.5rem;
+}
+#login_button{
+	 margin: 0;
+    background-color: transparent;
+    text-align: center;
+}
+input {
+	width: 100%;
+	margin-bottom: 1.4rem;
+	padding: 1rem;
+	background-color: #ecf2f4;
+	border-radius: 0.2rem;
+	border: none;
+}
 
 /* PAGES
 ============================================================================= */

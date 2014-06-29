@@ -1,0 +1,13 @@
+<div id="login" class="row">
+<div class="large-6 medium-6 columns">
+	                <h2>Login</h2>
+              <div class="box-signin radius">
+
+                <form name="loginForm" ng-submit="login(loginForm)" novalidate="">
+                  <input type="text" placeholder="Paste wallet secret here" name="connectionId" ng-model="connectionId" wallet-secret="" required="">
+                  <input type="password" placeholder="Choose your password" name="joinPassword" ng-model="$parent.joinPassword" check-strength="passwordStrength" >
+                  <input type="text" c placeholder="Your name (optional)" name="name" ng-model="name" >
+                  <div id="login_button"><button type="submit" class="btn btn-default btn-lg" ng-disabled="loginForm.$invalid || loading">Join</button></div>
+                </form>
+              </div>
+</div>
