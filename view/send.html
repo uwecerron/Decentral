@@ -1,26 +1,30 @@
 <form  name="form"  ng-submit="processForm()" id="issue" role="form">
     <!--<form id="issue">-->
-    <div class="row">
-        <!-- Button and dropdown menu -->
-        <div class="col-md-2 form-group">
-            <label>Token</label>
-            <select id="send_asset_selector"  name="sport" class="form-control input-sm validate[required]" data-size='auto'>
-                <option value="">BTC</option>
-                <option value="option1"></option>
-                <option value="option2">Football</option>
-                <option value="option3">Golf</option>
-            </select>
-        </div>
-        <div class="col-md-8 form-group">
-            <label class="control-label">
-            Amount: </label> 
-            <p id="input_message" >{{form.amount.message}}</p>
-            <input type="number" class="form-control input-sm" ng-model="inputAmount"
-                min="0"
-                placeholder="0.001 BTC"
-                validate-amount >
-        </div>
-    </div>
+	<div class="container">
+		<div class="row">
+			<!-- Button and dropdown menu -->
+			<div class="col-md-2 form-group">
+				<label>Token</label>
+				<select id="send_asset_selector"  name="sport" class="form-control input-sm validate[required] send_pos_sel" data-size='auto'>
+					<option value="">BTC</option>
+					<option value="option1"></option>
+					<option value="option2">Football</option>
+					<option value="option3">Golf</option>
+				</select>
+			</div>
+			<div class="col-md-8 form-group">
+				<label class="control-label">
+				Amount: </label> 
+				<div class="send_pos">
+					<input type="number" class="form-control input-sm" ng-model="inputAmount"
+						min="0"
+						placeholder="0.001 BTC"
+						validate-amount >
+					<p id="input_message" >{{form.amount.message}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
     <div class="clearfix"></div>
     <div class="form-group m-b-10">
         <label>Address</label>

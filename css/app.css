@@ -177,7 +177,8 @@ thead{
 }
 
 #topnavigation li a:hover{
-	color: red;
+	
+	color: black;
 }
 
 #lepanel{
@@ -233,6 +234,18 @@ table{
 	background: #fff;
 	margin-top: -20%;
 	margin-left: 30%;
+}
+
+.send_pos{
+	position: relative;
+	top: 9px;
+	height: 5px;
+}
+
+.send_pos_sel{
+	position: relative;
+	top: 3px;
+	height: 5px;
 }
 
 #sell{
