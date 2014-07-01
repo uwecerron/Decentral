@@ -2,8 +2,9 @@
 ============================================================================= */
 body{
     background: #f5f5f5;
-	/*overflow-y: scroll;*/
+
 }
+
 textarea { resize:none; }
 .table th {
    text-align: center;   
@@ -236,17 +237,25 @@ table{
 	margin-left: 30%;
 }
 
-.send_pos{
-	position: relative;
-	top: 9px;
-	height: 5px;
+/*send.html begins*/
+
+#send_size{
+	width:80%;
+}
+#send_cols{
+	height:80px;
+	padding:10px;
+}
+#send_asset_selector{
+	height:38px;
+}
+#send_cols input{
+	padding-top:0px;
+	padding-bottom:0px;
+	margin-bottom:0px;
 }
 
-.send_pos_sel{
-	position: relative;
-	top: 3px;
-	height: 5px;
-}
+/*send end*/
 
 #sell{
 	width:300px;
@@ -283,9 +292,6 @@ table{
 	color: red;
 }
 
-#send_asset_selector{
-	margin-top:5%;
-}
 select.input-sm {
 	height: 3em;
 	line-height: 30px;
@@ -327,7 +333,8 @@ select:not([multiple]) {
     left:0px;
     position:absolute; 
     text-align:center;
-    top:0; 
+    top:70px;
+	overflow-y:scroll;	
     width:100%; 
     color:#000;
 }
