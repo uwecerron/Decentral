@@ -138,8 +138,9 @@ thead{
 	z-index: 1000;
 	list-style-image: none;
 	font-size: 0;
-	height: 70px;
-	width: 70%;
+	height: 55px;
+	/*height: 70px;*/
+	width: 100%;
 	margin: 0;
 	padding: 0;
 
@@ -151,7 +152,7 @@ thead{
 	list-style: none;
 	border: 0;
 	height: 100%;
-	width: 15%;
+	width: 16.666%;
 	text-align: center;
 	background-color: #f5f5f5;
 	margin: 0;
