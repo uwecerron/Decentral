@@ -1,14 +1,15 @@
 "use strict";
+cApp.factory("Wallet",["Blockchaininfo","Decentralstorage",function(Decentralstorage,Blockchaininfo){
 
-  var Wallet = function(Name,Blockchaininfo,Decentralstorage) {
+  var Wallet = function(Name) {
       this.Name=Name;
       this.Addresses=[];
-      this.Txs;
-      this.Balance;
-      this.CurrentAddress;
+      this.Txs=[];
+      this.Balance=0;
+      this.CurrentAddress='';
       this.privatekey;
       this.storage=new Decentralstorage();
-      this.Blockchaininfo= new Blockchaininfo();
+      this.Blockchaininfo=new Blockchaininfo();
       this.Txfee =10000;
 
     this.getCurrentAddress = function(){
@@ -25,17 +26,18 @@
       };
 
      this.updateBalance=function(balance) {
-        Balance = balance;
+      Blockchaininfo.multiAddr(this.getAllAddresses,function(result){
+        this.Balance=result;
+      });
       }
+
    console.log('Wallet instantiated'+Name);
   }
 
   //TODO: finish method and test it
     Wallet.prototype.isAuthenticated=function(callback){
       this.storage.get( "security", function(data) {
-       
-
-
+    
       } )
     }
 
@@ -54,17 +56,18 @@
     }
 
 //todo: validate addresses
-  Wallet.prototype.getAddresses=function(){
-     var addressStr = [];
+  Wallet.prototype.getAllAddresses=function(){
+     var addressArr = [];
       for ( var i = 0; i < this.Addresses.length; i++ ) {
-          addressStr.push(Addresses[i].getAddress());
+          addressArr.push(this.Addresses[i]);
       }
-      return addressStr;
+      return addressArr;
   }  
     // returns addressObj or false
     Wallet.prototype.generatePublicAddress =function() {
       var key = Bitcoin.ECKey.makeRandom();
      // Print your private key (in WIF format)
+     this.Addresses.push(key.pub.getAddress().toString());
       console.log(key.toWIF());
      // this.save(key.toWIF());
       return key.pub.getAddress().toString();
@@ -82,7 +85,7 @@
       unspents._tx_output_n=[];
       unspents._tx_hash=[];
 
-      for(var i=0;i<data.unspent_outputs.length;i++){
+      for(var i=0;i<data.length;i++){
          unspents._value.push(data.unspent_outputs[i].value);
          unspents._script.push(data.unspent_outputs[i].script);
          unspents._tx_index.push(data.unspent_outputs[i].tx_index);
@@ -100,24 +103,15 @@
         return false;
        }
       if(key !== undefined){
-        Decentralstorage.save("wallet",this.Name,key);
+        this.storage.save("wallet",this.Name,key);
         return true;
        }else
         return false;
        }
-     Wallet.prototype.getAddressStrs=function() {
-      var addressStr = [];
-      for ( var i = 0; i < Addresses.length; i++ ) {
-        if ( Addresses[ i ].validate() ) {
-          addressStr.push(Addresses[ i ]);
-        }
-      }
-      return addressStr;
-    }
 
     Wallet.prototype.buildTransaction= function(toAddresses,password,callback){
       var tx = new Bitcoin.Transaction();
-         var key = Bitcoin.ECKey.fromWIF("5HzgF1Cwgq2x9pFM1bXnnnt31siWqpLEbe5rKJHaUMsVEq73eiy");
+      var key = Bitcoin.ECKey.fromWIF("5HzgF1Cwgq2x9pFM1bXnnnt31siWqpLEbe5rKJHaUMsVEq73eiy");
       var change = this.Balance-this.Txfee;
       var addresses;
      this.utxofetcher(toAddresses,function(data){
@@ -134,11 +128,10 @@
      toAddresses.push();
      this.addOutput(toAddresses);
      //todo: finish sign method
-     sign();
-    }
-    Wallet.prototype.selectunspents=function(addresses, callback ){
+     sign(unspent_outputs,key);
+       return tx.toHex();
+    }//end build transaction
 
-    }
      Wallet.prototype.addInput=function(unspent_output) {
       for ( var i = 0; i < unspent_output.length; i++ ) {
         var unspent = unspent_output[ i ]
@@ -157,21 +150,15 @@
         console.log("addOutput"+address.addr);
         }
     }
-   //to get change
-     function getChangeValue( selectedUnspents, txValuePlusFee ) {
-      var selectedUnspentsValue = SpareCoins.Util.sumUnspents( selectedUnspents );
-      return selectedUnspentsValue.subtract( txValuePlusFee );
-    }
-
-    function txValuePlusFee( toAddresses ) {
-      var txValue = SpareCoins.Util.sumToAddresses( toAddresses );
-      return txValue.add( Constants.minFee );
-    }
 
 
-    Wallet.prototype.sign=function(index,key){
+
+    Wallet.prototype.sign=function(unspent_outputs,key){
      //if(transaction)
-       tx.sign(index, key);
+     for(var i=0;i<unspent_outputs.length;i++){
+       tx.sign(i, key);
+      }
+      //console.log(tx.toHex())
     }
   
     Wallet.prototype.encrypt= function(privateKey,passwordDigest) {
@@ -195,5 +182,5 @@
       return true;
     }
 
-
-  
+return Wallet;
+}]);//end factory
