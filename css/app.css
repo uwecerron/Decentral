@@ -20,18 +20,27 @@ textarea { resize:none; }
 #input_message{
 	color:red;
 }
-#settingstitle{
+#settings_title{
 	left:0;
 	font-weight: 500;
 	font-family: "Montserrat", sans-serif;
 	color:#3f3f3f;
 	letter-spacing: 0.5px;
 	line-height: 1.1;
+	top:10px;
+}
+
+#settings_container{
+	top:40px;
+}
+
+#issue{
+	width:90%;
+	margin-left: 5%;
 }
 #settings{
 	width:90%;
 	margin-left: 5%;
-	margin-top:-10%;
 }
 .form-control {
 	border-radius: 4px;
@@ -226,7 +235,6 @@ table{
 #trade_main{
 	margin-left: 20px; 
 	margin-right: 20px;
-	margin-top: -10%;
 }
 
 #overview{
@@ -256,6 +264,20 @@ table{
 }
 
 /*send end*/
+/* settings.html*/
+#notifications_list{
+	margin-left:20px;
+	padding:0;
+	text-align: left;
+}
+
+#settings_baseunits{
+	font-size:20px;
+}
+
+#settings_security_header{
+	margin-top:20px;
+}
 
 #sell{
 	width:300px;
@@ -281,11 +303,6 @@ table{
   padding:10px;
 }
 
-#issue{
-	width:90%;
-	margin-top: -8%;
-	padding-left: 10%;
-}
 .error {
 	display: block;
 	font-size: 12px;
@@ -329,7 +346,7 @@ select:not([multiple]) {
 .page { 
    
     bottom:0; 
-    padding-top:200px;
+    padding-top:0px;
     left:0px;
     position:absolute; 
     text-align:center;
