@@ -266,10 +266,17 @@ table{
 /*send end*/
 /* settings.html*/
 #notifications_list{
-	margin-left:20px;
+	display:block;
 	padding:0;
 	text-align: left;
 }
+#notifications_list label{
+	display:block;
+}
+#notifications_list input{
+	width:20px;
+}
+
 
 #settings_baseunits{
 	font-size:20px;
