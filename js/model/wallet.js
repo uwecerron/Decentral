@@ -1,5 +1,5 @@
 "use strict";
-cApp.factory("Wallet",["Blockchaininfo","Decentralstorage",function(Decentralstorage,Blockchaininfo){
+cApp.factory("Wallet",["Blockchaininfo","Decentralstorage",function(Blockchaininfo,Decentralstorage){
 
   var Wallet = function(Name) {
       this.Name=Name;
@@ -9,7 +9,7 @@ cApp.factory("Wallet",["Blockchaininfo","Decentralstorage",function(Decentralsto
       this.CurrentAddress='';
       this.privatekey;
       this.storage=new Decentralstorage();
-      this.Blockchaininfo=new Blockchaininfo();
+       this.blockchain=new Blockchaininfo();
       this.Txfee =10000;
 
     this.getCurrentAddress = function(){
@@ -26,7 +26,7 @@ cApp.factory("Wallet",["Blockchaininfo","Decentralstorage",function(Decentralsto
       };
 
      this.updateBalance=function(balance) {
-      Blockchaininfo.multiAddr(this.getAllAddresses,function(result){
+      this.blockchain.multiAddr(this.getAllAddresses,function(result){
         this.Balance=result;
       });
       }
@@ -38,7 +38,7 @@ cApp.factory("Wallet",["Blockchaininfo","Decentralstorage",function(Decentralsto
     Wallet.prototype.isAuthenticated=function(callback){
       this.storage.get( "security", function(data) {
     
-      } )
+      })
     }
 
     Wallet.prototype.authenticate=function (password){
@@ -50,6 +50,26 @@ cApp.factory("Wallet",["Blockchaininfo","Decentralstorage",function(Decentralsto
       }
       return false;
     }
+
+
+  Wallet.prototype.loadWallet= function(callback){
+      this.storage.get('wallet', function(data) {
+        if (data === undefined) {
+          data = {}
+        }
+        var addresses = Object.keys(walletData);
+        for ( var i = 0; i < addresses.length; i++ ) {
+          var encryptedkey = data[address];
+          var address = addresses[i]; 
+          var newAddress = {"address":address,"pvtkey":encryptedkey};
+          this.Addresses.push(newAddress);
+        }
+        callback(data);
+      } );
+
+
+  }
+
 
   Wallet.prototype.getAddress=function() {
       return this.Addresses;
@@ -69,106 +89,117 @@ cApp.factory("Wallet",["Blockchaininfo","Decentralstorage",function(Decentralsto
      // Print your private key (in WIF format)
      this.Addresses.push(key.pub.getAddress().toString());
       console.log(key.toWIF());
-     // this.save(key.toWIF());
-      return key.pub.getAddress().toString();
+      var hash=key.pub.getAddress().toString();
+       this.save(key.toWIF(),hash);
+      return hash;
     }
     
-    Wallet.prototype.utxofetcher=function(toAddresses, passwordDigest, callback){
-      var blockchain = new Blockchaininfo();
+    Wallet.prototype.utxofetcher=function(Addresses, callback){
+
     //  var addresses  = this.getAddresses(), 
-      
-      blockchain.getUnspent(addresses,function(data){
+      this.blockchain.getUnspent(Addresses,function(data){
       var unspents = {};
       unspents._value=[];
       unspents._script=[];
       unspents._tx_index=[];
-      unspents._tx_output_n=[];
       unspents._tx_hash=[];
 
-      for(var i=0;i<data.length;i++){
-         unspents._value.push(data.unspent_outputs[i].value);
-         unspents._script.push(data.unspent_outputs[i].script);
+      for(var i=0;i<data.unspent_outputs.length;i++){
+         unspents._value.push(data.unspent_outputs[i].value_hex);
+         unspents._script.push(data.unspent_outputs[i].tx_output_n);
          unspents._tx_index.push(data.unspent_outputs[i].tx_index);
-         unspents._tx_output_n.push(data.unspent_outputs[i].tx_output_n);
          unspents._tx_hash.push(data.unspent_outputs[i].tx_hash);
       }
       callback(unspents);
     });
     }
-    Wallet.prototype.save= function(wifkey,password,callback){
+    Wallet.prototype.save= function(wifkey,password,hash){
+    //  if (password !== undefined){
+        this.encrypt(wifkey,'hello');
+      // }else{
+        //return false;
+       //}
       var key= wifkey;
-       if (password !== undefined){
+      var data={
+          key:wifkey
+      };
+       /*if (password !== undefined){
         encrypt(key,password);
        }else{
         return false;
-       }
+       }*/
       if(key !== undefined){
-        this.storage.save("wallet",this.Name,key);
+        this.storage.save("wallet",this.Name,data);
         return true;
        }else
         return false;
        }
+  
 
-    Wallet.prototype.buildTransaction= function(toAddresses,password,callback){
-      var tx = new Bitcoin.Transaction();
-      var key = Bitcoin.ECKey.fromWIF("5HzgF1Cwgq2x9pFM1bXnnnt31siWqpLEbe5rKJHaUMsVEq73eiy");
-      var change = this.Balance-this.Txfee;
-      var addresses;
-     this.utxofetcher(toAddresses,function(data){
-            tx.addInput(data.unspent_outputs,data.index);
-            
-
+    Wallet.prototype.buildTransaction= function(toAddress,password,callback){
+   
+     
+     var addresses =this.getAllAddresses();
+     this.utxofetcher(addresses,function(data){
+     var tx = new Bitcoin.Transaction();
+     addInput(tx,data);
+     //get pvt keys, iterate through addresses.pvtkey
+     var key = Bitcoin.ECKey.fromWIF(keys);
+     console.log(toAddress.value)
+     addOutput(tx,toAddress.addr,toAddress.value);
+     console.log(key)
+     console.log(data._value.length)
+     sign(tx,data,key)
+     console.log(tx.toHex())
       });
      //change address
-     var changeAddress=this.generatePublicAddress();
-     toAddresses.push({
-            addr: changeAddr.getAddress(),
-            value: changeValue
-          });
-     toAddresses.push();
-     this.addOutput(toAddresses);
-     //todo: finish sign method
-     sign(unspent_outputs,key);
-       return tx.toHex();
+ 
     }//end build transaction
 
-     Wallet.prototype.addInput=function(unspent_output) {
-      for ( var i = 0; i < unspent_output.length; i++ ) {
+  function addInput(tx,unspent_output) {
+      for ( var i = 0; i < unspent_output._tx_index.length; i++ ) {
         var unspent = unspent_output[ i ]
         //reverse bytes for endianness
-        var hash= unspent_output[i].hash;
-        var index = buildInput(hash,unspent_output[i].index);
+        var hash= unspent_output._tx_hash[i];
+
+        var index = unspent_output._tx_index[i];
+        console.log(index)
         tx.addInput(hash,index);
       }
     }
-    Wallet.prototype.addOutput=function(addresses){
-    for(var i = 0; i < addresses.length; i++){
-        var address = addresses[i].address;
-        var value   = addresses[i].value;
-         tx.addOutput(address.addr,address.value);
+
+    function addOutput(tx,address,value){
+         tx.addOutput(address,value);
          //change address
-        console.log("addOutput"+address.addr);
-        }
+        console.log(address);
+        
     }
 
+ 
 
+    function addFee(toAddress) {
+      var Fee= 10000;
+      var txValue =toAddress.value;
+      return txValue+Fee;
+    }
 
-    Wallet.prototype.sign=function(unspent_outputs,key){
-     //if(transaction)
-     for(var i=0;i<unspent_outputs.length;i++){
+     function calculateChange(allunspents, addFee) {
+      var balance=allunspents;
+      return balance-addFee;
+    }
+    //substract change when adding outputs
+
+    function sign(tx,unspent_outputs,key){
+     for(var i=0;i<unspent_outputs._tx_index.length;i++){
        tx.sign(i, key);
       }
-      //console.log(tx.toHex())
     }
   
     Wallet.prototype.encrypt= function(privateKey,passwordDigest) {
       if (passwordDigest !== undefined ) {
         var encrypted = CryptoJS.AES.encrypt(privateKey, passwordDigest).toString();
         privateKey=encrypted;
-        privateKey = undefined;
-      } else {
-        //throw
-        return false
+        return encrypted;
       }
     }
 
