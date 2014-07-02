@@ -1,26 +1,68 @@
 
 <div class="block-area" id="settings">
-     <h2 id="settingstitle" class="block-title pull-left">Settings</h2> 
-     <hr>              
-                    <form role="form" class="form-validation-1">
-                        
-                        <div class="row">
-                            <div class="col-md-4 form-group">
-                                <label>Password</label>
-                                <input type="text" class="input-sm validate[required] form-control" placeholder="Password">
-                            </div>
-                            <div class="col-md-4 form-group">
-                                <label>Confirm Password</label>
-                            <input type="password" class="input-sm validate[required] form-control" placeholder="Confirm Password" id="form-validation-field-0">
-                            </div>
-                        </div>
-                        
-                        <div class="clearfix"></div>
-                        
-                        <div class="form-group m-b-15">
-                            <label>Textarea</label>
-                            <textarea class="input-sm validate[required] form-control" placeholder="..." ></textarea>
-                        </div>
-                        <button class="btn btn-sm validation-clear">Hidden Confirm</button>
-                    </form>
-                </div>
+	<div class="col-md-5 form-group">
+		<div class="row">
+		<h2 class="pull-left">Base Units</h2> 
+		</div>
+		<div class="row">
+		<select class="pull-left" id="settings_baseunits" data-size="auto">
+			<option>USD</option>
+			<option>EURO</option>
+			<option>YEN</option>
+		</select>
+		</div>
+		<div id="settings_security_header" class="row">
+		<h2 class="pull-left">Security</h2> 
+		</div>
+		<div class="row">
+			<label>Change Password</label>
+			<input type="text" class="input-sm validate[required] form-control" placeholder="Current Password">
+		</div>
+		<div class="row">
+			<label>New Password</label>
+			<input type="text" class="input-sm validate[required] form-control" placeholder="New Password">
+		</div>
+		<div class="row">
+			<input type="text" class="input-sm validate[required] form-control" placeholder="Confirm Password">
+		</div>
+	</div>
+	<div class="col-md-1">
+	</div>
+	<div class="col-md-5">
+		<div class="row">
+		<h2 class="pull-left">Notifications</h2> 
+		</div>
+		<div class="row pull-left" id="notifications_list">
+			<label><input type="checkbox" /> Label text</label>
+			<label><input type="checkbox" /> Label text</label>
+
+		</div>
+	</div>
+	<!--
+	<div class="row">
+	<h2 id="settings_title" class="block-title pull-left">Settings</h2>            
+	</div>
+	<form role="form" id="settings_container" class="form-validation-1">
+		
+		<div class="row">
+			<div class="col-md-4 form-group">
+				<label>Password</label>
+				<input type="text" class="input-sm validate[required] form-control" placeholder="Password">
+			</div>
+			<div class="col-md-4 form-group">
+				<label>Confirm Password</label>
+			<input type="password" class="input-sm validate[required] form-control" placeholder="Confirm Password" id="form-validation-field-0">
+			</div>
+		</div>
+		<div class="row">
+		<div class="clearfix"></div>
+		
+		<div class="form-group col-md-12">
+			<label>Textarea</label>
+			<textarea class="input-sm validate[required] form-control" placeholder="..." ></textarea>
+		</div>
+		</div>
+		<button class="btn btn-sm validation-clear">Hidden Confirm</button>
+	</form>
+	-->
+</div>

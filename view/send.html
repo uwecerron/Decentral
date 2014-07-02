@@ -1,49 +1,52 @@
-
 <form  name="form"  ng-submit="processForm()" id="issue" role="form">
-  <!--<form id="issue">-->
-  <div class="row">
-    <!-- Button and dropdown menu -->
-    <div class="col-md-2 form-group">
-      <label>Token</label>
-<select id="send_asset_selector"  name="sport" class="form-control input-sm validate[required]" data-size='auto'>
-                                    <option value="">BTC</option>
-                                    <option value="option1"></option>
-                                    <option value="option2">Football</option>
-                                    <option value="option3">Golf</option>
-                                </select>
-</div>
- 
-<div class="col-md-8 form-group">
-      <label class="control-label">
-        Amount: </label> 
-        <p id="input_message" >{{form.amount.message}}</p>
-     
-  <input type="number" class="form-control input-sm" ng-model="inputAmount"
-        min="0"
-        placeholder="0.001 BTC"
-        validate-amount >
-</div>
- </div>
-
-<div class="clearfix"></div>
-<div class="form-group m-b-10">
- <label>Address</label><p id="input_message">{{form.address.message}}</p>
-  <input type="text" class="form-control input-sm"  
-        name="address"
-        type="text"
-        tabindex="1"
-        placeholder="{{form.address.example}}"
-        ng-model="inputAddress"
-        ng-change="setTemp()"
-        validate-address></div>
-     <div  class="col-xs-4" id="sendBalance">Available Balance: {{totalBTC}}</div>
-      <span class="error" ng-show="form.min.$error.lowerThan">
-       Amount must be at least be .001 btc
-      </span>
-        <span class="error" ng-show="form.min.$error.higherthan">
-        Please check the Amount again.
-      </span>
- <button style="width: 400px;
-height:50px;" type="submit" ng-click="send(item)" ng-disabled="form.$invalid" class="btn btn-block btn-alt">Send</button>
+    <!--<form id="issue">-->
+	<div id="send_size" class="container">
+		<div class="row">
+			<!-- Button and dropdown menu -->
+			<div id="send_cols" class="col-md-2 form-group">
+				<label>Token</label>
+				<select id="send_asset_selector"  name="sport" class="form-control input-sm validate[required]" data-size='auto'>
+					<option value="">BTC</option>
+					<option value="option1"></option>
+					<option value="option2">Football</option>
+					<option value="option3">Golf</option>
+				</select>
+			</div>
+			<div id="send_cols" class="col-md-10 form-group">
+				<label class="control-label">
+				Amount: </label>
+				
+				<input type="number" class="form-control input-sm" ng-model="inputAmount"
+					min="0"
+					placeholder="0.001 BTC"
+					validate-amount >
+				<p id="input_message" >{{form.amount.message}}</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="clearfix"></div>
+			<div class="form-group col-md-12">
+			<label>Address</label>
+			<p id="input_message">{{form.address.message}}</p>
+			<input type="text" class="form-control input-sm"  
+				name="address"
+				type="text"
+				tabindex="1"
+				placeholder="{{form.address.example}}"
+				ng-model="inputAddress"
+				ng-change="setTemp()"
+				validate-address>
+			</div>
+		</div>
+		<div  class="col-xs-4" id="sendBalance">Available Balance: {{totalBTC}}</div>
+		<span class="error" ng-show="form.min.$error.lowerThan">
+		Amount must be at least be .001 btc
+		</span>
+		<span class="error" ng-show="form.min.$error.higherthan">
+		Please check the Amount again.
+		</span>
+		<button style="width: 400px;
+        height:50px;" type="submit" ng-click="send(item)" ng-disabled="form.$invalid" class="btn btn-block btn-alt">Send</button>
+	</div>
+    
 </form>
-

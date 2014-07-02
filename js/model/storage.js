@@ -1,28 +1,30 @@
 'use strict';
-
 cApp.factory("Decentralstorage", function() {
-/*angular.element($window).on('cache', function(event) {
-    if (event.key === 'storage') {
-      $rootScope.$apply();
-    }
-  });*/
+
+  // Storage Structure
+
+// database         =>   { key  => value }
+// name             =>   keys
+// object           =>   values
+// wallet           =>   { addr => privKey, addr2=>privKey2 .... }
+// archived         =>   { addr => privKey, addr2=>privKey2 .... }
+// security         =>   { decryption_key => dk }
+// multiaddr        =>   { transactions: Array }
+// cache            =>   { currentAddress: String }
+
 var Decentralstorage= function() {
     this.addresses = {};
 }    
-
-Decentralstorage.prototype.get=function( name, callback) {
-    var name=name;
-    chrome.storage.local.get(name, function( data ) {
+//dummy array  
+Decentralstorage.prototype.get=function(database, callback) {
+    chrome.storage.local.get(database, function(data) {
     if ( data === undefined ) {
       callback( {} );
       } else {
-        console.log(data[name]);
-      callback(data[name]);
+      callback(data);
       }
-
     } );
-    
-    },
+  },
 
  /*
   *Get All Addresses from the database
@@ -34,53 +36,57 @@ Decentralstorage.prototype.getall=function(callback){
         callback( {} );
       } else {
         var keys = Object.keys(obj);
-       console.log(obj);
-       return obj;
+       //console.log(obj);
+       callback(obj)
      }
     })
-
-
 }
-
-
 /*
- * Save an identity into the database.
- * @param {String} name Identity identifier.
- * @param {Object} data Identity data (mapping).
+ * Save data into the database.
+ * @param {String} wallet database.
+ * @param {String} name wallet property name  key.
+ * @param {Object} object data or value
  * @param {Function} callback Callback providing results for the function.
  * @private
  */
-Decentralstorage.prototype.save = function(name, object, callback) {
+ //dummy array {'security':{'wallet1': {key:'crapper',pass:'crapper2'}}}
+
+Decentralstorage.prototype.save = function(database,name,data, callback) {
     var self = this;
-    var name=name;
-    self.get(name, function(data) {
-      if ( data === undefined ) {
-        data = {}
+    var _database=database;
+    var _name=name;
+    var _data ={};
+    _data=data;
+    self.get(database, function(data) {
+      if ( data === undefined ){
+        data = [];
       };if (data.constructor !== Object) {
-        throw Error( "can't set on not object" )
+        throw Error("can't save object");
       }
-      data = object;
       var setObject = {};
-      setObject[name] = data;
-    console.log('set: '+JSON.stringify(setObject))
-      chrome.storage.local.set( setObject, function() {
+      var ledata={};
+       ledata[name]=_data;
+       setObject[_database]=ledata;
+       //setObject[name]={}
+       //setObject.database.name=_name;
+       //setObject.database.name.data=_data;
+      console.log(setObject)
+  //  console.log('set: '+JSON.stringify(setObject))
+      chrome.storage.local.set(setObject, function() {
         if ( callback === undefined ) {
           callback = function() {};
         }
-        callback( data );
-      } );
-    } )
-
+        callback(data);
+      });
+    })
 };
 /*
- * Get the storage space the identity uses
+ * Get the storage space size database uses
  * @param {String} name Identity identifier.
  * @param {Function} callback Callback providing results for the function.
  */
-
-Decentralstorage.prototype.getSize = function(name, callback) {
-    name = name ? DW_NS+name : null;
-    chrome.storage.local.getBytesInUse(name, callback);
+Decentralstorage.prototype.getSize = function(database, callback) {
+    chrome.storage.local.getBytesInUse(database, callback);
 };
 
 /*

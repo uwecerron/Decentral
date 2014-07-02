@@ -2,7 +2,9 @@
 ============================================================================= */
 body{
     background: #f5f5f5;
+
 }
+
 textarea { resize:none; }
 .table th {
    text-align: center;   
@@ -18,25 +20,34 @@ textarea { resize:none; }
 #input_message{
 	color:red;
 }
-#settingstitle{
+#settings_title{
 	left:0;
 	font-weight: 500;
 	font-family: "Montserrat", sans-serif;
 	color:#3f3f3f;
 	letter-spacing: 0.5px;
 	line-height: 1.1;
+	top:10px;
+}
+
+#settings_container{
+	top:40px;
+}
+
+#issue{
+	width:90%;
+	margin-left: 5%;
 }
 #settings{
 	width:90%;
 	margin-left: 5%;
-	margin-top:-10%;
 }
 .form-control {
 	border-radius: 4px;
 	height: 3.2em;
 	width: 100%;
 	padding-left: 20px;
-	border: 1px solid rgba(200, 200, 200, 0.3);
+	border: 1px solid rgba(200, 200, 200, 1);
 	text-shadow: none;
 	color:#000;
 	box-shadow: none;
@@ -72,7 +83,6 @@ a{
 	width: 800px;
 }
 
-
 #wallet_name{
   color:#333;
 }
@@ -94,7 +104,7 @@ table{
 	text-align: center;
 }
 .navbar{
-	position: relative;
+	position: fixed;
 	margin: 0 auto;
 	padding: 0;
 	background-color: #a9a9a9;
@@ -128,7 +138,9 @@ thead{
 	z-index: 1000;
 	list-style-image: none;
 	font-size: 0;
-	height: 70px;
+	height: 55px;
+	/*height: 70px;*/
+	width: 100%;
 	margin: 0;
 	padding: 0;
 
@@ -139,39 +151,47 @@ thead{
 	display: inline-block;
 	list-style: none;
 	border: 0;
-	height: 70px;
+	height: 100%;
+	width: 16.666%;
 	text-align: center;
-
+	background-color: #f5f5f5;
 	margin: 0;
 	padding: 0;
 }
 
 #topnavigation li a{ 
 	font-family: "Montserrat", sans-serif;
-	font-size: 12px;
+	font-size: 16px;
 	line-height: 2em;
 	/*background: rgba(0,0,0,0.35);*/
-	margin: 0 1px 0 0;
+	/*margin: 0 1px 0 0;*/
 	display: block;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 	letter-spacing: 0.5px;
 	color: white;
-	width: 80px;
-	height: 70px;
+	width: 100%;
+	height: 100%;
 	border: 0;
 
 	border-top: none;
 	text-decoration: none;
 	text-transform: uppercase;
 	text-shadow: 0 1px 1px rgba(0,0,0,0.5);
-
+	/*
 	padding-top: 25%;
 	.panel-heading{
 		color: #333;
 		background-color: #f5f5f5;
 		border-color: #ddd;
 	}
+	*/
 }
+
+#topnavigation li a:hover{
+	
+	color: black;
+}
+
 #lepanel{
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 	/*background: rgba(0,0,0,0.25);*/
@@ -193,7 +213,6 @@ hr {
 	border: 0;
 	border-top: 1px solid transparent;
 }
-
 .panel-heading {
 	padding: 1.6em;
 	cursor: pointer;
@@ -206,7 +225,7 @@ hr {
 	height: auto;
 }
 #assets{
-	margin-top: -10%;
+	margin-top: -5%;
 }
 #asset_select{
 	margin-left: -4%;
@@ -217,7 +236,6 @@ table{
 #trade_main{
 	margin-left: 20px; 
 	margin-right: 20px;
-	margin-top: -10%;
 }
 
 #overview{
@@ -226,6 +244,47 @@ table{
 	background: #fff;
 	margin-top: -20%;
 	margin-left: 30%;
+}
+
+/*send.html begins*/
+
+#send_size{
+	width:80%;
+}
+#send_cols{
+	height:80px;
+	padding:10px;
+}
+#send_asset_selector{
+	height:38px;
+}
+#send_cols input{
+	padding-top:0px;
+	padding-bottom:0px;
+	margin-bottom:0px;
+}
+
+/*send end*/
+/* settings.html*/
+#notifications_list{
+	display:block;
+	padding:0;
+	text-align: left;
+}
+#notifications_list label{
+	display:block;
+}
+#notifications_list input{
+	width:20px;
+}
+
+
+#settings_baseunits{
+	font-size:20px;
+}
+
+#settings_security_header{
+	margin-top:20px;
 }
 
 #sell{
@@ -252,20 +311,12 @@ table{
   padding:10px;
 }
 
-#issue{
-	width:90%;
-	margin-top: -8%;
-	padding-left: 10%;
-}
 .error {
 	display: block;
 	font-size: 12px;
 	color: red;
 }
 
-#send_asset_selector{
-	margin-top:5%;
-}
 select.input-sm {
 	height: 3em;
 	line-height: 30px;
@@ -303,13 +354,36 @@ select:not([multiple]) {
 .page { 
    
     bottom:0; 
-    padding-top:200px;
+    padding-top:0px;
     left:0px;
     position:absolute; 
     text-align:center;
-    top:0; 
+    top:70px;
+	overflow-y:scroll;	
     width:100%; 
     color:#000;
+}
+/*
+login.html
+*/
+
+#login{
+	margin-top:3%;
+	background-color: #fff;
+		border-radius: 0.5rem;
+}
+#login_button{
+	 margin: 0;
+    background-color: transparent;
+    text-align: center;
+}
+input {
+	width: 100%;
+	margin-bottom: 1.4rem;
+	padding: 1rem;
+	background-color: #ecf2f4;
+	border-radius: 0.2rem;
+	border: none;
 }
 
 /* PAGES
@@ -318,6 +392,41 @@ select:not([multiple]) {
 /* ANIMATIONS
 ============================================================================= */
 
+/* header ----------------------------*/
+.header-zero{
+	-webkit-animation: moveFromLeft .4s ease both;
+	z-index: 6;
+}
+
+.header-one{
+	-webkit-animation: moveFromLeft .4s ease both;
+	-webkit-animation-delay: .3s;
+	z-index: 5;
+}
+
+.header-two{
+	-webkit-animation: moveFromLeft .4s ease both;
+	-webkit-animation-delay: .6s;
+	z-index: 4;
+}
+
+.header-three{
+	-webkit-animation: moveFromLeft .4s ease both;
+	-webkit-animation-delay: .9s;
+	z-index: 3;
+}
+
+.header-four{
+	-webkit-animation: moveFromLeft .4s ease both;
+	-webkit-animation-delay: 1.2s;
+	z-index: 2;
+}
+
+.header-five{
+	-webkit-animation: moveFromLeft .4s ease both;
+	-webkit-animation-delay: 1.5s;
+	z-index: 1;
+}
 
 /* page specific animations ------------------------ */
 
@@ -419,3 +528,11 @@ select:not([multiple]) {
     to { transform: translateY(100%); }
 }
 
+@-webkit-keyframes moveFromLeft {
+    from {-webkit-transform: translateX(-100%);}
+}
+@-moz-keyframes moveFromLeft {
+    from { -moz-transform: translateX(-100%); }
+}
+@keyframes moveFromLeft {
+    from { transform: translateX(-100%); }

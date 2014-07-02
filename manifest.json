@@ -1,10 +1,10 @@
 {
-  "name": "ChromaWallet",
-  "description": "Issue Assets, Crowdfund anything",
+  "name": "Decentral",
+  "description": "Be the Bank, Issue Assets, Crowdfund anything",
   "version": "0.0.1",
   "manifest_version": 2,
   "browser_action": {
-    "default_title": "Colored Coins Wallet",
+    "default_title": "A Bitcoin Wallet using Colored Coins Technology",
      "default_icon": "img/icon128.png"
 
   },

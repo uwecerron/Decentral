@@ -33,6 +33,7 @@ function AssetsController($scope,ReceiveTable,Decentralstorage)  {
    $scope.pageClass = 'page-assets';
     $scope.items = ReceiveTable.items;
     $scope.item = {};
+	$scope.addAssetShow = false;
    var ledecentral = new Decentralstorage();
    
    var values ={Name: "Burger2 King2", BTC: "1200",Address:"mhRYQjHSu4QQRr8yi5m2eiSznsUt4HrJSy", Units: "5"};
