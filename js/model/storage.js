@@ -1,16 +1,14 @@
 'use strict';
 cApp.factory("Decentralstorage", function() {
 
-  // Storage Structure
+// Storage Architecture
+// database         =>   {key  => value}
+// walletname       =>   {addr => privKey, ...}
+// archived wallets =>   {addr => privKey, ...}
+// multiaddr        =>   {transactions: Array }
+// current            =>   {currentAddress: String }
+// security         =>   { dk => decryption String }
 
-// database         =>   { key  => value }
-// name             =>   keys
-// object           =>   values
-// wallet           =>   { addr => privKey, addr2=>privKey2 .... }
-// archived         =>   { addr => privKey, addr2=>privKey2 .... }
-// security         =>   { decryption_key => dk }
-// multiaddr        =>   { transactions: Array }
-// cache            =>   { currentAddress: String }
 
 var Decentralstorage= function() {
     this.addresses = {};
@@ -57,22 +55,21 @@ Decentralstorage.prototype.save = function(database,name,data, callback) {
     var _name=name;
     var _data ={};
     _data=data;
-    self.get(database, function(data) {
-      if ( data === undefined ){
-        data = [];
-      };if (data.constructor !== Object) {
-        throw Error("can't save object");
+    self.get(database, function(ledata) {
+      if (ledata[_database] === undefined){
+        ledata[_database] = [];
       }
       var setObject = {};
-      var ledata={};
-       ledata[name]=_data;
-       setObject[_database]=ledata;
+          setObject[name]=_data;
+       ledata[_database].push(setObject);
+   
+       console.log("setobject")
        //setObject[name]={}
        //setObject.database.name=_name;
        //setObject.database.name.data=_data;
-      console.log(setObject)
+      console.log(ledata)
   //  console.log('set: '+JSON.stringify(setObject))
-      chrome.storage.local.set(setObject, function() {
+      chrome.storage.local.set(ledata, function() {
         if ( callback === undefined ) {
           callback = function() {};
         }

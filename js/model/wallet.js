@@ -57,7 +57,7 @@ cApp.factory("Wallet",["Blockchaininfo","Decentralstorage",function(Blockchainin
         if (data === undefined) {
           data = {}
         }
-        var addresses = Object.keys(walletData);
+        var addresses = Object.keys(data);
         for ( var i = 0; i < addresses.length; i++ ) {
           var encryptedkey = data[address];
           var address = addresses[i]; 
