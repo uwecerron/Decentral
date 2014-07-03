@@ -15,14 +15,14 @@ var Decentralstorage= function() {
 }    
 //dummy array  
 Decentralstorage.prototype.get=function(database, callback) {
-    chrome.storage.local.get(database, function(data) {
-    if ( data === undefined ) {
-      callback( {} );
-      } else {
-      callback(data);
-      }
-    } );
-  },
+	chrome.storage.local.get(database, function(data) {
+	if ( data === undefined ) {
+		callback( {} );
+	} else {
+		callback(data);
+	}
+	});
+}
 
  /*
   *Get All Addresses from the database
@@ -51,32 +51,37 @@ Decentralstorage.prototype.getall=function(callback){
 
 Decentralstorage.prototype.save = function(database,name,data, callback) {
     var self = this;
-    var _database=database;
-    var _name=name;
-    var _data ={};
-    _data=data;
-    self.get(database, function(ledata) {
-      if (ledata[_database] === undefined){
-        ledata[_database] = [];
-      }
-      var setObject = {};
-          setObject[name]=_data;
-       ledata[_database].push(setObject);
-   
-       console.log("setobject")
-       //setObject[name]={}
-       //setObject.database.name=_name;
-       //setObject.database.name.data=_data;
-      console.log(ledata)
-  //  console.log('set: '+JSON.stringify(setObject))
-      chrome.storage.local.set(ledata, function() {
-        if ( callback === undefined ) {
-          callback = function() {};
-        }
-        callback(data);
-      });
-    })
+    var _database = database;
+	var _name = name;
+	var _data = data;
+	self.get(_database, function(ledata) {
+	console.log("lewallet");
+	//console.log(ledata);
+	var setObject = {};
+	if (ledata[_database] !== undefined){
+		
+		if(ledata[_database][_name] !== undefined)
+		setObject = ledata[_database][_name];
+	}
+	else ledata[_database] = {};
+	console.log("already in");
+	console.log(setObject);
+	for(var key in _data)
+	{
+		setObject[key] = _data[key]
+	}
+	
+	ledata[_database][_name] = setObject;
+	console.log(setObject);
+	//setObject[name]={}
+	//setObject.database.name=_name;
+	//setObject.database.name.data=_data;
+	//  console.log('set: '+JSON.stringify(setObject))
+	chrome.storage.local.set(ledata);
+	
+    });
 };
+
 /*
  * Get the storage space size database uses
  * @param {String} name Identity identifier.

@@ -21,6 +21,10 @@ Development
 You are welcome to participate in the development by contributing or forking the code at:
 https://github.com/DecentralBank/chromawallet
 
+License
+============
+Read License
+
 Contact
 ============
 Feel free to contact at uwecerron@gmail.com for any questions at this time.
