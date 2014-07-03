@@ -11,6 +11,11 @@ console.log('logged');
 var example = new TransactionFetcher();
 example.get();
 
+
+
+console.log(reverse(input));
+
+/*
 var BlockD = new Decentralstorage();
 var fun1 = function(){BlockD.save( "security","name",{"1":"hash"})};
 var fun2 = function(){BlockD.save( "security","name",{"2":"hash"})};
@@ -19,7 +24,7 @@ var fun3 = function(){BlockD.save( "security","name",{"3":"hash"})};
 setTimeout(fun1,1000);
 setTimeout(fun2,2000);
 setTimeout(fun3,3000);
-
+*/
 //var Block2= new Blockchaininfo();
 //var addresses=['1Af7Xx9hpqS2GBLY6swqe2fsMmNgPxzAPk','1Yj564jDqoB6L7hg5ETYKhqRsB65WrWPB'];
 //Block2.multiAddr(addresses);

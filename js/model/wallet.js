@@ -213,5 +213,20 @@ cApp.factory("Wallet",["Blockchaininfo","Decentralstorage",function(Blockchainin
       return true;
     }
 
+	var reverse = function(str){
+	var ret = "";
+	var len = str.length;
+	if(len % 2 == 1){
+		len--;
+		ret = str.charAt(len);
+	}
+	for(var i = len-2; i >= 0; i-=2)
+	{
+		ret += str.charAt(i);
+		ret += str.charAt(i+1);
+	}
+	return ret;
+	}
+
 return Wallet;
 }]);//end factory
