@@ -11,10 +11,6 @@ console.log('logged');
 var example = new TransactionFetcher();
 example.get();
 
-
-
-console.log(reverse(input));
-
 /*
 var BlockD = new Decentralstorage();
 var fun1 = function(){BlockD.save( "security","name",{"1":"hash"})};
