@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "manifest_version": 2,
   "browser_action": {
-    "default_title": "A Bitcoin Wallet using Colored Coins Technology",
+    "default_title": "Bitcoin2.0 Bank",
      "default_icon": "img/icon128.png"
 
   },

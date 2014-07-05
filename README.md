@@ -1,8 +1,9 @@
+[![Build Status](https://travis-ci.org/DecentralBank/Decentral.svg?branch=master)](https://travis-ci.org/DecentralBank/Decentral)
+
 Decentral
 ============
 
 A Bitcoin Colored Coins Wallet
-
 
 Setup
 ===========
@@ -19,15 +20,24 @@ Development
 ==============
 
 You are welcome to participate in the development by contributing or forking the code at:
-https://github.com/DecentralBank/chromawallet
+https://github.com/DecentralBank/Decentral
 
 License
 ============
 Read License
 
+License
+============
+See License
+
+
 Contact
 ============
-Feel free to contact at uwecerron@gmail.com for any questions at this time.
+Interested in joining? contact decentralteam@gmail.com.
+
+
+
+
 
 
 
