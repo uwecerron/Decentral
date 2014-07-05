@@ -6,20 +6,28 @@
   } )
    $scope.currentAddress = "1Yj564jDqoB6L7hg5ETYKhqRsB65WrWPB";
 
-console.log('logged');
 
 var example = new TransactionFetcher();
 example.get();
 
 /*
 var BlockD = new Decentralstorage();
-var fun1 = function(){BlockD.save( "security","name",{"1":"hash"})};
-var fun2 = function(){BlockD.save( "security","name",{"2":"hash"})};
-var fun3 = function(){BlockD.save( "security","name",{"3":"hash"})};
-
-setTimeout(fun1,1000);
-setTimeout(fun2,2000);
-setTimeout(fun3,3000);
+var fun1 = function(){BlockD.save( "security","name",{"4":"hash"})};
+var fun2 = function(){BlockD.save( "security","name",{"5":"hash"})};
+var fun3 = function(){BlockD.save( "security","name",{"6":"hash"})};
+BlockD.save( "security","name",{"t0":"hash"});
+BlockD.save( "security","name",{"t1":"hash"});
+BlockD.save( "security","name",{"t2":"hash"});
+BlockD.save( "security","name",{"t3":"hash"});
+BlockD.save( "security","name",{"t4":"hash"});
+BlockD.save( "security","name",{"t5":"hash"});
+BlockD.save( "security","name",{"t6":"hash"});
+BlockD.save( "security","name",{"t7":"hash"});
+BlockD.save( "security","name",{"t8":"hash"});
+BlockD.save( "security","name",{"t9":"hash"});
+BlockD.save( "security","name",{"t10":"hash"});
+BlockD.save( "security","name",{"t11":"hash"});
+BlockD.save( "security","name",{"t12":"hash"});
 */
 //var Block2= new Blockchaininfo();
 //var addresses=['1Af7Xx9hpqS2GBLY6swqe2fsMmNgPxzAPk','1Yj564jDqoB6L7hg5ETYKhqRsB65WrWPB'];

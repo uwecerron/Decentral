@@ -49,37 +49,48 @@ Decentralstorage.prototype.getall=function(callback){
  */
  //dummy array {'security':{'wallet1': {key:'crapper',pass:'crapper2'}}}
 
+ var saveTimeOut = 0;
+ 
 Decentralstorage.prototype.save = function(database,name,data, callback) {
-    var self = this;
+    
+	
+	var self = this;
     var _database = database;
 	var _name = name;
 	var _data = data;
-	self.get(_database, function(ledata) {
-	console.log("lewallet");
-	//console.log(ledata);
-	var setObject = {};
-	if (ledata[_database] !== undefined){
+	
+	var store = function() {
+		self.get(_database, function(ledata) {
+		console.log("lewallet");
+		//console.log(ledata);
+		var setObject = {};
+		if (ledata[_database] !== undefined){
+			
+			if(ledata[_database][_name] !== undefined)
+			setObject = ledata[_database][_name];
+		}
+		else ledata[_database] = {};
+		console.log("already in");
+		console.log(setObject);
+		for(var key in _data)
+		{
+			setObject[key] = _data[key]
+		}
 		
-		if(ledata[_database][_name] !== undefined)
-		setObject = ledata[_database][_name];
+		ledata[_database][_name] = setObject;
+		console.log(setObject);
+		//setObject[name]={}
+		//setObject.database.name=_name;
+		//setObject.database.name.data=_data;
+		//  console.log('set: '+JSON.stringify(setObject))
+		chrome.storage.local.set(ledata);
+		
+		});
+		saveTimeOut -= 1000;
 	}
-	else ledata[_database] = {};
-	console.log("already in");
-	console.log(setObject);
-	for(var key in _data)
-	{
-		setObject[key] = _data[key]
-	}
+	saveTimeOut += 1000;
+	setTimeout(store, saveTimeOut);
 	
-	ledata[_database][_name] = setObject;
-	console.log(setObject);
-	//setObject[name]={}
-	//setObject.database.name=_name;
-	//setObject.database.name.data=_data;
-	//  console.log('set: '+JSON.stringify(setObject))
-	chrome.storage.local.set(ledata);
-	
-    });
 };
 
 /*
