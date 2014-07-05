@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/DecentralBank/Decentral.svg?branch=master)](https://travis-ci.org/DecentralBank/Decentral)[![Coverage Status](https://img.shields.io/coveralls/uwecerron/Decentral.svg)](https://coveralls.io/r/uwecerron/Decentral)
+[![Build Status](https://travis-ci.org/DecentralBank/Decentral.svg?branch=master)](https://travis-ci.org/DecentralBank/Decentral)  [![Coverage Status](https://img.shields.io/coveralls/uwecerron/Decentral.svg)](https://coveralls.io/r/uwecerron/Decentral)
 
 Decentral
 ============

@@ -1,7 +1,7 @@
 
 "use strict";
 
-var cApp =angular.module('ChromaWallet', ['ngRoute','ngAnimate','xeditable','ngGrid',"ui.router", "ui.bootstrap",]);
+var cApp =angular.module('DecentralWallet', ['ngRoute','ngAnimate','xeditable','ngGrid',"ui.router", "ui.bootstrap",]);
 cApp.config(function ($routeProvider) {
     $routeProvider.
      when('/Home', {
@@ -64,6 +64,7 @@ cApp.directive('inlineEdit', function() {
     };
 
 });
+
 //var newstorage=new Decentralstorage();
 //var shit= new lecrapper(newstorage);
 //var suckit= shit.getit();
