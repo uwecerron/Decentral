@@ -7,38 +7,35 @@
 				<label>Token</label>
 				<select id="send_asset_selector"  name="sport" class="form-control input-sm validate[required]" data-size='auto'>
 					<option value="">BTC</option>
-					<option value="option1"></option>
-					<option value="option2">Football</option>
-					<option value="option3">Golf</option>
+					<option value="option1">LTC</option>
+					<option value="option2">XCP</option>
+					<option value="option3">Burger King</option>
 				</select>
 			</div>
 			<div id="send_cols" class="col-md-10 form-group">
-				<label class="control-label">
-				Amount: </label>
+				<label style="text-align:right;" class="col-md-6">
+				Amount:</label><span class="col-md-4 " id="input_message" >{{form.amount.message}}</span>
 				
-				<input type="number" class="form-control input-sm" ng-model="inputAmount"
-					min="0"
+				<input type="number" novalidate class="form-control input-sm" ng-model="inputAmount"
 					placeholder="0.001 BTC"
 					validate-amount >
-				<p id="input_message" >{{form.amount.message}}</p>
+			
 			</div>
 		</div>
 		<div class="row">
 			<div class="clearfix"></div>
 			<div id="send_cols" class="form-group col-md-12">
-			<label>Address</label>
-
-			<p id="input_message">{{form.address.message}}</p>
-			<input type="text" class="form-control input-sm"  
+			<label style="text-align:right;" class="col-md-6">Address</label>
+			<span class="col-md-4 " id="input_message">{{form.address.message}}</span>
+			<input novalidate type="text" class="form-control input-sm"  
 				name="address"
 				type="text"
 				tabindex="1"
-				placeholder="{{form.address.example}}"
+				placeholder="1F6UU9EBPNyAFyPojDqHAtoCiNDX9mFmBP"
 				ng-model="inputAddress"
 				ng-change="setTemp()"
 				validate-address>
 			</div>
-
 		</div>
 		<div  class="col-xs-4" id="sendBalance">Available Balance: {{totalBTC}}</div>
 		<span class="error" ng-show="form.min.$error.lowerThan">

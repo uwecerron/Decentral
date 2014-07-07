@@ -109,12 +109,12 @@ cApp.factory("Wallet",["Blockchaininfo","Decentralstorage",function(Blockchainin
       unspents._script=[];
       unspents._tx_index=[];
       unspents._tx_hash=[];
-
-      for(var i=0;i<data.unspent_outputs.length;i++){
-         unspents._value.push(data.unspent_outputs[i].value_hex);
-         unspents._script.push(data.unspent_outputs[i].tx_output_n);
-         unspents._tx_index.push(data.unspent_outputs[i].tx_index);
-         unspents._tx_hash.push(data.unspent_outputs[i].tx_hash);
+      console.log(data)
+      for(var i=0;i<data.length;i++){
+         unspents._value.push(data[i].value_hex);
+         unspents._script.push(data[i].tx_output_n);
+         unspents._tx_index.push(data[i].tx_index);
+         unspents._tx_hash.push(data[i].tx_hash);
       }
       callback(unspents);
     });
@@ -147,14 +147,15 @@ cApp.factory("Wallet",["Blockchaininfo","Decentralstorage",function(Blockchainin
        }
   
 //13Jw9vY5fHSe82qPwWhg6eShH7ZYAuRt1n
-    Wallet.prototype.buildTransaction= function(toAddress,password,callback){
+    Wallet.prototype.buildTransaction= function(toAddress,callback){
    
-     var addresses =this.getAllAddresses();
+     //var addresses =this.getAllAddresses();
+       var addresses =["1F6UU9EBPNyAFyPojDqHAtoCiNDX9mFmBP"];
      this.utxofetcher(addresses,function(data){
      var tx = new Bitcoin.Transaction();
      addInput(tx,data);
      //get pvt keys, iterate through addresses.pvtkey
-     var key = Bitcoin.ECKey.fromWIF(keys);
+     //var key = Bitcoin.ECKey.fromWIF(keys);
      console.log(toAddress.value)
      addOutput(tx,toAddress.addr,toAddress.value);
      console.log(key)
@@ -178,7 +179,7 @@ cApp.factory("Wallet",["Blockchaininfo","Decentralstorage",function(Blockchainin
       }
     }
 
-    function addOutput(address,value){
+    function addOutput(tx,address,value){
          tx.addOutput(address,value);
          //change address
         console.log(address);
