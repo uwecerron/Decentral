@@ -65,10 +65,8 @@ cApp.directive('inlineEdit', function() {
 
 });
 
-//var newstorage=new Decentralstorage();
-//var shit= new lecrapper(newstorage);
-//var suckit= shit.getit();
-//console.log();
+
+
 
 
 

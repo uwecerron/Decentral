@@ -1,4 +1,4 @@
-function SettingsController($scope,$http){
+function SettingsController($scope,Wallet){
 
     $scope.pageClass = 'page-settings';
 

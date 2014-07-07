@@ -1,6 +1,4 @@
-function AddressesController($scope, $filter) {
-    // initvar sortingOrder='name'; AddressesController.$inject = ['$scope', '$filter'];
-//var sortingOrder='name';
+function AddressesController($scope,$rootScope, $filter,Wallet) {
     $scope.sortingOrder = 'name';
     $scope.reverse = false;
     $scope.filteredItems = [];
@@ -8,22 +6,24 @@ function AddressesController($scope, $filter) {
     $scope.itemsPerPage = 5;
     $scope.pagedItems = [];
     $scope.currentPage = 0;
-
-    
-    $scope.items = [
-        {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-         {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-          {"id":"1","name":"2 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-           {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-            {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-             {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-              {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-               {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-                {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-                 {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-                  {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-             {"id":"1","name":"neeeeame 1","address":"description 1","balance":"field3 1","token":"field4 1"} 
-   ];
+    var items=[];
+    var address={};
+    var wallet1=new Wallet("uwe1");
+    wallet1.loadWallet(function(data){
+//    console.log(data.length)
+    for(var i =0;i<data.length;i++){
+        address["address"]=data[i];
+        //hard coding asset
+        address["token"]="btc";
+        items.push(address);
+    }
+      // console.log(items)
+      
+});
+      
+     
+      $scope.items = items;
+   
 
     var searchMatch = function (haystack, needle) {
         if (!needle) {

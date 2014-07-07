@@ -34,7 +34,7 @@ Decentralstorage.prototype.getall=function(callback){
         callback( {} );
       } else {
         var keys = Object.keys(obj);
-       //console.log(obj);
+       console.log(obj);
        callback(obj)
      }
     })
@@ -65,7 +65,7 @@ Decentralstorage.prototype.save = function(database,name,data, callback) {
 		//console.log(ledata);
 		var setObject = {};
 		if (ledata[_database] !== undefined){
-			
+
 			if(ledata[_database][_name] !== undefined)
 			setObject = ledata[_database][_name];
 		}
