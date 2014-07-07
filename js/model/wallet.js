@@ -123,11 +123,6 @@ cApp.factory("Wallet",["Blockchaininfo","Decentralstorage",function(Blockchainin
     //  if (password !== undefined){
         var encrypted= this.encrypt(wifkey,'hello');
         var decrypted= this.decrypt(encrypted,'hello')
-        console.log('before')
-        console.log(wifkey);
-        console.log(encrypted);
-        console.log('hello')
-        console.log(decrypted);
       // }else{
         //return false;
        //}
@@ -227,20 +222,20 @@ cApp.factory("Wallet",["Blockchaininfo","Decentralstorage",function(Blockchainin
       return privateKey;
     }
 
-	var reverse = function(str){
-	var ret = "";
-	var len = str.length;
-	if(len % 2 == 1){
-		len--;
-		ret = str.charAt(len);
-	}
-	for(var i = len-2; i >= 0; i-=2)
-	{
-		ret += str.charAt(i);
-		ret += str.charAt(i+1);
-	}
-	return ret;
-	}
+    	var reverse = function(str){
+    	var ret = "";
+    	var len = str.length;
+    	if(len % 2 == 1){
+    		len--;
+    		ret = str.charAt(len);
+    	}
+    	for(var i = len-2; i >= 0; i-=2)
+    	{
+    		ret += str.charAt(i);
+    		ret += str.charAt(i+1);
+    	}
+    	return ret;
+    	}
 
 return Wallet;
 }]);//end factory

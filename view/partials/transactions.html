@@ -2,9 +2,9 @@
 	<table class="table table-striped table-condensed table-hover">
 		<thead>
 			<tr>
-				<th class="name"><a ng-click="sort_by('name')">Name&nbsp;</a></th>
-				<th class="address"><a ng-click="sort_by('address')">Address&nbsp;</a></th>
-				<th class="balance"><a ng-click="sort_by('balance')">Balance&nbsp;</a></th>
+				<th class="name"><a ng-click="sort_by('name')">From&nbsp;</a></th>
+				<th class="address"><a ng-click="sort_by('address')">To&nbsp;</a></th>
+				<th class="address"><a ng-click="sort_by('address')">amount&nbsp;</a></th>
 				<th class="token"><a ng-click="sort_by('token')">Token&nbsp;</a></th>
 			</tr>
 			<tr>
@@ -32,9 +32,9 @@
 		</tfoot>
 		<tbody>
 			<tr ng-repeat="transaction in pagedTransactions[currentPage]">
-				<td>{{transaction.name}}</td>
-				<td>{{transaction.address}}</td>
-				<td>{{transaction.balance}}</td>
+				<td>{{transaction.from}}</td>
+				<td>{{transaction.to}}</td>
+				<td>{{transaction.amount}}</td>
 				<td>{{transaction.token}}</td>
 			</tr>
 		</tbody>

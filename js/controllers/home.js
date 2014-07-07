@@ -1,14 +1,10 @@
- cApp.controller('Home', function($scope, $rootScope,Blockchaininfo,Wallet,Decentralstorage,TransactionFetcher) {
+ cApp.controller('Home', function($scope, $rootScope,Blockchaininfo,Wallet,TransactionFetcher) {
          $scope.pageClass = 'page-home';
     $scope.message = 'Choose Your Wallet';
     $rootScope.$watch( 'balance', function() {
-    $scope.balance = $rootScope.balance;
+    $scope.balance = $rootScope.balance/100000000;
     })
    $scope.currentAddress = "1Yj564jDqoB6L7hg5ETYKhqRsB65WrWPB";
-
-
-    var example = new Decentralstorage();
-    //example.getall();
     var wallet1=new Wallet("uwe1");
     wallet1.loadWallet(function(data){
     //console.log(data)
