@@ -2,10 +2,10 @@
 <div class="block-area" id="settings">
 	<div class="col-md-5 form-group">
 		<div class="row">
-		<h2 class="pull-left">Base Units</h2> 
+		<h2 class="pull-left">Currency</h2> 
 		</div>
 		<div class="row">
-		<select class="pull-left" id="settings_baseunits" data-size="auto">
+		<select style="width: 400px;" class="pull-left" id="settings_baseunits" data-size="auto">
 			<option>USD</option>
 			<option>EURO</option>
 			<option>YEN</option>
@@ -25,6 +25,9 @@
 		<div class="row">
 			<input type="text" class="input-sm validate[required] form-control" placeholder="Confirm Password">
 		</div>
+		<div class="row">
+		<input type="button" value="Change Password" ng-click="window.alert('hello')">
+		</div>
 	</div>
 	<div class="col-md-1">
 	</div>
@@ -35,35 +38,18 @@
 		<div class="row pull-left" id="notifications_list">
 			<label><input type="checkbox" />Convert to Base Unit Automatically</label>
 			<label><input type="checkbox"/>Disable Trade</label>
+			<label><input type="checkbox"/>Show Balance</label>
 			<label><input type="checkbox"/>Disable Multisignature Sharing service</label>
 
 		</div>
 	</div>
-	<!--
-	<div class="row">
-	<h2 id="settings_title" class="block-title pull-left">Settings</h2>            
+	<div class="col-md-1">
 	</div>
-	<form role="form" id="settings_container" class="form-validation-1">
-		
-		<div class="row">
-			<div class="col-md-4 form-group">
-				<label>Password</label>
-				<input type="text" class="input-sm validate[required] form-control" placeholder="Password">
-			</div>
-			<div class="col-md-4 form-group">
-				<label>Confirm Password</label>
-			<input type="password" class="input-sm validate[required] form-control" placeholder="Confirm Password" id="form-validation-field-0">
-			</div>
-		</div>
-		<div class="row">
-		<div class="clearfix"></div>
-		
-		<div class="form-group col-md-12">
-			<label>Textarea</label>
-			<textarea class="input-sm validate[required] form-control" placeholder="..." ></textarea>
-		</div>
-		</div>
-		<button class="btn btn-sm validation-clear">Hidden Confirm</button>
-	</form>
-	-->
+	<div class="row">
+	<div style="margin-top:40px"class="col-md-5">
+	<input type="button" value="Remove Wallet">
+	<input type="button" value="Backup Wallet">
+	<input type="button" value="Import Wallet">
+	</div>
+	</div>
 </div>

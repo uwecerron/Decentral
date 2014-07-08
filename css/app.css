@@ -387,7 +387,8 @@ input {
 	width: 100%;
 	margin-bottom: 1.4rem;
 	padding: 1rem;
-	background-color: #ecf2f4;
+	/*#ecf2f4*/
+	background-color: #0a9af3;
 	border-radius: 0.2rem;
 	border: none;
 }

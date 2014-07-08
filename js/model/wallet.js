@@ -78,6 +78,9 @@ cApp.factory("Wallet",["Blockchaininfo","Decentralstorage",function(Blockchainin
         // console.log(hello);
   }
 
+  Wallet.prototype.changePassword=function(){
+    
+  }
 
   Wallet.prototype.getCurrentAddress=function() {
       return this.CurrentAddress;
