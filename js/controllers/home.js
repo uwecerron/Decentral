@@ -44,7 +44,7 @@
 
 
     $scope.backup= function(){
-      var data =  wallet1.getWallet();
+     var data =  wallet1.getWallet();
       download(data);
     }
     setTimeout(function() {

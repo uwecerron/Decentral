@@ -17,4 +17,5 @@ function SettingsController($scope,Wallet){
           wallet.changePass($scope.currentPassword, $scope.newPassword);
          }
     }
+    
 }//End Controller

@@ -20,6 +20,38 @@ Blockchain.prototype.multiAddr=function(addresses, callback){
       callback(data);
     });
 }
+
+/*
+ * Gets latest block count in blockchain
+ * @param {Function} callback Function that will be called with getBlockCount
+ */
+Blockchain.prototype.getBlockCount = function(callback) {
+  var _url = this.url;
+  $http({method: 'GET', url: _url+'/latestblock',headers : { 'Content-Type': 'application/x-www-form-urlencoded' }}).
+    success(function(data, status, headers, config) {
+      callback(status,data);
+    }).
+    error(function(data, status, headers, config) {
+      callback(status,data);
+    });
+}
+
+/*
+ * Gets raw transaction by transaction hash
+ * @param {String} tx Transaction hash in hex
+ * @param {Function} callback Function that will be called with getTx
+ */
+Blockchain.prototype.getTx = function(tx, callback) {
+  var _url = this.url;
+  $http({method: 'GET', url: _url+'/rawtx/'+tx,headers : { 'Content-Type': 'application/x-www-form-urlencoded' }}).
+    success(function(data, status, headers, config) {
+      callback(status,data);
+    }).
+    error(function(data, status, headers, config) {
+      callback(status,data);
+    });
+}
+
 /*
  * Gets all unspent outputs through blockchain.info
  * @param {String} Bitcoin addresses array
@@ -64,3 +96,4 @@ Blockchain.prototype.pushTx =function(tx_serialized, tx_hash, callback) {
 return Blockchain;
 });//end factory
 
+module.exports = Blockchain
