@@ -1,13 +1,14 @@
 {
-  "name": "ChromaWallet",
+  "name": "DecentralBank",
   "version": "0.0.0",
   "authors": [
     "Uwe Cerron"
   ],
   "main": "js/app.js",
   "keywords": [
-    "bitcoin",
-    "colored coins"
+    "Bitcoin",
+    "Colored Coins",
+    "Open Transactions"
   ],
   "license": "MIT",
   "private": true,
@@ -17,11 +18,9 @@
     "html5shiv": "~3.6",
     "bitcoinjs-lib": "git://github.com/bitcoinjs/bitcoinjs-lib#master",
     "angular": "~1.2.13",
-    "indexeddb":"git://github.com/axemclion/IndexedDBShim/blob/master/dist/IndexedDBShim.js",
     "angular-route": "~1.2.14",
     "requirejs": "~2.1.11",
     "requirejs-domready": "~2.0.1",
-    "identicon": "https://github.com/stewartlord/identicon.js.git",
     "angular-xeditable": "~0.1.8"
   }
 }

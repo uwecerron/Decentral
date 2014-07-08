@@ -10,13 +10,13 @@ function TransactionsController($rootScope,$scope, $filter,TransactionFetcher) {
 
     
     $scope.transactions = [
-        {"id":"1","name":"sad","address":"hash 2","balance":"tran hash","token":"2"},
-          {"id":"1","name":"qqw","address":"hash 2","balance":"tran hash","token":"5"},
-            {"id":"1","name":"weef","address":"hash 2","balance":"tran hash","token":"6"},
-              {"id":"1","name":"hash6","address":"hash 2","balance":"tran hash","token":"1"},
-                {"id":"1","name":"ffffhasffh5","address":"hash 2","balance":"tran hash","token":"2"},
-                  {"id":"1","name":"zzzzhash8","address":"hash 2","balance":"tran hash","token":"3"},
-                    {"id":"1","name":"aaaahash9","address":"hash 2","balance":"tran hash","token":"1"}
+        {"id":"1","from":"sad","to":"hash 2","amount":"tran hash","token":"2"},
+          {"id":"1","from":"qqw","to":"hash 2","amount":"tran hash","token":"5"},
+            {"id":"1","from":"weef","to":"hash 2","amount":"tran hash","token":"6"},
+              {"id":"1","from":"hash6","to":"hash 2","amount":"tran hash","token":"1"},
+                {"id":"1","from":"ffffhasffh5","to":"hash 2","amount":"tran hash","token":"2"},
+                  {"id":"1","from":"zzzzhash8","to":"hash 2","amount":"tran hash","token":"3"},
+                    {"id":"1","from":"aaaahash9","to":"hash 2","amount":"tran hash","token":"1"}
          
    ];
 

@@ -1,3 +1,14 @@
+/*Font Icons
+=============================================================================*/
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+
+/* entypo */
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+}
+
+
+
 /* BASE STYLES
 ============================================================================= */
 body{
@@ -11,7 +22,7 @@ textarea { resize:none; }
 }
 .navbar-balance{
 	float: right;
-	color:#f3f3f3;
+	color:#cacaca;
 	padding-top:20px;
 	font-size: 1.1em;
 	margin-right: 40px;
@@ -195,9 +206,7 @@ thead{
 #lepanel{
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 	/*background: rgba(0,0,0,0.25);*/
-	width:23%;
 	border-radius: 7px;
-	margin-top: -5%;
 	margin-left: 3%;
 	color:#333;
 
@@ -242,7 +251,7 @@ table{
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 	/*background: rgba(0,0,0,0.35);*/
 	background: #fff;
-	margin-top: -20%;
+	margin-top: -16%;
 	margin-left: 30%;
 }
 
@@ -350,9 +359,6 @@ select:not([multiple]) {
 	background-attachment: fixed;*/
 	color: #000;
 	text-align: center;
-}
-.page { 
-   
     bottom:0; 
     padding-top:0px;
     left:0px;
@@ -381,7 +387,8 @@ input {
 	width: 100%;
 	margin-bottom: 1.4rem;
 	padding: 1rem;
-	background-color: #ecf2f4;
+	/*#ecf2f4*/
+	background-color: #0a9af3;
 	border-radius: 0.2rem;
 	border: none;
 }

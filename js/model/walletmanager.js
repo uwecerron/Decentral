@@ -2,7 +2,7 @@
 
 var AllWallets = function () {
     this.wallets = [];
-   
+	this.curWallet = 0;
 }
 AllWallets.prototype = {
     addWallet: function (wallet) {
@@ -27,5 +27,11 @@ AllWallets.prototype = {
      
     getWallet: function (i) {
         return this.children[i];
-    }
+    },
+	
+	setWallet: function(i) {
+		if(i < wallets.length) {
+			curWallet = i;
+		}
+	}
 }

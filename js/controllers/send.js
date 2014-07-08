@@ -1,32 +1,35 @@
 
-function SendController($scope,$rootScope,$http){
+function SendController($scope,$rootScope,Wallet){
   $scope.pageClass = 'page-send';
-    $scope.item = {};
-console.log('logged');
-    $scope.send = function(item) {
-     console.log('submitted');
-    
-  $http({
-        method  : 'POST',
-        url     : 'https:/localhost/mainpage/index.php',
-        data    : JSON.stringify({ name: 'caca'}),  // pass in data as strings
-        headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
+  $scope.item = {};
+  console.log('logged');
+  $scope.inputAddress='';
+  $scope.inputAmount='';
+  var wallet1= new Wallet();
+
+    //check balance
+    $rootScope.$watch( 'balance', function() {
+    $scope.balanceInt = $rootScope.balanceInt
+    $scope.balance = $rootScope.balance
     })
-        .success(function(data) {
-            console.log(data);
 
-            if (!data.success) {
-              // if not successful, bind errors to error variables
-               // $scope.errorName = data.errors.name;
-                //$scope.error=data.errors.name;
-                //$scope.errorSuperhero = data.errors.superheroAlias;
-            } else {
+    var satoshies=100000000;
 
-              // if successful, bind success message to message
-                $scope.message = data.message;
-            }
-        });
-      
+    $scope.send = function(item) {
+      var value=$scope.inputAmount * satoshies;
+      var formData ={
+      addr:$scope.inputAddress,
+      amount:value
+      }
+
+      console.log(formData);
+      wallet1.buildTransaction(formData,function(data){
+        console.log(data);
+      });
+
+      console.log( $scope.inputAddress);
+
+     console.log('submitted');
       //$scope.$apply( function() {
      
     };
