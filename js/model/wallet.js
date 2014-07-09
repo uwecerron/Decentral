@@ -1,5 +1,5 @@
 "use strict";
-cApp.factory("Wallet",["Blockchaininfo","Decentralstorage",function(Blockchaininfo,Decentralstorage){
+cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchaininfo,DecentralStorage){
 
   var Wallet = function(Name) {
       var self = this;
@@ -9,7 +9,7 @@ cApp.factory("Wallet",["Blockchaininfo","Decentralstorage",function(Blockchainin
       this.Balance=0;
       this.CurrentAddress='';
       this.privatekey;
-      this.storage=new Decentralstorage();
+      this.storage= DecentralStorage;
       this.blockchain=new Blockchaininfo();
       this.Txfee =10000;
 

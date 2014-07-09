@@ -7,13 +7,15 @@
         </div>
         <div id="user-info" class="panel" >
             <div class="panel-body">
-                <div class="panel">
+                <div class="panel" ng-click="generateWallet(WalletName)">
                     <div class="wallet_name text-muted">
                         <p class="stats-label pull-center">new Wallet</p>
                     </div>
                 </div>
                 <div class="wallet_name text-muted">
-                    <p class="stats-label pull-center">Wallet name</p>
+                    <input type="text" class="form-control input-sm" ng-model="WalletName"
+					>
+					<div style="display:none"> {{ WalletName }} </div>
                 </div>
             </div>
         </div>

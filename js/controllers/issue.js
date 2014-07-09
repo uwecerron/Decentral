@@ -1,4 +1,4 @@
-function IssueController($scope,Decentralstorage) {
+function IssueController($scope,DecentralStorage) {
 
   $scope.pageClass = 'page-assets';
   $scope.formData={};

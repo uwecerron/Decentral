@@ -29,12 +29,12 @@ cApp.value('ReceiveTable',{
 })
 
 
-function AssetsController($scope,ReceiveTable,Decentralstorage)  {
+function AssetsController($scope,ReceiveTable,DecentralStorage)  {
    $scope.pageClass = 'page-assets';
     $scope.items = ReceiveTable.items;
     $scope.item = {};
 	$scope.addAssetShow = false;
-   var ledecentral = new Decentralstorage();
+   var ledecentral = DecentralStorage;
    
    var values ={Name: "Burger2 King2", BTC: "1200",Address:"mhRYQjHSu4QQRr8yi5m2eiSznsUt4HrJSy", Units: "5"};
     ledecentral.save( "address", values);

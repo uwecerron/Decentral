@@ -1,4 +1,4 @@
-cApp.factory("TransactionFetcher",["Decentralstorage", function(Decentralstorage) {
+cApp.factory("TransactionFetcher",["DecentralStorage", function(DecentralStorage) {
 
 	var Transaction = function(wallet) {
 		this.wallet = wallet;
@@ -7,7 +7,7 @@ cApp.factory("TransactionFetcher",["Decentralstorage", function(Decentralstorage
 
 	Transaction.prototype.get = function(callback) {
 		var self = this;
-		var sample= new Decentralstorage();
+		var sample= DecentralStorage;
 		return sample.getall();
 	}
 

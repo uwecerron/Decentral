@@ -1,4 +1,5 @@
- cApp.controller('Home', function($scope, $rootScope,Blockchaininfo,Wallet,TransactionFetcher) {
+ cApp.controller('Home', function($scope, $rootScope,Blockchaininfo,Wallet,TransactionFetcher, WalletManager) {
+
          $scope.pageClass = 'page-home';
     $scope.message = 'Choose Your Wallet';
     $rootScope.$watch( 'balance', function() {
@@ -66,6 +67,17 @@
    $scope.generateLeAddress = function() {
       $scope.currentAddress =  wallet1.generatePublicAddress();
     }
-
+	
+	$scope.generateWallet = function(WalletName) {
+		if(!WalletName || WalletName.length == 0) {
+			console.log("meh");
+		} else {
+			console.log(WalletName);
+			var wallet = new Wallet(WalletName);
+			WalletManager.addWallet(wallet);
+			console.log(WalletManager.numWallets());
+		}
+	}
+	
   //} )
 });//end Home Controller

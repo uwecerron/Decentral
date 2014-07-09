@@ -58,7 +58,8 @@ var validation = {
     }
     } )
 
-  }
+	},
+
 }
 
 cApp.directive( 'validateAddress', function() {
@@ -83,3 +84,5 @@ cApp.directive( 'validateAmount', function() {
     }
   };
 } )
+
+
