@@ -1,8 +1,16 @@
 'use strict';
-cApp.service("WalletManager", function() {
+cApp.service("WalletManager", function(DecentralStorage) {
 
-	this.wallets = [];
+	this.wallets = {};
 	this.curWallet = 0;
+	
+	this.init = function(_wallets) {
+		this.wallets = _wallets;
+		for(key in this.wallets)
+		{
+			if(key > this.curWallet) this.curWallet = key+1; 
+		}
+	};
 	
 	this.addWallet = function (wallet) {
 		this.wallets.push(wallet);

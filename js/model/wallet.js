@@ -1,6 +1,7 @@
 "use strict";
 cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchaininfo,DecentralStorage){
 
+
   var Wallet = function(Name) {
       var self = this;
       this.Name=Name;

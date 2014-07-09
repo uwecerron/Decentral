@@ -8,8 +8,7 @@ cApp.service("DecentralStorage", function() {
 	// multiaddr        =>   {transactions: Array }
 	// current            =>   {currentAddress: String }
 	// security         =>   { dk => decryption String }
-
-
+	var WALLETDATABASE = "ZEBANK";
 	
 	this.addresses = {};
 	    
@@ -39,6 +38,20 @@ cApp.service("DecentralStorage", function() {
 		 }
 		})
 	};
+	
+	var wallets_ref ={};
+	
+	this.getWallets = function() {
+		return wallets_ref;
+	}
+	
+	this.retriveWallets=function(callback){
+		var _wallets = {};
+		this.get(WALLETDATABASE, function(ledata) {
+			wallets_ref = ledata[WALLETDATABASE];
+		});
+	};
+	
 	/*
 	 * Save data into the database.
 	 * @param {String} wallet database.
@@ -51,12 +64,12 @@ cApp.service("DecentralStorage", function() {
 
 	var saveTimeOut = 0;
  
-	this.save = function(database,name,data, callback) {
+	this.save = function(database,walletName,data, callback) {
 		
 		
 		var self = this;
 		var _database = database;
-		var _name = name;
+		var _name = walletName;
 		var _data = data;
 		
 		var store = function() {
@@ -77,7 +90,7 @@ cApp.service("DecentralStorage", function() {
 			}
 			
 			ledata[_database][_name] = setObject;
-			console.log(setObject);
+			console.log(ledata);
 			//setObject[name]={}
 			//setObject.database.name=_name;
 			//setObject.database.name.data=_data;
@@ -90,6 +103,11 @@ cApp.service("DecentralStorage", function() {
 		saveTimeOut += 1000;
 		setTimeout(store, saveTimeOut);
 		
+	};
+	
+	this.saveWallet = function(wallet, index, callback) {
+		var self = this;
+		this.save(WALLETDATABASE, index, wallet);
 	};
 
 	/*

@@ -1,4 +1,4 @@
- cApp.controller('Home', function($scope, $rootScope,Blockchaininfo,Wallet,TransactionFetcher, WalletManager) {
+ cApp.controller('Home', function($scope, $rootScope,Blockchaininfo,Wallet,TransactionFetcher, WalletManager, DecentralStorage) {
 
          $scope.pageClass = 'page-home';
     $scope.message = 'Choose Your Wallet';
@@ -12,7 +12,18 @@
 
     });
     console.log(wallet1.Addresses);
-    //var BlockD = new Decentralstorage();
+    var BlockD = DecentralStorage;
+	BlockD.clear();
+	BlockD.saveWallet(wallet1,0);
+	BlockD.saveWallet(wallet1,1);
+	var f1 = function(){
+		WalletManager.init();
+	};
+	var f2 = function(){
+		console.log(DecentralStorage.getWallets());
+	};
+	setTimeout(f1,3000);
+	setTimeout(f2,5000);
     //var fun1 = function(){BlockD.save( "security","name",{"4":"hash"})};
     //var fun2 = function(){BlockD.save( "security","name",{"5":"hash"})};
     //var fun3 = function(){BlockD.save( "security","name",{"6":"hash"})};
