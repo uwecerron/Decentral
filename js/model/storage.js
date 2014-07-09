@@ -62,7 +62,6 @@ cApp.service("DecentralStorage", function() {
 		var store = function() {
 			self.get(_database, function(ledata) {
 			console.log("lewallet");
-			//console.log(ledata);
 			var setObject = {};
 			if (ledata[_database] !== undefined){
 
