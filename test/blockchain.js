@@ -1,11 +1,11 @@
 'use strict';
 
-  var _blockchain = require('../src/index')
-  describe('Blockchaininfo', function() {
+  var _blockchain = require('../js/index')
+  describe('Blockchain', function() {
   var api;
 
  //random data from blockchain replace if needed or replace with testnet blockchain
- var rawTx = {
+ /*var rawTx = {
     'b6f6991d03df0e2e04dafffcd6bc418aac66049e2cd74b80f14ac86db1e3f0da',
     'df9cf4b7b450229a01e2f5bfb91664d64667ac561bb3082ed61807620d6c690c',
     'd980e80b85ca4f306c4184eaabde0a60e95bb1510fc02f4290de1c9a2a2dd4a5',
@@ -18,11 +18,14 @@
   '1FsEs3U535Pa1oVxUU35tCLdmyw2NKUNXB',
   '17rJhbvxPhwp7Z51qQZYt97Jwzm46eRQ1n',
   '1C9FaLpWd5aMMhGL9r8L7tDPMay3Cs7uwH',
-  ];
+  ];*/
+ var rawTx = 'b6f6991d03df0e2e04dafffcd6bc418aac66049e2cd74b80f14ac86db1e3f0da';
+
+  var addresses = ['1FgJgE5xvJhHYQG3GNp2qzU3oF5gWrLnhn'];
 
   var unspent = [{
     address: "1F6UU9EBPNyAFyPojDqHAtoCiNDX9mFmBP",
-    tx_hash: "3432e17c6bac6d07aaad0e0764c9cef6361a50d4cc46fa3cf7e711d23c1b9bb7",""
+    tx_hash: "3432e17c6bac6d07aaad0e0764c9cef6361a50d4cc46fa3cf7e711d23c1b9bb7",
     tx_output_n: 0,
     tx_index: 59321637,
     scriptPubKey: "76a9149a9ac5170622d307dfac248cc8af94b15ff7bff588ac",
@@ -39,19 +42,20 @@
   }];
 
   beforeEach(function() {
-    api = new _blockchain.blockchain.Blockchaininfo()
+    api = new _blockchain.blockchain.Blockchain();
   })
 
   it('multiAddr', function(done) {
-    api.multiAddr('b79b1b3cd211e7f73cfa46ccd4501a36f6cec964070eadaa076dac6b7ce13234', function(error, response) {
+    api.multiAddr(['1F6UU9EBPNyAFyPojDqHAtoCiNDX9mFmBP'], function(error, response) {
       expect(error).to.be.null
       expect(response).to.be.equal(
-       // check it returns something like this ['b79b1b3cd211e7f73cfa46ccd4501a36f6cec964070eadaa076dac6b7ce13234'])
+         rawTx['b79b1b3cd211e7f73cfa46ccd4501a36f6cec964070eadaa076dac6b7ce13234'])
+      
       done()
     })
   })
 
-  it ('getUnspent', function(done) {
+ /* it ('getUnspent', function(done) {
     api.getUnspent('3432e17c6bac6d07aaad0e0764c9cef6361a50d4cc46fa3cf7e711d23c1b9bb7', function(error, response) {
       expect(error).to.be.null
       expect(response).to.deep.equal(
@@ -67,6 +71,6 @@
       })
     })
   })
-
+*/
 
 })

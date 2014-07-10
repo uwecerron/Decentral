@@ -4,7 +4,7 @@
   "description": "A Decentralized Bitcoin Bank",
   "main": "./src/index.js",
   "scripts": {
-    "test": "echo hello"
+    "test": "./node_modules/.bin/istanbul test ./node_modules/.bin/_mocha -- --reporter spec test/*.js; true"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,17 @@
   "bugs": {
     "url": "https://github.com/DecentralBank/Decentral/issues"
   },
-  "homepage": "https://github.com/DecentralBank/Decentral"
+  "homepage": "https://github.com/DecentralBank/Decentral",
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "coveralls": "^2.11.1",
+    "grunt": "^0.4.5",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-karma": "^0.8.3",
+    "grunt-mocha-test": "^0.11.0",
+    "istanbul": "^0.3.0",
+    "karma": "^0.12.16",
+    "karma-jasmine": "^0.1.5",
+    "mocha": "^1.20.1"
+  }
 }
