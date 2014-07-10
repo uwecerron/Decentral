@@ -14,8 +14,6 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
       this.blockchain=new Blockchaininfo();
       this.Txfee =10000;
 
-	  
-	  
     this.getCurrentAddress = function(){
           return CurrentAddress;
       };
@@ -61,22 +59,30 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
 
   Wallet.prototype.loadWallet= function(callback){
       var _name=this.Name;
-
+      var walletData=[]
+      var _addresses=this.getAddresses();
       this.storage.get('wallet', function(data) {
-              var walletData=[] 
+
         if (data === undefined) {
           data = {}
         }
-              console.log(_name)
+          
         var addresses ={};
         addresses=data['wallet'][_name];
-        
-        for(var key in addresses){
-          walletData.push(key)       
+        var addresses2 = Object.keys(addresses );
+        console.log(addresses2)
+                 console.log(_addresses);
+         for ( var i = 0; i < addresses2.length; i++ ) {
+
+          walletData.push(addresses2[i]);  
+          _addresses.push(addresses2[i])    
         }
-        callback(walletData);
-         //console.log(this.Addresses)
+
+         console.log(_addresses)
+        callback(_addresses);
+   
         });
+      //console.log(this.getAddresses())
        // console.log(this.Addresses);
         // console.log(hello);
   }
@@ -212,6 +218,44 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
       }
     }
   
+    function getUnspents(){
+
+      
+    }
+
+
+    function selectunspents(addresses){
+      this.blockchain.getUnspent(addresses,function(){
+
+
+      });
+
+    }
+
+        function selectUnspents( unspentsBigInteger, targetValue ) {
+      var selectedUnspents = [];
+
+      // TODO: Add Test for insufficient balance: Test below conditional
+      if ( !SpareCoins.Util.unspentsIsSufficient( unspentsBigInteger, targetValue ) ) {
+        throw "Insufficient Balance"
+      }
+
+      for ( var i = 0; i < unspentsBigInteger.length; i++ ) {
+        var unspent = unspentsBigInteger[ i ];
+        if ( unspent.value.compareTo( targetValue ) >= 0 ) {
+          // unset all previous selected unspents and use this one
+          selectedUnspents = [ unspent ];
+          break;
+        } else {
+          selectedUnspents.push( unspent );
+          if ( SpareCoins.Util.unspentsIsSufficient( selectedUnspents, targetValue ) ) {
+            break;
+          }
+        }
+      }
+      return selectedUnspents;
+    }
+
     Wallet.prototype.encrypt= function(privateKey,passwordDigest) {
       if (passwordDigest !== undefined ) {
         var encrypted = CryptoJS.AES.encrypt(privateKey, passwordDigest).toString();
