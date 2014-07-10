@@ -6,21 +6,41 @@
     $scope.balance = $rootScope.balance/100000000;
     })
    $scope.currentAddress = "1Yj564jDqoB6L7hg5ETYKhqRsB65WrWPB";
-    var wallet1=new Wallet("uwe1");
-    wallet1.loadWallet(function(data){
-    //console.log(data)
-
-    });
-    //DecentralStorage.clear();
-	var ret = DecentralStorage.retriveWallets();
-	//WalletManager.addWallet(new Wallet("u1"));
+    var wallet1=new Wallet("uwe1");	
+	
+	var alist=[{"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
+         {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
+          {"id":"1","name":"2 1","address":"description 1","balance":"field3 1","token":"field4 1"},
+           {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
+            {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
+             {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
+              {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
+               {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
+                {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
+                 {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
+                  {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
+             {"id":"1","name":"neeeeame 1","address":"description 1","balance":"field3 1","token":"field4 1"}];
+	for(var stuff in alist)
+	{
+		wallet1.addAddress(alist[stuff]);
+	}
+	WalletManager.addWallet(wallet1);
+	
+	
+	
+	
 	var initWalletManager = function() {
-		WalletManager.init();
+		var ret = DecentralStorage.retriveWallets();
+		var inner = function() {
 		
+			WalletManager.init();
+			console.log(WalletManager.getCurrentWallet());
+		};
+		setTimeout(inner, 500);
 		//WalletManager.removeWallet(1);
 	};
 
-	setTimeout(initWalletManager, 2000);
+	setTimeout(initWalletManager, 1500);
 
     //var Block2= new Blockchaininfo();
     //var addresses=['1Af7Xx9hpqS2GBLY6swqe2fsMmNgPxzAPk','1Yj564jDqoB6L7hg5ETYKhqRsB65WrWPB'];

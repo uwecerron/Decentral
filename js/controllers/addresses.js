@@ -1,4 +1,4 @@
-function AddressesController($scope,$rootScope, $filter,Wallet) {
+function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
     $scope.sortingOrder = 'name';
     $scope.reverse = false;
     $scope.filteredItems = [];
@@ -8,21 +8,8 @@ function AddressesController($scope,$rootScope, $filter,Wallet) {
     $scope.currentPage = 0;
  
     var address={};
-    var wallet1=new Wallet("uwe1");
-    wallet1.loadWallet(function(data){
-           var items=[];
-   console.log(data.length)
-//       console.log(data)
-    for(var i =0;i<data.length;i++){
-        address["address"]=data[i];
-        address["balance"]=0;
-        //hard coding asset
-        address["token"]="btc";
-        items.push(address);
-    }
-console.log(items)
-   $rootScope.$apply( function() {
-   $scope.items =[{"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
+    $scope.items = WalletManager.getCurrentWallet().getAddresses();
+	/*$scope.items =[{"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
          {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
           {"id":"1","name":"2 1","address":"description 1","balance":"field3 1","token":"field4 1"},
            {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
@@ -33,11 +20,7 @@ console.log(items)
                 {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
                  {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
                   {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-             {"id":"1","name":"neeeeame 1","address":"description 1","balance":"field3 1","token":"field4 1"}] 
-
-});
-});
-      
+             {"id":"1","name":"neeeeame 1","address":"description 1","balance":"field3 1","token":"field4 1"}] */
   var f1 = function(){ ; 
    //console.log($scope.items)
    }
@@ -130,4 +113,3 @@ console.log(items)
             $('th.'+new_sorting_order+' i').removeClass().addClass('icon-chevron-down');
     };
 };
-
