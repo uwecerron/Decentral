@@ -14,6 +14,8 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
       this.blockchain=new Blockchaininfo();
       this.Txfee =10000;
 
+	  
+	  
     this.getCurrentAddress = function(){
           return CurrentAddress;
       };

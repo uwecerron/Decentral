@@ -11,36 +11,17 @@
     //console.log(data)
 
     });
-    console.log(wallet1.Addresses);
-    var BlockD = DecentralStorage;
-	BlockD.clear();
-	BlockD.saveWallet(wallet1,0);
-	BlockD.saveWallet(wallet1,1);
-	var f1 = function(){
+    //DecentralStorage.clear();
+	var ret = DecentralStorage.retriveWallets();
+	//WalletManager.addWallet(new Wallet("u1"));
+	var initWalletManager = function() {
 		WalletManager.init();
+		
+		//WalletManager.removeWallet(1);
 	};
-	var f2 = function(){
-		console.log(DecentralStorage.getWallets());
-	};
-	setTimeout(f1,3000);
-	setTimeout(f2,5000);
-    //var fun1 = function(){BlockD.save( "security","name",{"4":"hash"})};
-    //var fun2 = function(){BlockD.save( "security","name",{"5":"hash"})};
-    //var fun3 = function(){BlockD.save( "security","name",{"6":"hash"})};
-    /*BlockD.save( "security","name",{"t0":"hash","pvtkey":"Lshafasjasbjasbjasjfbasjbajfsa"});
-    BlockD.save( "security","name",{"t1":"hash","pvtkey":"Lshafasjasbjasbjasjfbasjbajfsa"});
-    BlockD.save( "security","name",{"t2":"hash","pvtkey":"Lshafasjasbjasbjasjfbasjbajfsa"});
-    BlockD.save( "security","name",{"t3":"hash","pvtkey":"Lshafasjasbjasbjasjfbasjbajfsa"});
-    BlockD.save( "security","name",{"t4":"hash"});
-    BlockD.save( "security","name",{"t5":"hash"});
-    BlockD.save( "security","name",{"t6":"hash"});
-    BlockD.save( "security","name",{"t7":"hash"});
-    BlockD.save( "security","name",{"t8":"hash"});
-    BlockD.save( "security","name",{"t9":"hash"});
-    BlockD.save( "security","name",{"t10":"hash"});
-    BlockD.save( "security","name",{"t11":"hash"});
-    BlockD.save( "security","name",{"t12":"hash"});
-    */
+
+	setTimeout(initWalletManager, 2000);
+
     //var Block2= new Blockchaininfo();
     //var addresses=['1Af7Xx9hpqS2GBLY6swqe2fsMmNgPxzAPk','1Yj564jDqoB6L7hg5ETYKhqRsB65WrWPB'];
     //Block2.multiAddr(addresses);

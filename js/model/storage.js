@@ -49,6 +49,7 @@ cApp.service("DecentralStorage", function() {
 		var _wallets = {};
 		this.get(WALLETDATABASE, function(ledata) {
 			wallets_ref = ledata[WALLETDATABASE];
+			console.log(wallets_ref);
 		});
 	};
 	
@@ -75,21 +76,12 @@ cApp.service("DecentralStorage", function() {
 		var store = function() {
 			self.get(_database, function(ledata) {
 			console.log("lewallet");
-			var setObject = {};
-			if (ledata[_database] !== undefined){
 
-				if(ledata[_database][_name] !== undefined)
-				setObject = ledata[_database][_name];
-			}
-			else ledata[_database] = {};
-			console.log("already in");
-			console.log(setObject);
-			for(var key in _data)
-			{
-				setObject[key] = _data[key]
+			if (ledata[_database] === undefined) {
+				ledata[_database] = {};
 			}
 			
-			ledata[_database][_name] = setObject;
+			ledata[_database][_name] = _data;
 			console.log(ledata);
 			//setObject[name]={}
 			//setObject.database.name=_name;
@@ -106,7 +98,7 @@ cApp.service("DecentralStorage", function() {
 	};
 	
 	this.saveWallet = function(wallet, index, callback) {
-		var self = this;
+		console.log(wallet);
 		this.save(WALLETDATABASE, index, wallet);
 	};
 
