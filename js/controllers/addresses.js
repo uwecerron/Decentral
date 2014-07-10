@@ -6,25 +6,43 @@ function AddressesController($scope,$rootScope, $filter,Wallet) {
     $scope.itemsPerPage = 5;
     $scope.pagedItems = [];
     $scope.currentPage = 0;
-    var items=[];
+ 
     var address={};
     var wallet1=new Wallet("uwe1");
     wallet1.loadWallet(function(data){
-//    console.log(data.length)
+           var items=[];
+   console.log(data.length)
+//       console.log(data)
     for(var i =0;i<data.length;i++){
         address["address"]=data[i];
+        address["balance"]=0;
         //hard coding asset
         address["token"]="btc";
         items.push(address);
     }
-      // console.log(items)
-      
+console.log(items)
+   $rootScope.$apply( function() {
+   $scope.items =[{"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
+         {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
+          {"id":"1","name":"2 1","address":"description 1","balance":"field3 1","token":"field4 1"},
+           {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
+            {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
+             {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
+              {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
+               {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
+                {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
+                 {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
+                  {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
+             {"id":"1","name":"neeeeame 1","address":"description 1","balance":"field3 1","token":"field4 1"}] 
+
+});
 });
       
-     
-      $scope.items = items;
-   
+  var f1 = function(){ ; 
+   //console.log($scope.items)
+   }
 
+   setTimeout(f1(),10000);  
     var searchMatch = function (haystack, needle) {
         if (!needle) {
             return true;

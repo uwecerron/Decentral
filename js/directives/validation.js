@@ -59,6 +59,18 @@ var validation = {
     } )
 
 	},
+  newPassword:function($scope){
+      if ( $scope.password === undefined || $scope.password.length < 10) {
+      $scope.errorMessage = "Must be >=8 characters";
+      return false;
+    }
+
+    if ( $scope.password !== $scope.passwordConfirm ) {
+      $scope.errorMessage = "Doesn't match";
+      return false;
+    }
+
+  }
 
 }
 
@@ -72,7 +84,7 @@ cApp.directive( 'validateAddress', function() {
 
     }
   };
-} )
+})
 
 cApp.directive( 'validateAmount', function() {
   return {
@@ -80,6 +92,16 @@ cApp.directive( 'validateAmount', function() {
     link: function( $scope, element, attrs ) {
       element.on( "blur submit keyup", function() {
         validation.amount($scope)
+      } )
+    }
+  };
+})
+cApp.directive( 'newPassword', function() {
+  return {
+    restrict: 'A',
+    link: function( $scope, element, attrs ) {
+      element.on( "blur submit keyup", function() {
+        validation.newPassword($scope)
       } )
     }
   };
