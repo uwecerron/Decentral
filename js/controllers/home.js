@@ -7,7 +7,7 @@
     })
    $scope.currentAddress = "1Yj564jDqoB6L7hg5ETYKhqRsB65WrWPB";
     var wallet1=new Wallet("uwe1");	
-	
+	/*
 	var alist=[{"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
          {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
           {"id":"1","name":"2 1","address":"description 1","balance":"field3 1","token":"field4 1"},
@@ -25,7 +25,7 @@
 		wallet1.addAddress(alist[stuff]);
 	}
 	WalletManager.addWallet(wallet1);
-	
+	*/
 	
 	
 	
@@ -35,6 +35,7 @@
 		
 			WalletManager.init();
 			console.log(WalletManager.getCurrentWallet());
+			//WalletManager.updateAll();
 		};
 		setTimeout(inner, 500);
 		//WalletManager.removeWallet(1);

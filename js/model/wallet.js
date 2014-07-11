@@ -14,6 +14,20 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
       this.blockchain=new Blockchaininfo();
       this.Txfee =10000;
 
+	this.initialize=function(wallet)
+	{
+		
+		this.Addresses=wallet.Addresses;
+		this.Txs=wallet.Txs;
+		this.Balance=wallet.Balance;
+		this.CurrentAddress=wallet.CurrentAddress;
+		this.privatekey=wallet.privatekey;
+		this.storage=wallet.storage;
+		this.blockchain=wallet.blockchain;
+		this.Txfee =wallet.Txfee;
+
+	}
+	  
 	this.addAddress = function(address) {
 		this.Addresses.push(address);
 	}
@@ -42,7 +56,8 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
 
    console.log('Wallet instantiated'+Name);
   }
-
+	
+  
   //TODO: finish method and test it
     Wallet.prototype.isAuthenticated=function(callback){
       this.storage.get( "security", function(data) {

@@ -8,7 +8,15 @@ function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
     $scope.currentPage = 0;
  
     var address={};
-    $scope.items = WalletManager.getCurrentWallet().getAddresses();
+	var curWallet = WalletManager.getCurrentWallet();
+	console.log(curWallet);
+	if(curWallet != null){
+		$scope.items = curWallet.getAddresses();
+		//$scope.items = [];
+	}
+	else{
+		$scope.items = [];
+	}
 	/*$scope.items =[{"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
          {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
           {"id":"1","name":"2 1","address":"description 1","balance":"field3 1","token":"field4 1"},
