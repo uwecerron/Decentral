@@ -4,8 +4,8 @@
       link: function(scope, element) {
          scope.$watch('currentAddress', function (val){
          if (val){
-        console.log("changed") 
-        console.log(element.html())   
+        //console.log("changed") 
+        //console.log(element.html())   
         var qrcode = new QRCode(element[0], {
           width : 164,
           height : 164,

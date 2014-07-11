@@ -29,11 +29,7 @@ function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
                  {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
                   {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
              {"id":"1","name":"neeeeame 1","address":"description 1","balance":"field3 1","token":"field4 1"}] */
-  var f1 = function(){ ; 
-   //console.log($scope.items)
-   }
-
-   setTimeout(f1(),10000);  
+ 
     var searchMatch = function (haystack, needle) {
         if (!needle) {
             return true;

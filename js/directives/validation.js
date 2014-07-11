@@ -52,28 +52,31 @@ var validation = {
       }*/else{
 
       $scope.form.amount = {
-     
         valid: true
       }
     }
-    } )
+    })
 
 	},
   newPassword:function($scope){
-      if ( $scope.password === undefined || $scope.password.length < 10) {
-      $scope.errorMessage = "Must be >=8 characters";
-      return false;
+    $scope.$apply( function() {
+    if ($scope.newpassword === undefined || $scope.newpassword.length < 10) {
+      $scope.form.password ={errorMessage: "longer than 10 letters"};
+      $scope.css = "error"
+      return;
+    }else if ($scope.newpassword !== $scope.newpasswordConfirm) {
+      $scope.form.password = {errorMessage: "Doesn't match"};
+      $scope.css = "error"
+      return;
+    }else{
+   $scope.form.password = {errorMessage: " "};
+
     }
 
-    if ( $scope.password !== $scope.passwordConfirm ) {
-      $scope.errorMessage = "Doesn't match";
-      return false;
-    }
-
-  }
+   })
 
 }
-
+}
 cApp.directive( 'validateAddress', function() {
   return {
     restrict: 'A',
