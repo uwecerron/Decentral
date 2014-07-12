@@ -1,7 +1,8 @@
  cApp.controller('Home', function($scope, $rootScope,Blockchaininfo,Wallet,TransactionFetcher, WalletManager, DecentralStorage) {
 
-         $scope.pageClass = 'page-home';
+    $scope.pageClass = 'page-home';
     $scope.message = 'Choose Your Wallet';
+    $scope.wallets = [];
     $rootScope.$watch( 'balance', function() {
     $scope.balance = $rootScope.balance/100000000;
     })
@@ -92,6 +93,13 @@
 			console.log(WalletManager.numWallets());
 		}
 	}
+
+  $scope.select = function(index) {
+      console.log(index)
+  };
+  $scope.remove = function(index) {
+      data.push($scope.wallets.splice(index, 1)[0]);
+  };
 	
   //} )
 });//end Home Controller
