@@ -40,13 +40,27 @@
 
 		</div>
 		<div class="row">
+		<h2 class="pull-left">Wallets</h2> 
+		</div>
+		<div class="row">
 			<input type="button" ng-click="importWallet()" value="Import Wallet">
 			<input type="button" ng-click="backupWallet()" value="Backup Wallet">
-			<input type="button" ng-click="removeWallet()" value="Remove Wallet">
+			<input type="button" ng-click="showWallets = !showWallets" value="Remove Wallet">
 		</div>
 	</div>
-	<div class="col-md-1">
+	<div class="col-md-2">
 		
 	</div>
-	
+</div>
+
+<div class="container barrel" id="wallet_list" ng-show="showWallets">
+	<button class="row" ng-click="showWallets = !showWallets">
+		ZeButton;
+	</button>
+	<div class="row">
+		HELLLLLO....
+	</div>
+	<div class="row">
+		HELLLLLO....
+	</div>
 </div>

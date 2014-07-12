@@ -305,6 +305,7 @@ font-size: 1.2em;
 	display:block;
 	padding:0;
 	text-align: left;
+	width:100%;
 }
 #notifications_list label{
 	display:block;
@@ -313,13 +314,23 @@ font-size: 1.2em;
 	width:20px;
 }
 
-
 #settings_baseunits{
 	font-size:20px;
 }
 
 #settings_security_header{
 	margin-top:20px;
+}
+
+#wallet_list{
+	bottom:0px;
+	/*visibility:hidden;*/
+	background:rgb(72,61,139);
+	position:absolute;
+	z-index: 10;
+	width:100%;
+	height:60%;
+	overflow-y:scroll;	
 }
 
 #sell{
@@ -487,6 +498,17 @@ input {
     -moz-animation: moveFromTop .6s ease both;
     animation: moveFromTop .6s ease both;
     
+}
+
+/* settings --------------------- */
+.barrel.ng-hide-add.ng-hide-add-active,
+.barrel.ng-hide-remove.ng-hide-remove-active {
+  -webkit-transition:all linear 1.5s;
+  transition:all linear 1.5s;
+}
+
+.barrel.ng-hide {
+  opacity:0;
 }
 
 /* contact ---------------------- */

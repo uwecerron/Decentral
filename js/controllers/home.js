@@ -34,6 +34,7 @@
 			var ret = DecentralStorage.retriveWallets();
 			var inner = function() {			
 				WalletManager.init();
+				$scope.wallets = WalletManager.getWallets();
 				//console.log(WalletManager.getCurrentWallet());
 				//console.log(wallet1);
 				//WalletManager.updateAll();

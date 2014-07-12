@@ -4,7 +4,7 @@ function SettingsController($scope,WalletManager,DecentralStorage){
     var storage = DecentralStorage;
     $scope.currenciesList;
     $scope.currentCurrency;
-
+	$scope.showWallets = false;
     $scope.currencies = [
         {name: "USD" , base: '1' },
         {name: "EUR" , base: '2' }
