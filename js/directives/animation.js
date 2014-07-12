@@ -4,7 +4,7 @@ cApp.directive('bal', function() {
         scope : {
             value : '='  
         },
-        template : "<div>BTC:{{value}}</div>"
+        template : "<div>Balance: {{value}} <span class='fa fa-btc'></span></div>"
     };
 });
 

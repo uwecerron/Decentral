@@ -87,6 +87,7 @@
 		} else {
 			console.log(WalletName);
 			var wallet = new Wallet(WalletName);
+       $scope.wallets.push({name: WalletName});
 			WalletManager.addWallet(wallet);
 			console.log(WalletManager.numWallets());
 		}

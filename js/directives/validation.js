@@ -5,28 +5,63 @@ var validation = {
   address: function($scope) {
     var inputAddress = $scope.inputAddress
     var validate = function validate(address) {
-      try{
-    var bytes = new Bitcoin.Address.fromBase58Check(address);
-    return true;
+    try{
+        var bytes = new Bitcoin.Address.fromBase58Check(address);
+        return true;
     }catch(e){
     //console.log(e)
-    return false;
+        return false;
     }
     };
     //end of validation method
-      var valid = validate(inputAddress);
+    var valid = validate(inputAddress);
       //console.log(valid);
-      if (!valid) {
+    if (!valid) 
+    {
         $scope.form.address = {
-          message: "Invalid address"
-        }
-      }else{
+         message: "Invalid address"
+         }
+    }else
+    {
         $scope.form.address = {
-          message: " "
+        message: " "
         }
         return true;
-      }
+    }
  
+  },
+  units:function($scope){
+    $scope.$apply( function() {
+      if (isNaN($scope.unitsAmount)) 
+      {
+          $scope.form.units = {
+          message: "Not a Number"
+        }
+      }else
+      {
+          $scope.form.units = {
+           valid: true
+          }
+      }
+
+    })
+            return true;
+  },
+  tokens:function($scope){
+    $scope.$apply( function() {
+      if (isNaN($scope.tokensAmount)) 
+      {
+          $scope.form.tokens = {
+          message: "Not a Number"
+        }
+      }else
+      {
+          $scope.form.tokens = {
+           valid: true
+          }
+      }
+    })
+                return true;
   },
   amount: function($scope) {
     var satoshis = 100000000;
@@ -109,5 +144,27 @@ cApp.directive( 'newPassword', function() {
     }
   };
 } )
+cApp.directive( 'validateUnits', function() {
+  return {
+    restrict: 'A',
+    link: function( $scope, element, attrs ) {
+      element.on( "blur submit keyup", function() {
+        validation.units($scope)
+      } )
+    }
+  };
+} )
+
+cApp.directive( 'validateTokens', function() {
+  return {
+    restrict: 'A',
+    link: function( $scope, element, attrs ) {
+      element.on( "blur submit keyup", function() {
+        validation.tokens($scope)
+      } )
+    }
+  };
+} )
+
 
 

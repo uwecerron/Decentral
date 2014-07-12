@@ -4,7 +4,11 @@ function SettingsController($scope,WalletManager,DecentralStorage){
     var storage = DecentralStorage;
     $scope.currenciesList;
     $scope.currentCurrency;
-    
+
+    $scope.currencies = [
+        {name: "USD" , base: '1' },
+        {name: "EUR" , base: '2' }
+    ];
     $scope.passwordChangedSubmit = function() {
       // replace with hasher algorithm sha256 or 3?
         var passDigest = CryptoJS.AES.encrypt("hello",$scope.currentpassword).toString();

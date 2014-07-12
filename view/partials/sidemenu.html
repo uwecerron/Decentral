@@ -1,24 +1,18 @@
-<div id ="lepanel" class="panel panel-default col-md-3">
-    <div>
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                Accounts
-            </h4>
-        </div>
-        <div id="user-info" class="panel" >
-            <div class="panel-body">
-                <div class="panel" ng-click="generateWallet(WalletName)">
-                    <div class="wallet_name text-muted">
-                        <p class="stats-label pull-center">new Wallet</p>
-                    </div>
-                </div>
+<div id ="lepanel" class="panel-default col-md-3">
                 <div class="wallet_name text-muted">
-                    <input id="addWalletName" type="text" class="form-control input-sm" ng-model="WalletName"
-					>
-					<div style="display:none"> {{ WalletName }} </div>
+                        <div data-bal data-value="balance"></div>
                 </div>
-            </div>
-        </div>
-    </div>
+                <div  ng-click="generateWallet(WalletName)">
+                    <div class="wallet_name text-muted">
+                        <p class="stats-label pull-center">Wallets</p>
+                    </div>
+                    <div class="wallet_name text-muted">
+                        <input id="addWalletName" type="text" placeholder="Name" class="form-control input-sm " ng-model="WalletName">
+                        <div style="display:none" > {{ WalletName }} </div>
+                        <div id="{{wallet.name}}" ng-repeat="wallet in wallets">
+                             <a href="#">{{wallet.name}}</a>
+                        </div>
+                   </div>
+                </div>
 </div>
 <!--lepanel-->

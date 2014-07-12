@@ -1,47 +1,65 @@
-<!--<div id="trade_main" class="panel panel-default vcenter">
-    <div class="panel">-->
-<div class="block-area" id="trade_main">
-    <div class="panel-heading" ><span class="panel-title pull-left">Select an Asset&nbsp;&nbsp;<select class="selectpicker"  data-size="auto">
-      <option>Tent</option>
-      <option>Flashlight</option>
-      <option>Toilet Paper</option>
-  </select></span><span class="panel-title">Trade</span></div>
-
   <!--Asset Selector-->
-  <div id="tradepane" class="row">
-  <div class="col-xs-6 col-md-3 ">
-
-<div id="sell"  class="panel panel-primary">
-    <div class="panel">
-    <div class="panel-heading" ><span class="panel-title">Buy</span></div>
-    <div class="panel-body">
-      <div class="input-group">
- <input class="form-control" type="text"  id="quantity" placeholder="Quantity">
-  <input class="form-control" type="text" id="price" placeholder="Price">
-</div>
-</div>
-<button style="width: 250px;
-height:35px;" ng-click="buy(item)" type="submit" class="btn btn-default">Buy</button>
-
-</div>
-
-</div>
-</div><!--col-xs-->
-  <div class="col-xs-6 col-md-3">
-<div id="buy" class="panel panel-primary">
-    <div class="panel">
-    <div class="panel-heading" ><span class="panel-title">Sell</span></div>
-    <div class="panel-body">
-    <span>
- <input class="form-control" type="text" id="quantity" placeholder="Quantity">
- </span>
- <span>
-  <input class="form-control" type="text" id="price" placeholder="Price"></div></span>
-  <button style="width: 250px;
-height:35px;" ng-click="sell(item)" type="submit" class="btn btn-default">Sell</button>
-</div>
-</div>
-</div><!--col-xs-->
-
+  <div id="trade_main">
+<div class="row">
+        <div class="col-md-6">
+            <div class="panel">
+                <div class="panel-body">
+                      {{View}}
+                </div>
+            </div>            
+        </div>
+        <!-- AssetHistory -->
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <a ng-click="btcprice()"><div class="panel tbox">
+                        <span class="box-icon rounded bg-info">
+                            <i class="fa fa-btc"></i>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2">36 <span class="size-h4">%</span></p>
+                            <p class="text-muted"><span data-i18n="Growth">BTC Price</span></p>
+                        </div>
+                    </div></a>
+                </div>
+                <div class="col-md-6">
+                    <a ng-click="findtokens()"><div class="panel tbox">
+                        <span class="box-icon rounded bg-info">
+                            <i class="fa fa-bank"></i>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2">352</p>
+                            <p class="text-muted"><span data-i18n="New users">Find Tokens</span></p>
+                        </div>
+                    </div></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <a ng-click="multisign()"><div class="panel tbox">
+                        <span class="box-icon rounded bg-info">
+                            <i class="fa fa-key"></i>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2">4,120</p>
+                            <p class="text-muted"><span data-i18n="Profit">Multisignatures</span></p>
+                        </div>
+                    </div></a>
+                </div>
+                <div class="col-md-6">
+                    <a ng-click="history()"><div class="panel tbox">
+                        <span class="box-icon rounded bg-info">
+                            <i class="fa fa-bars"></i>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2">313</p>
+                            <p class="text-muted"><span data-i18n="Sales">History</span></p>
+                        </div>
+                    </div></a>
+                </div>
+            </div>
+            <!-- end stats -->            
+        </div>
+    </div>
 </div>
 </div>
