@@ -28,21 +28,22 @@
 	WalletManager.addWallet(wallet1);
 	*/
 	
+	var initializationStuff = function() {
 	
-	
-	var initWalletManager = function() {
-		var ret = DecentralStorage.retriveWallets();
-		var inner = function() {
-		
-			WalletManager.init();
-			console.log(WalletManager.getCurrentWallet());
-			//WalletManager.updateAll();
+		var initWalletManager = function() {
+			var ret = DecentralStorage.retriveWallets();
+			var inner = function() {			
+				WalletManager.init();
+				//console.log(WalletManager.getCurrentWallet());
+				//console.log(wallet1);
+				//WalletManager.updateAll();
+			};
+			setTimeout(inner, 400);
+			//WalletManager.removeWallet(1);
 		};
-		setTimeout(inner, 500);
-		//WalletManager.removeWallet(1);
-	};
-
-	setTimeout(initWalletManager, 1500);
+		setTimeout(initWalletManager, 500);
+	}
+	initializationStuff();
 
     //var Block2= new Blockchaininfo();
     //var addresses=['1Af7Xx9hpqS2GBLY6swqe2fsMmNgPxzAPk','1Yj564jDqoB6L7hg5ETYKhqRsB65WrWPB'];
@@ -79,7 +80,7 @@
         
     }
    $scope.generateLeAddress = function() {
-      $scope.currentAddress =  wallet1.generatePublicAddress();
+      $scope.currentAddress =  WalletManager.getCurrentWallet().generatePublicAddress();
     }
 	
 	$scope.generateWallet = function(WalletName) {

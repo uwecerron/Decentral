@@ -22,7 +22,7 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
 		this.Balance=wallet.Balance;
 		this.CurrentAddress=wallet.CurrentAddress;
 		this.privatekey=wallet.privatekey;
-		this.storage=wallet.storage;
+		//this.storage=wallet.storage;
 		this.blockchain=wallet.blockchain;
 		this.Txfee =wallet.Txfee;
 
