@@ -125,9 +125,12 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
 
     Wallet.prototype.generatePublicAddress =function() {
       var key = Bitcoin.ECKey.makeRandom();
-      this.Addresses.push(key.pub.getAddress().toString());
       var hash=key.pub.getAddress().toString();
-       this.save(key.toWIF(),hash);
+	  var newAddress = {};
+	  newAddress['address'] = hash;
+	  this.Addresses.push(newAddress);
+      
+       //this.save(key.toWIF(),hash);
       return hash;
     }
     

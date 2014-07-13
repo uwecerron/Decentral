@@ -82,6 +82,7 @@
     }
    $scope.generateLeAddress = function() {
       $scope.currentAddress =  WalletManager.getCurrentWallet().generatePublicAddress();
+	  WalletManager.update(WalletManager.curWallet);
     }
 	
 	$scope.generateWallet = function(WalletName) {

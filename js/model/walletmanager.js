@@ -75,7 +75,6 @@ cApp.service("WalletManager", function(DecentralStorage,Wallet) {
 		for(var index in this.wallets) 
 		{
 			if(this.wallets[index]!= null) {
-				
 				ct++;
 			}
 		}
