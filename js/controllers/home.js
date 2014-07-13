@@ -8,59 +8,7 @@
     })
    $scope.currentAddress = "1Yj564jDqoB6L7hg5ETYKhqRsB65WrWPB";
     var wallet1=new Wallet("uwe1");	
-	/*
-	var alist=[{"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-         {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-          {"id":"1","name":"2 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-           {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-            {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-             {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-              {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-               {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-                {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-                 {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-                  {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-             {"id":"1","name":"neeeeame 1","address":"description 1","balance":"field3 1","token":"field4 1"}];
-	for(var stuff in alist)
-	{
-		wallet1.addAddress(alist[stuff]);
-	}
-	WalletManager.addWallet(wallet1);
-	*/
 	
-	var sampleTransactions = [
-        {"id":"1","from":"sad","to":"hash 2","amount":"tran hash","token":"2"},
-          {"id":"1","from":"qqw","to":"hash 2","amount":"tran hash","token":"5"},
-            {"id":"1","from":"weef","to":"hash 2","amount":"tran hash","token":"6"},
-              {"id":"1","from":"hash6","to":"hash 2","amount":"tran hash","token":"1"},
-                {"id":"1","from":"ffffhasffh5","to":"hash 2","amount":"tran hash","token":"2"},
-                  {"id":"1","from":"zzzzhash8","to":"hash 2","amount":"tran hash","token":"3"},
-                    {"id":"1","from":"aaaahash9","to":"hash 2","amount":"tran hash","token":"1"}
-         
-   ];
-	
-	var initializationStuff = function() {
-	
-		var initWalletManager = function() {
-			var ret = DecentralStorage.retriveWallets();
-			var inner = function() {			
-				WalletManager.init();
-				$scope.wallets = WalletManager.getWallets();
-				if(WalletManager.getCurrentWallet().getTransactions().length == 0) {
-					for(var index in sampleTransactions) {
-						WalletManager.getCurrentWallet().addTransaction(sampleTransactions[index]);
-					}
-				}
-				//console.log(WalletManager.getCurrentWallet());
-				//console.log(wallet1);
-				//WalletManager.updateAll();
-			};
-			setTimeout(inner, 400);
-			//WalletManager.removeWallet(1);
-		};
-		setTimeout(initWalletManager, 500);
-	}
-	initializationStuff();
 
     //var Block2= new Blockchaininfo();
     //var addresses=['1Af7Xx9hpqS2GBLY6swqe2fsMmNgPxzAPk','1Yj564jDqoB6L7hg5ETYKhqRsB65WrWPB'];

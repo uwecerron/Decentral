@@ -27,9 +27,13 @@ cApp.config(function ($routeProvider) {
       when('/Settings',{
               templateUrl: 'view/settings.html',
         controller: 'SettingsController'
+      }).
+	  when('/Init',{
+            templateUrl: 'view/init.html',
+			controller: 'InitController'
       })
       .otherwise({
-        redirectTo: '/Home'
+        redirectTo: '/Init'
       });
   });
 

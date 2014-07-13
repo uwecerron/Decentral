@@ -4,6 +4,7 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
 
   var Wallet = function(Name) {
       var self = this;
+	  this.Assets=[];
       this.Name=Name;
       this.Addresses=[];
       this.Txs=[];
@@ -16,7 +17,7 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
 
 	this.initialize=function(wallet)
 	{
-		
+		this.Assets = wallet.Assets;
 		this.Addresses=wallet.Addresses;
 		this.Txs=wallet.Txs;
 		this.Balance=wallet.Balance;
@@ -27,7 +28,15 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
 		this.Txfee =wallet.Txfee;
 
 	}
-	  
+	
+	this.addAsset = function(asset) {
+		this.Assets.push(asset);
+	};
+	
+	this.getAllAssets = function() {
+		return this.Assets;
+	};
+	
 	this.addAddress = function(address) {
 		this.Addresses.push(address);
 	}
@@ -54,6 +63,10 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
 
     this.setBalance = function(balance){
         Balance = balance;
+	};
+	
+	this.getBalance = function() {
+		return this.Balance;
 	};
 
 	this.updateBalance=function(balance) {

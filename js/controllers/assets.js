@@ -1,37 +1,9 @@
 "use strict";
 
 
-cApp.value('ReceiveTable',{
-	items : [
-		{Name: "XYZ Corp", BTC: "25",Address:"mhRYQjHSu4QQRr8yi5m2eiSznsUt4HrJSy", Units: "10"},
-		{Name: "Land", BTC: "50",Address:"mhRYQjHSu4QQRr8yi5m2eiSznsUt4HrJSy", Units: "15"},
-		{Name: "Burger King", BTC: "100",Address:"mhRYQjHSu4QQRr8yi5m2eiSznsUt4HrJSy", Units: "5"}
-	],
-	addItem: function(item){
-		this.items.push(item);
-	},
-	totalBTC: function(){
-		var total = 0;
-		for(var count=0;count<this.items.length;count++){
-			total += this.items[count].BTC*this.items[count].Units;
-		}
-		return total;
-	},
-	removeItem: function(index){
-		this.items.splice(index,1);
-	}
-
-	})
-	.filter('btc',function(){
-		return function(item){
-		return item;
-	}
-})
-
-
-function AssetsController($scope,ReceiveTable,DecentralStorage)  {
+function AssetsController($scope,DecentralStorage,WalletManager)  {
    $scope.pageClass = 'page-assets';
-    $scope.items = ReceiveTable.items;
+    $scope.items = WalletManager.getCurrentWallet().getAllAssets();
     $scope.item = {};
 	$scope.addAssetShow = false;
    var ledecentral = DecentralStorage;
@@ -45,7 +17,6 @@ function AssetsController($scope,ReceiveTable,DecentralStorage)  {
        var privateKeyBytes = createPrivateKeyBytes();
       var key = new Bitcoin.ECKey( privateKeyBytes );
        $scope.item.Address =key.getBitcoinAddress().toString();
-      ReceiveTable.addItem(item);
       $scope.item = {};    
       $scope.itemForm.$setPristine();
       
@@ -53,7 +24,7 @@ function AssetsController($scope,ReceiveTable,DecentralStorage)  {
      
     };
    
-    $scope.totalBTC = ReceiveTable.totalBTC;
+    $scope.totalBTC = WalletManager.getCurrentWallet().getBalance();
     
   
     $scope.mySortFunction = function(item) {
@@ -68,5 +39,5 @@ function AssetsController($scope,ReceiveTable,DecentralStorage)  {
     
     $scope.name=/^[a-zA-Z ]*$/;
     
-        $scope.integerval=/^\d*$/;
-  }
+	$scope.integerval=/^\d*$/;
+}
