@@ -34,28 +34,36 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
 	  
     this.getCurrentAddress = function(){
           return CurrentAddress;
-      };
+	};
      
     this.setCurrentAddress = function(hash){
           CurrentAddress = hash;
-      };
+	};
 
+	this.getTransactions = function() {
+		return this.Txs;
+	};
+	
+	this.addTransaction = function(transaction) {
+		this.Txs.push(transaction);
+	};
+	
     this.getAddresses = function(){
       return this.Addresses;
     }
 
     this.setBalance = function(balance){
-          Balance = balance;
-      };
+        Balance = balance;
+	};
 
-     this.updateBalance=function(balance) {
-      this.blockchain.multiAddr(this.getAllAddresses,function(result){
-        this.Balance=result;
-      });
-      }
+	this.updateBalance=function(balance) {
+		this.blockchain.multiAddr(this.getAllAddresses,function(result){
+			this.Balance=result;
+		});
+	}
 
    console.log('Wallet instantiated'+Name);
-  }
+}
 	
   
   //TODO: finish method and test it

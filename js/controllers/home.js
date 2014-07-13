@@ -28,6 +28,17 @@
 	WalletManager.addWallet(wallet1);
 	*/
 	
+	var sampleTransactions = [
+        {"id":"1","from":"sad","to":"hash 2","amount":"tran hash","token":"2"},
+          {"id":"1","from":"qqw","to":"hash 2","amount":"tran hash","token":"5"},
+            {"id":"1","from":"weef","to":"hash 2","amount":"tran hash","token":"6"},
+              {"id":"1","from":"hash6","to":"hash 2","amount":"tran hash","token":"1"},
+                {"id":"1","from":"ffffhasffh5","to":"hash 2","amount":"tran hash","token":"2"},
+                  {"id":"1","from":"zzzzhash8","to":"hash 2","amount":"tran hash","token":"3"},
+                    {"id":"1","from":"aaaahash9","to":"hash 2","amount":"tran hash","token":"1"}
+         
+   ];
+	
 	var initializationStuff = function() {
 	
 		var initWalletManager = function() {
@@ -35,6 +46,11 @@
 			var inner = function() {			
 				WalletManager.init();
 				$scope.wallets = WalletManager.getWallets();
+				if(WalletManager.getCurrentWallet().getTransactions().length == 0) {
+					for(var index in sampleTransactions) {
+						WalletManager.getCurrentWallet().addTransaction(sampleTransactions[index]);
+					}
+				}
 				//console.log(WalletManager.getCurrentWallet());
 				//console.log(wallet1);
 				//WalletManager.updateAll();
