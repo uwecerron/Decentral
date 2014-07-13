@@ -276,10 +276,18 @@ font-size: 1.2em;
 #overview{
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 	background: #F9F9F9;
+	margin-left: 1%;
 	/*background: rgba(0,0,0,0.35);
 	margin-top: -8%;
 	margin-left: 30%;*/
 }
+
+
+#display_asset:hover{
+background-color: #BAC0C7;
+
+}
+
 
 /*send.html begins*/
 
@@ -322,16 +330,7 @@ font-size: 1.2em;
 	margin-top:20px;
 }
 
-#wallet_list{
-	bottom:0px;
-	/*visibility:hidden;*/
-	background:rgb(72,61,139);
-	position:absolute;
-	z-index: 10;
-	width:100%;
-	height:60%;
-	overflow-y:scroll;	
-}
+
 
 #sell{
 	width:300px;
@@ -420,12 +419,14 @@ login.html
     background-color: transparent;
     text-align: center;
 }
-input {
+input,button {
 	width: 100%;
 	margin-bottom: 1.4rem;
 	padding: 1rem;
-	/*#ecf2f4*/
-	background-color: #0a9af3;
+	/*#ecf2f4
+		background-color: #0a9af3;*/
+
+    background-color: #BAC0C7;;
 	border-radius: 0.2rem;
 	border: none;
 }
@@ -510,7 +511,33 @@ input {
 .barrel.ng-hide {
   opacity:0;
 }
+#barrel_button{
+    height:60px;
+    width:100%;
+    border-radius: 4px;
+    font-size: 2em;
+    color: #333;
+	background-color: #c9c9c9;
+	border-color: #ccc;
+	 border-bottom: 2px solid #A7A7A7;
+}
 
+#barrel_button:hover {
+    background: rgba(0,0,0,0.35);
+    height:60px;
+}
+
+#wallet_list{
+	  -webkit-transition: 0.5s linear all;
+	box-shadow: 0 0 5px;
+	bottom:0px;
+	/*visibility:hidden;*/
+	background:#cacaca;
+	position:absolute;
+	z-index: 10;
+	width:100%;
+	height:60%;
+}
 /* contact ---------------------- */
 .page-send.ng-leave      {
     -webkit-animation: scaleDown .6s ease both;

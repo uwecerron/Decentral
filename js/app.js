@@ -3,6 +3,20 @@
 
 var cApp =angular.module('DecentralWallet', ['ngRoute','ngAnimate','xeditable','ngGrid',"ui.router", "ui.bootstrap",]);
 cApp.config(function ($routeProvider) {
+  //authentication
+    $routeProvider.when('/',{
+        resolve:{
+          authentication:function($location,$rootScope){
+            //initialize here?
+
+          }
+
+        }
+
+
+    });
+
+
     $routeProvider.
      when('/Home', {
         templateUrl: 'view/home.html',
@@ -35,41 +49,20 @@ cApp.config(function ($routeProvider) {
       .otherwise({
         redirectTo: '/Init'
       });
-  });
-
-//Add this to have access to a global variable
-cApp.run(function ($rootScope) {
-    $rootScope.globalVariable = 'Amadou'; //global variable
-});
-
-cApp.directive("selected", function($timeout) {
-  return function($scope, element, attrs) {
-    $scope.$watch('currentAddress', function() {
-      $(element).focus()
-      $(element).select()
-     // console.log(element);
-    })
-  }
-})
-
-cApp.directive('inlineEdit', function() {
-
-    return function(scope, element, attrs) {
-        element.bind('click', function(){
-            element.toggleClass('inactive');
-            if(element.hasClass('inactive')){
-                $(element).blur();
-            }
-        });
-         element.bind('keyup', function(event) {
-          if(event.keyCode==13) handler(event)
-        });
-     
-    };
-
-});
 
 
+    $routeProvider.when( '/logout', {
+        resolve:{
+        logout: function($rootScope, $location,DecentralStorage) {
+        DecentralStorage.remove("security", "password");
+        return $location.path("/login");
+      }
+    }
+  })
+
+  });//end config
+
+  
 
 
 
