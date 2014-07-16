@@ -1,11 +1,12 @@
  cApp.controller('Home', function($scope, $rootScope,Blockchaininfo,Wallet,TransactionFetcher, WalletManager, DecentralStorage) {
-
+  
     $scope.pageClass = 'page-home';
     $scope.message = 'Choose Your Wallet';
     $scope.wallets = [];
     $rootScope.$watch( 'balance', function() {
     $scope.balance = $rootScope.balance/100000000;
     })
+    var backupFile;
    $scope.currentAddress = "1Yj564jDqoB6L7hg5ETYKhqRsB65WrWPB";
     var wallet1=new Wallet("uwe1");	
 
@@ -13,19 +14,32 @@
     //var addresses=['1Af7Xx9hpqS2GBLY6swqe2fsMmNgPxzAPk','1Yj564jDqoB6L7hg5ETYKhqRsB65WrWPB'];
     //Block2.multiAddr(addresses);
 
-    function download(data) {
-    var a = document.createElement("a");
-     var backup = "data:text/csv;charset=utf-8,";
-        backup += escape(data);
-        a.href= backup;
+    /*export current wallet*/
+    function download(filename, data) {
+        var a = document.createElement('a');
+        a.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
+        a.setAttribute('download', filename);
         a.click();
-    };
-
-
+    }
 
     $scope.backup= function(){
-     var data =  wallet1.getWallet();
-      download(data);
+     var data = wallet1.getAddresses();
+     var fileName = wallet1.Name;
+     download(fileName+'.json', JSON.stringify(data)); 
+    }
+    //import wallet
+    $scope.import = function(){
+        var f = document.getElementById('file').files[0];
+        if(!f){
+            return;
+          }
+        r = new FileReader();
+        r.onload = function(e){
+            backupFile = e.target.result;
+            console.log(backupFile)
+            $scope.fileLoaded = true;
+        } 
+        r.readAsText(f);
     }
     setTimeout(function() {
       var el = document.getElementById('first');

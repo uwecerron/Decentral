@@ -31,16 +31,35 @@ function SettingsController($scope,WalletManager,DecentralStorage){
       });
     }
 
-    function download(data) {
-        var a = document.createElement("a");
-        var backup = "data:text/csv;charset=utf-8,";
-        backup += escape(data);
-        a.href= backup;
+     /*export All wallet*/
+    function download(filename, data) {
+        var a = document.createElement('a');
+        a.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
+        a.setAttribute('download', filename);
         a.click();
-    };
+    }
+
+    $scope.backup= function(){
+        var data =  WalletManager.getAddresses();
+        var fileName = WalletManager.getCurrentWallet().Name;
+        download('Decentral.json', JSON.stringify(data)); 
+    }
+
     //wallet buttons
     $scope.importWallet = function() {
-        console.log();
+        var f = document.getElementById('file').files[0];
+        if(!f)
+        {
+            return;
+        }
+        r = new FileReader();
+        r.onload = function(e){
+            backupFile = e.target.result;
+            console.log(backupFile)
+            $scope.fileLoaded = true;
+        } 
+
+        r.readAsText(f);
     }
     $scope.backupWallet = function() {
         var encryptedpvtkeys="hello" 

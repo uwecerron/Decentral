@@ -4,7 +4,7 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
 
   var Wallet = function(Name) {
       var self = this;
-	  this.Assets=[];
+	    this.Assets=[];
       this.Name=Name;
       this.Addresses=[];
       this.Txs=[];
@@ -28,7 +28,10 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
 		this.Txfee =wallet.Txfee;
 
 	}
-	
+	this.getName = function() {
+    return this.Name;
+  };
+
 	this.addAsset = function(asset) {
 		this.Assets.push(asset);
 	};
@@ -261,8 +264,8 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
       }
     }
   
-    function getUnspents(){
-       leblockchain.getUnspent(addresses,function(result){
+    function getUnspents(addresses){
+       this.blockchain.getUnspent(addresses,function(result){
          //console.log(result)
           for ( var i = 0; i < result.length; i++ ) {
           //result[ i ].value = result[ i ].value_hex ) ;
@@ -275,11 +278,10 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
       })          
       //end callback
     }
-     getUnspents()
-    function selectUnspentspvtkey(){
+    function selectUnspentspvtkey(unspent_outputs){
       var selectedUnspents = [];
 
-  
+
       return selectedUnspents;
 
     }

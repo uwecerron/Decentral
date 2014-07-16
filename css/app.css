@@ -13,7 +13,6 @@
 body{
     background: #f9f9f9;
 }
-
 #addwalletname{
     border: 0;
 }
@@ -292,6 +291,10 @@ background-color: #BAC0C7;
 
 /*send.html begins*/
 
+
+#sell{
+	width:300px;
+}
 #send_size{
 	width:80%;
 }
@@ -309,33 +312,7 @@ background-color: #BAC0C7;
 }
 
 /*send end*/
-/* settings.html*/
-#notifications_list{
-	display:block;
-	padding:0;
-	text-align: left;
-	width:100%;
-}
-#notifications_list label{
-	display:block;
-}
-#notifications_list input{
-	width:20px;
-}
 
-#settings_baseunits{
-	font-size:20px;
-}
-
-#settings_security_header{
-	margin-top:20px;
-}
-
-
-
-#sell{
-	width:300px;
-}
 
 #tradepane{
 	padding-left: 20%;
@@ -436,6 +413,63 @@ input,button {
 	border: none;
 }
 
+/* settings.html*/
+#notifications_list{
+	display:block;
+	padding:0;
+	text-align: left;
+	width:100%;
+}
+#notifications_list label{
+	display:block;
+}
+#notifications_list input{
+	width:20px;
+}
+
+#settings_baseunits{
+	font-size:20px;
+}
+
+#settings_security_header{
+	margin-top:20px;
+}
+
+.settingsfileupload{
+	width: 100%;
+    border-radius: 0.2rem;
+    background:#BAC0C7;
+    border: none;
+}
+.settingsfileupload span {
+	 position: absolute;
+	 text-align: left;
+	 margin-left: -50px;
+	 padding: 1rem;
+	}
+.settingsfileupload input {
+    cursor: pointer;
+    opacity: 0.0;
+    filter: alpha(opacity=0);
+}
+.fileupload {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 0.2rem;
+    background:#BAC0C7; /* and other things to make it pretty */
+}
+
+.fileupload input {
+    position: absolute;
+    top: 0;
+    right: 0; 
+    cursor: pointer;
+    opacity: 0.0;
+    filter: alpha(opacity=0);
+ 
+    height: 200px;
+}
 /* PAGES
 ============================================================================= */
 
