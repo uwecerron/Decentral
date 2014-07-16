@@ -8,7 +8,6 @@
     })
    $scope.currentAddress = "1Yj564jDqoB6L7hg5ETYKhqRsB65WrWPB";
     var wallet1=new Wallet("uwe1");	
-	
 
     //var Block2= new Blockchaininfo();
     //var addresses=['1Af7Xx9hpqS2GBLY6swqe2fsMmNgPxzAPk','1Yj564jDqoB6L7hg5ETYKhqRsB65WrWPB'];

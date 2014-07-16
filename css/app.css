@@ -252,6 +252,7 @@ border-radius: 4px;
 box-shadow: 0 1px 1px rgba(0,0,0,0.05);
 }
 .tbox {
+background-color: #2E3D4E;
 min-height: 120px;
 padding: 25px;
 }
@@ -411,13 +412,17 @@ login.html
 
 #login{
 	margin-top:3%;
-	background-color: #fff;
 		border-radius: 0.5rem;
 }
 #login_button{
 	 margin: 0;
     background-color: transparent;
     text-align: center;
+}
+
+#login_form{
+	background-color: #E9E9E9;
+	color:#fff;
 }
 input,button {
 	width: 100%;

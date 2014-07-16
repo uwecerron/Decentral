@@ -4,18 +4,33 @@
 var cApp =angular.module('DecentralWallet', ['ngRoute','ngAnimate','xeditable','ngGrid',"ui.router", "ui.bootstrap",]);
 cApp.config(function ($routeProvider) {
   //authentication
-    $routeProvider.when('/',{
+    $routeProvider.when('/login',{
         resolve:{
-          authentication:function($location,$rootScope){
-            //initialize here?
+          authenticate:function($location,$rootScope,WalletManager){
+              console.log("authentication called");
+              //return true;   
+              // Entry into App
+              if( authenticated === true ){
+                  InitController()
+                  $location.path("/Home");
+               }
 
+              if (!WalletManager.isAuthenticated)
+              {
+                  $location.path('/login');
+              }
+
+              WalletManager.isAuthenticated( function(authenticated){
+                     if ( authenticated === false )
+                     {
+                        $location.path( "/login" )
+                   })
+                 }  
           }
 
         }
-
-
+      }
     });
-
 
     $routeProvider.
      when('/Home', {
@@ -42,14 +57,13 @@ cApp.config(function ($routeProvider) {
               templateUrl: 'view/settings.html',
         controller: 'SettingsController'
       }).
-	  when('/Init',{
-            templateUrl: 'view/init.html',
+	  when('/login',{
+            templateUrl: 'view/login.html',
 			controller: 'InitController'
       })
       .otherwise({
-        redirectTo: '/Init'
+        redirectTo: '/login'
       });
-
 
     $routeProvider.when( '/logout', {
         resolve:{

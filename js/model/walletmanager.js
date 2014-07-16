@@ -4,7 +4,10 @@ cApp.service("WalletManager", function(DecentralStorage,Wallet) {
 	this.wallets = {};
 	this.walletCounter = 0;
 	this.curWallet = 0;
+	this.isAuthenticated;
+    this.authenticate;
 	
+
 	this.getWallets = function() {
 		return this.wallets;
 	}

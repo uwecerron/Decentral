@@ -1,7 +1,19 @@
- function InitController($scope,Wallet, WalletManager, DecentralStorage) {
+ function InitController($scope,$location,Wallet, WalletManager, DecentralStorage,Blockchaininfo) {
 
 
-	var sampleAddresses=[{"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
+
+var storage= DecentralStorage;
+$scope.submit=function(){
+	console.log($scope.password);
+    DecentralStorage.save('security','password',$scope.password);
+    $scope.css='error';
+    WalletManager.isAuthenticated=true;
+    $location.path("/Home")
+
+}
+
+
+	/*var sampleAddresses=[{"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
          {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
           {"id":"1","name":"2 1","address":"description 1","balance":"field3 1","token":"field4 1"},
            {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
@@ -31,8 +43,8 @@
 		{Name: "Land", BTC: "50",Address:"mhRYQjHSu4QQRr8yi5m2eiSznsUt4HrJSy", Units: "15"},
 		{Name: "Burger King", BTC: "100",Address:"mhRYQjHSu4QQRr8yi5m2eiSznsUt4HrJSy", Units: "5"}
 	];
-	
-	DecentralStorage.clear();
+	*/
+	//DecentralStorage.clear();
 	var initializationStuff = function() {
 	
 		var initWalletManager = function() {

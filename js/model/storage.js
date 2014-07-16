@@ -102,6 +102,14 @@ cApp.service("DecentralStorage", function() {
 		this.save(WALLETDATABASE, index, wallet);
 	};
 
+
+	this.remove = function(wallet, index, callback) {
+		var object={};
+		object=wallet[index];
+		console.log(wallet[index]);
+		chrome.storage.local.clear(object);
+	};
+
 	/*
 	 * Get the storage space size database uses
 	 * @param {String} name Identity identifier.
