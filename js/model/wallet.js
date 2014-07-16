@@ -262,41 +262,47 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
     }
   
     function getUnspents(){
-
-      
+       leblockchain.getUnspent(addresses,function(result){
+         //console.log(result)
+          for ( var i = 0; i < result.length; i++ ) {
+          //result[ i ].value = result[ i ].value_hex ) ;
+          unspentOutputsBigIntegers.push( result[ i ] );
+        }
+         /* for(var k in result){
+            console.log(result[k])
+          }*/
+       console.log(unspentOutputsBigIntegers)
+      })          
+      //end callback
     }
-
-
-    function selectunspents(addresses){
-      this.blockchain.getUnspent(addresses,function(){
-
-
-      });
-
-    }
-
-        function selectUnspents( unspentsBigInteger, targetValue ) {
+     getUnspents()
+    function selectUnspentspvtkey(){
       var selectedUnspents = [];
 
-      // TODO: Add Test for insufficient balance: Test below conditional
-      if ( !SpareCoins.Util.unspentsIsSufficient( unspentsBigInteger, targetValue ) ) {
-        throw "Insufficient Balance"
+  
+      return selectedUnspents;
+
+    }
+function retrievePvtKeys(addressStrs, passwordDigest){
+      var addressBook = buildAddressBook(fAddresses);
+      var addressBookWithPrivateKeys = {};
+
+      // if input address not in the address book throw an error
+      for ( var i = 0; i < addressStrs.length; i++ ) {
+        var address = addressBook[ addressStrs[ i ] ];
+        address.decrypt( passwordDigest );
+        addressBookWithPrivateKeys[ address.getAddress() ] = address.getPrivateKey();
       }
 
-      for ( var i = 0; i < unspentsBigInteger.length; i++ ) {
-        var unspent = unspentsBigInteger[ i ];
-        if ( unspent.value.compareTo( targetValue ) >= 0 ) {
-          // unset all previous selected unspents and use this one
-          selectedUnspents = [ unspent ];
-          break;
-        } else {
-          selectedUnspents.push( unspent );
-          if ( SpareCoins.Util.unspentsIsSufficient( selectedUnspents, targetValue ) ) {
-            break;
-          }
+      return addressBookWithPrivateKeys
+
+      function buildAddressBook(addresses) {
+        var addressBook = {}
+        for ( i in addresses ) {
+          addressBook[addresses[i].getAddress()] = addresses[ i ]
         }
+        return addressBook
       }
-      return selectedUnspents;
     }
 
     Wallet.prototype.encrypt= function(privateKey,passwordDigest) {

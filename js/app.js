@@ -24,10 +24,9 @@ cApp.config(function ($routeProvider) {
                      if ( authenticated === false )
                      {
                         $location.path( "/login" )
-                   })
-                 }  
-          }
-
+                      }
+                 })  
+          
         }
       }
     });
