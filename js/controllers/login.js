@@ -1,8 +1,8 @@
 'use strict';
 
-cApp.controller('loginController',DecentralStorage,function($scope,$location){
+cApp.controller('loginController',function($scope,DecentralStorage,$location){
  $scope.pageClass = 'page-login';
-var storage= DecentralStorage();
+var storage= DecentralStorage;
   $scope.page = 1;
   $scope.nextPage = function() {
     $scope.page++;

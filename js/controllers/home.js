@@ -1,4 +1,4 @@
- cApp.controller('Home', function($scope, $rootScope,Blockchaininfo,Wallet,TransactionFetcher, WalletManager, DecentralStorage) {
+ cApp.controller('Home', function($scope, $rootScope,Blockchaininfo,Wallet, WalletManager, DecentralStorage) {
   
     $scope.pageClass = 'page-home';
     $scope.message = 'Choose Your Wallet';

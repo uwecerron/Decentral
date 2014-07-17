@@ -26,9 +26,10 @@
     <body ng-app='DecentralWallet'>
         <div ng-include="'view/header.html'"></div>
         <div class="page {{ pageClass }}" ng-view></div>
+        <script src="js/controllers/login.js"></script>
         <script src="js/model/wallet.js"></script>
 		<script src="js/model/walletmanager.js"></script>
-        <script src="js/model/txdb.js"></script>
+        <script src="js/model/txFetcher.js"></script>
         <script src="js/network/blockchaininfo.js"></script>
         <script src="js/controllers/navigation.js"></script> 
         <script src="js/controllers/home.js"></script>
@@ -40,7 +41,6 @@
         <script src="js/controllers/issue.js"></script>
         <script src="js/directives/validation.js"></script>
         <script src="js/directives/qr.js"></script>
-        <script src="js/controllers/transactions.js"></script>
         <script src="js/directives/animation.js"></script>
 		<script src="js/controllers/init.js"></script>
 	</body>
