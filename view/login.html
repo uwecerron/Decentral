@@ -1,4 +1,4 @@
-<div id="login" class="row">
+<div ng-if="step==1" id="login" class="row">
 <div class="col-xs-6 col-md-4"></div>
 <div class="col-xs-6 col-md-4">
 	                <h3>Login</h3>
@@ -13,3 +13,18 @@
 </div>
   <div class="col-xs-6 col-md-4"></div>
 </div>
+
+ <div ng-if="step==2" id="passphrase" class="row">
+  <div class="col-xs-6 col-md-4"></div>
+<div class="col-xs-6 col-md-4">
+    <h1>Warning! Please Save Your Passphrase Before Continuing</h1>
+      <form name="form">
+              <p>Please write down these words.It will help unlock your private keys from your backupwallets</p>
+            <textarea style="width:300px" readonly ng-model="form.mnemonic"></textarea>
+            <div class="container">
+            <input ng-click="" type="submit" value="I wrote it down!"/>
+            </div>
+      </form>
+    </div>
+      <div class="col-xs-6 col-md-4"></div>
+  </div><!-- passphrase row -->

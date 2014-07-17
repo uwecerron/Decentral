@@ -56,6 +56,10 @@ cApp.config(function ($routeProvider) {
               templateUrl: 'view/settings.html',
         controller: 'SettingsController'
       }).
+      when('/Passphrase',{
+              templateUrl: 'view/passphrase.html',
+        controller: 'PassphraseController'
+      }).
 	  when('/login',{
             templateUrl: 'view/login.html',
 			controller: 'InitController'

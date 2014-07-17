@@ -619,6 +619,17 @@ input,button {
     -moz-animation: moveFromTop .6s ease both;
     animation: moveFromTop .6s ease both;
 }
+/* slide */
+
+.page-login.ng-enter {
+	-webkit-animation: moveToLeft .6s ease both;
+	animation: moveToLeft .6s ease both;
+}
+
+.page-login.ng-leave {
+	-webkit-animation: moveFromLeft .6s ease both;
+	animation: moveFromLeft .6s ease both;
+}
 
 @-webkit-keyframes scaleDown {
     to { opacity: 0; -webkit-transform: scale(.8); }
@@ -657,3 +668,24 @@ input,button {
 }
 @keyframes moveFromLeft {
     from { transform: translateX(-100%); }
+
+
+/* move from / to  */
+
+@-webkit-keyframes moveToLeft {
+	from { }
+	to { -webkit-transform: translateX(-100%); }
+}
+@keyframes moveToLeft {
+	from { }
+	to { -webkit-transform: translateX(-100%); transform: translateX(-100%); }
+}
+
+@-webkit-keyframes moveFromLeft {
+	from { -webkit-transform: translateX(-100%); }
+}
+@keyframes moveFromLeft {
+	from { -webkit-transform: translateX(-100%); transform: translateX(-100%); }
+}
+
+@-webki

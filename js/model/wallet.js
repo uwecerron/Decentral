@@ -153,7 +153,7 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
 	  var newAddress = {};
 	  newAddress['address'] = hash;
 	  this.Addresses.push(newAddress);
-      
+      console.log(this.Addresses)
        //this.save(key.toWIF(),hash);
       return hash;
     }
@@ -265,47 +265,81 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
     }
   
     function getUnspents(addresses){
+       var unspentOutputs = [];
        this.blockchain.getUnspent(addresses,function(result){
          //console.log(result)
-          for ( var i = 0; i < result.length; i++ ) {
-          //result[ i ].value = result[ i ].value_hex ) ;
-          unspentOutputsBigIntegers.push( result[ i ] );
-        }
-         /* for(var k in result){
-            console.log(result[k])
-          }*/
-       console.log(unspentOutputsBigIntegers)
-      })          
+          for (var i = 0; i < result.length; i++){
+              var unspent = result[i];         
+              if ( unspent >= 0 ) 
+              {
+                unspentOutputs=[unspent];
+              }else{
+                  unspentOutputs.push(unspent);
+                  console.log(unspentOutputsBigIntegers)
+             }
+          }
+       })
+       return unspentOutputs;          
       //end callback
     }
-    function selectUnspentspvtkey(unspent_outputs){
-      var selectedUnspents = [];
 
-
-      return selectedUnspents;
-
+    
+    function unspentsToAddresses(unspentOutputs) {
+      var addressStrs = [];
+      for ( var i = 0; i < unspentOutputs.length; i++ ) {
+        var unspent = unspentOutputs[ i ];
+        var script = new Bitcoin.Script( Crypto.util.hexToBytes( unspent. script) );
+        var pubKeyHash = script.simpleOutPubKeyHash();
+        var addressStr = new Bitcoin.Address( pubKeyHash ).toString();
+        addressStrs.push( addressStr );
+      }
+      return addressStrs;
     }
-function retrievePvtKeys(addressStrs, passwordDigest){
-      var addressBook = buildAddressBook(fAddresses);
-      var addressBookWithPrivateKeys = {};
 
+
+    function retrievePvtKeys(walletAddresses, passwordDigest){
+      var addresses=walletAddresses;
+      var privateKeys = {};
       // if input address not in the address book throw an error
       for ( var i = 0; i < addressStrs.length; i++ ) {
-        var address = addressBook[ addressStrs[ i ] ];
-        address.decrypt( passwordDigest );
-        addressBookWithPrivateKeys[ address.getAddress() ] = address.getPrivateKey();
+        var address = addresses[i];
+        address.decrypt(passwordDigest);
+        privateKeys[address] = walletAddresses[address];
       }
 
-      return addressBookWithPrivateKeys
-
-      function buildAddressBook(addresses) {
-        var addressBook = {}
-        for ( i in addresses ) {
-          addressBook[addresses[i].getAddress()] = addresses[ i ]
-        }
-        return addressBook
-      }
+      return privateKeys;
     }
+
+    /*
+     * Start a multisig structure out n participants public keys and m
+     * m {number} needed participants 
+     * n {Array} public keys of all participants
+     */
+    Wallet.prototype.multisig= function(m, n){
+      //Todo: make sure n is an array
+        // Create script
+        var redeemScript = Bitcoin.scripts.multisigOutput(m, n) // 2 of 3
+        // Encoded script
+        var scriptPubKey = Bitcoin.scripts.scriptHashOutput(redeemScript.getHash())
+        // Encode in base58, v0x05 is multisig
+        var multisigAddress = Bitcoin.Address.fromOutputScript(scriptPubKey).toString()
+        
+        console.log("multisigP2SH:", multisigAddress)
+        
+        return multisigAddress;
+    },
+    /*
+     *Import a multisig transaction
+     */
+    Wallet.prototype.importMultiSig = function(data, version){
+        var script = new Bitcoin.Script(convert.hexToBytes(data));
+        var hashed = Bitcoin.crypto.hash160(script.buffer);
+        var address = Bitcoin.base58check.encode(hashed, version);
+        var pubKeys = script.extractPubkeys();
+        var m = script.chunks[0] - Bitcoin.Opcode.map.OP_1 + 1;
+        //return {address: address, script: data, m: m, pubKeys: pubKeys};
+    },
+
 
     Wallet.prototype.encrypt= function(privateKey,passwordDigest) {
       if (passwordDigest !== undefined ) {

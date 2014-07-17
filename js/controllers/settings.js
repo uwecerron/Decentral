@@ -1,3 +1,5 @@
+'use strict';
+
 function SettingsController($scope,WalletManager,DecentralStorage){
 	
     $scope.pageClass = 'page-settings';
@@ -39,10 +41,10 @@ function SettingsController($scope,WalletManager,DecentralStorage){
         a.click();
     }
 
-    $scope.backup= function(){
+    $scope.backup= function(password){
         var data =  WalletManager.getAddresses();
         var fileName = WalletManager.getCurrentWallet().Name;
-        download('Decentral.json', JSON.stringify(data)); 
+        download('Decentral.json', sjcl.encrypt(password, JSON.stringify(data), {ks: 256, ts: 128})); 
     }
 
     //wallet buttons
@@ -61,10 +63,20 @@ function SettingsController($scope,WalletManager,DecentralStorage){
 
         r.readAsText(f);
     }
-    $scope.backupWallet = function() {
-        var encryptedpvtkeys="hello" 
-        download(encryptedpvtkeys)
+    var unlockImport= function(){
+        var data;
+        // decrypt
+        try {
+            data = sjcl.decrypt($scope.unlockpassword, backupFile);
+        } catch(e) {
+            $scope.error = "Bad password: "+e.message;
+            return;
+        }
+        //parse and store in DecenstralStorage
+
     }
+
+
     //Delete current wallet
     $scope.removeWallet = function() {
      // wallet.clear(walletName);
