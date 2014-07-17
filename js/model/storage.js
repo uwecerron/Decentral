@@ -1,5 +1,5 @@
 'use strict';
-cApp.service("DecentralStorage", function() {
+cApp.service("DecentralStorage", function($location) {
 
 	// Storage Architecture
 	// database         =>   {key  => value}
@@ -8,8 +8,8 @@ cApp.service("DecentralStorage", function() {
 	// multiaddr        =>   {transactions: Array }
 	// current            =>   {currentAddress: String }
 	// security         =>   { dk => decryption String }
-	var WALLETDATABASE = "ZEBANK";
-	
+
+	this.WALLETDATABASE = "ZEBANK";
 	this.addresses = {};
 	    
 	//dummy array  
@@ -38,20 +38,7 @@ cApp.service("DecentralStorage", function() {
 		 }
 		})
 	};
-	
-	var wallets_ref ={};
-	
-	this.getWallets = function() {
-		return wallets_ref;
-	}
-	
-	this.retriveWallets=function(callback){
-		var _wallets = {};
-		this.get(WALLETDATABASE, function(ledata) {
-			wallets_ref = ledata[WALLETDATABASE];
-			console.log(wallets_ref);
-		});
-	};
+
 	
 	/*
 	 * Save data into the database.
@@ -99,7 +86,7 @@ cApp.service("DecentralStorage", function() {
 	
 	this.saveWallet = function(wallet, index, callback) {
 		console.log(wallet);
-		this.save(WALLETDATABASE, index, wallet);
+		this.save(this.WALLETDATABASE, index, wallet);
 	};
 
 

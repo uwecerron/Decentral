@@ -12,8 +12,8 @@ cApp.service("WalletManager", function(DecentralStorage,Wallet) {
 		return this.wallets;
 	}
 	
-	this.init = function() {
-		this.wallets = DecentralStorage.getWallets();
+	this.init = function(rawData) {
+		this.wallets = rawData;
 		if(!this.wallets) this.wallets = {};
 
 		for(var index in this.wallets)
