@@ -28,6 +28,7 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
 		this.Txfee =wallet.Txfee;
 
 	}
+  
 	this.getName = function() {
     return this.Name;
   };
