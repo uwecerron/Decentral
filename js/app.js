@@ -25,8 +25,7 @@ cApp.config(function ($routeProvider) {
                      {
                         $location.path( "/login" )
                       }
-                 })  
-          
+                 })            
         }
       }
     });
@@ -62,7 +61,7 @@ cApp.config(function ($routeProvider) {
       }).
 	  when('/login',{
             templateUrl: 'view/login.html',
-			controller: 'InitController'
+			controller: 'loginController'
       })
       .otherwise({
         redirectTo: '/login'
@@ -70,14 +69,14 @@ cApp.config(function ($routeProvider) {
 
     $routeProvider.when( '/logout', {
         resolve:{
-        logout: function($rootScope, $location,DecentralStorage) {
-        DecentralStorage.remove("security", "password");
-        return $location.path("/login");
-      }
-    }
-  })
+			logout: function($rootScope, $location,DecentralStorage) {
+			DecentralStorage.remove("security", "password");
+			return $location.path("/login");
+			}
+		}
+	})
 
-  });//end config
+});//end config
 
   
 
