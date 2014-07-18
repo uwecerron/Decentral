@@ -6,16 +6,16 @@ cApp.service("WalletManager", function(DecentralStorage,Wallet) {
 	this.curWallet = 0;
 	this.isAuthenticated;
     this.authenticate;
-	
+	this.walletIndexer = {};
 
 	this.getWallets = function() {
 		return this.wallets;
-	}
+	};
 	
 	this.init = function(rawData) {
 		this.wallets = rawData;
 		if(!this.wallets) this.wallets = {};
-
+		var counter = 0;
 		for(var index in this.wallets)
 		{
 			if(index > this.walletCounter) this.walletCounter = index+1; 
@@ -23,6 +23,7 @@ cApp.service("WalletManager", function(DecentralStorage,Wallet) {
 				var nwallet = new Wallet(this.wallets[index].Name);
 				nwallet.initialize(this.wallets[index]);
 				this.wallets[index] = nwallet;
+				this.walletIndexer[counter++] = index;
 			}
 		}
 	};
@@ -34,9 +35,13 @@ cApp.service("WalletManager", function(DecentralStorage,Wallet) {
 		return null;
 	};
 	
+	this.setWalletIndex = function(i) {
+		return this.setWallet(this.walletIndexer[i]);
+	};
+	
 	this.setWallet = function(i) {
-		if(i in wallets) {
-			this.walletCounter = i;
+		if(i in this.wallets) {
+			this.curWallet = i;
 			return true;
 		}
 		return false;

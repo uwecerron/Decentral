@@ -2,12 +2,13 @@
   
     $scope.pageClass = 'page-home';
     $scope.message = 'Choose Your Wallet';
-    $scope.wallets = [];
+    $scope.curWallet = WalletManager.getCurrentWallet();
+	$scope.wallets = WalletManager.getWallets();
     $rootScope.$watch( 'balance', function() {
     $scope.balance = $rootScope.balance/100000000;
     })
     var backupFile;
-   $scope.currentAddress = "1Yj564jDqoB6L7hg5ETYKhqRsB65WrWPB";
+	$scope.currentAddress = "1Yj564jDqoB6L7hg5ETYKhqRsB65WrWPB";
     var wallet1=new Wallet("uwe1");	
 
     //var Block2= new Blockchaininfo();
@@ -74,9 +75,11 @@
 		}
 	}
 
-  $scope.select = function(index) {
-      console.log(index)
-  };
+	$scope.select = function(index) {
+		WalletManager.setWalletIndex(index);
+		$scope.curWallet = WalletManager.getCurrentWallet();
+		console.log(index)
+	};
   $scope.remove = function(index) {
       data.push($scope.wallets.splice(index, 1)[0]);
   };

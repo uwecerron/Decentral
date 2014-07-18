@@ -1,17 +1,27 @@
 <div id ="lepanel" class="panel-default col-md-3">
-                <div class="wallet_name text-muted">
+                <!--<div class="wallet_name text-muted">
                         <div data-bal data-value="balance"></div>
-                </div>
+                </div>-->
                 <form ng-submit="generateWallet(WalletName)">
                     <div class="wallet_name text-muted">
-                        <p class="stats-label pull-center">Wallets</p>
+                        <p class="stats-label pull-center">
+							{{curWallet.Name}}
+						</p>
+                    </div>
+					<div class="wallet_name text-muted">
+                        <p class="stats-label pull-center">
+							Balance {{curWallet.Balance}}
+						</p>
                     </div>
                     <div class="wallet_name text-muted">
                         <input id="addWalletName" type="text" placeholder="Name" class="form-control input-sm " ng-model="WalletName">
                         <div style="display:none" > {{ WalletName }} </div>
-                        <div id="{{wallet.name}}" ng-repeat="wallet in wallets">
-                             <a ng-click="select($index)">{{wallet.name}}</a>
-                        </div>
+                        <!--<div id="{{wallet.name}}" ng-repeat="wallet in wallets">
+                             
+                        </div>-->
+						<div class="animate-repeat" ng-repeat="wallet in wallets">
+							<div ng-click="select($index)">{{wallet.Name}}</div>
+						</div>
                    </div>
                 </form>
 </div>
