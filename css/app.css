@@ -97,6 +97,10 @@ a{
 
 #wallet_name{
   color:#333;
+  cursor: pointer
+}
+#wallet_name:hover{
+   background-color:#cacaca;
 }
 
 #walletsideheader{

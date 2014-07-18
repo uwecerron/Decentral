@@ -11,14 +11,12 @@
     <p class="lead text-center" id="current-address">
       <div qr-code class="col-md-2 col-md-offset-5" ></div>
       <p  class="col-md-2 col-md-offset-4" >{{currentAddress}}</p>
-    </p>
-
-    
+    </p>  
   </div>
 
 <div class="col-md-12">
     <div class="col-md-4 text-left">
-      <div class="fileupload"><i class="fa fa-upload"></i><span>Import Addresses</span> <input class="upload" type="file" id="file" name="file" ng-click="import()"/></div>
+      <div class="fileupload"><i class="fa fa-upload"></i><span>Import Addresses</span><input class="upload" type="file" id="file" name="file" ng-click="import()"/></div>
     </div>
     <div class="col-md-4 text-center">
       <button  ng-click="generateLeAddress()">Generate New Address</button>
