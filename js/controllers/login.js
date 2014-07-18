@@ -4,6 +4,7 @@ cApp.controller('loginController',function($scope,DecentralStorage,$location,$ro
 	$scope.pageClass = 'page-login';
 	var storage= DecentralStorage;
 	$scope.page = 1;
+	$scope.form = {};
 	$scope.nextPage = function() {
 		$scope.page++;
 	};
@@ -31,8 +32,6 @@ cApp.controller('loginController',function($scope,DecentralStorage,$location,$ro
 			$scope.message="passwords do not match";
 			return;
 		}
-		var mnemonic = new Mnemonic(128);
-		$scope.form.mnemonic = mnemonic.toWords().join(' ');
 		$scope.page++;
 		DecentralStorage.save('security','password',$scope.password1);
 		return $location.path( "/Home" );	   
@@ -45,6 +44,10 @@ cApp.controller('loginController',function($scope,DecentralStorage,$location,$ro
 				var rawData = database[DecentralStorage.WALLETDATABASE];
 				WalletManager.init(rawData);
 				$rootScope.$apply(function() {
+					//$scope.page++;
+					//var mnemonic = new Mnemonic(128);
+					//console.log(mnemonic.toWords().join(' '));
+		            //$scope.mnemonic = mnemonic.toWords().join(' ');
 					$location.path("/Home");
 				});
 			}
@@ -54,5 +57,20 @@ cApp.controller('loginController',function($scope,DecentralStorage,$location,$ro
 		});
 	}
 
+	$scope.wordsSubmit = function() {
+		DecentralStorage.get(DecentralStorage.WALLETDATABASE, function(database) {
+			if(database) {
+				var rawData = database[DecentralStorage.WALLETDATABASE];
+				WalletManager.init(rawData);
+				$rootScope.$apply(function() {
+					//$scope.page++;
+					//$location.path("/Home");
+				});
+			}
+			else {
+				console.log("failed to retrieve");
+			}
+		});	
+	}
 
 })//end login controller

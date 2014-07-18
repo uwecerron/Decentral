@@ -97,7 +97,9 @@ a{
 
 #wallet_name{
   color:#333;
-  cursor: pointer
+  cursor: pointer;
+  padding: 1rem;
+  box-shadow: 0 0 5px rgba(6, 2, 4, 0.05);
 }
 #wallet_name:hover{
    background-color:#cacaca;
@@ -248,14 +250,16 @@ table{
 width: 100%;
 height: 120px;
 margin-bottom: 20px;
-background-color: #fff;
+/*background-color: #fff;
+box-shadow: 0 1px 1px rgba(0,0,0,0.05);*/
 border: 1px solid transparent;
 border-radius: 4px;
 -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+background: #F9F9F9;
 }
 .tbox {
-background-color: #2E3D4E;
+background-color: #C2C2C2;
 min-height: 120px;
 padding: 25px;
 }

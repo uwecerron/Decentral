@@ -37,6 +37,7 @@
     "mocha": "^1.20.1"
   },
   "dependencies": {
+    "peerjs": "^0.3.8",
     "sjcl": "^1.0.1"
   }
 }
