@@ -17,18 +17,9 @@ function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
 	else{
 		$scope.items = [];
 	}
-	/*$scope.items =[{"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-         {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-          {"id":"1","name":"2 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-           {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-            {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-             {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-              {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-               {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-                {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-                 {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-                  {"id":"1","name":"name 1","address":"description 1","balance":"field3 1","token":"field4 1"},
-             {"id":"1","name":"neeeeame 1","address":"description 1","balance":"field3 1","token":"field4 1"}] */
+	
+	
+	
  
     var searchMatch = function (haystack, needle) {
         if (!needle) {
@@ -95,7 +86,15 @@ function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
     $scope.setPage = function () {
         $scope.currentPage = this.n;
     };
-
+	
+	$rootScope.$watchCollection(
+		"curWallet",
+		function( newValue, oldValue ) {
+			$scope.items = newValue.getAddresses();
+			$scope.search();
+			console.log($scope.items);
+		}
+	);
     // functions have been describe process the data for display
     $scope.search();
 

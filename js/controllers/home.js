@@ -1,9 +1,10 @@
- cApp.controller('Home', function($scope, $rootScope,Blockchaininfo,Wallet, WalletManager, DecentralStorage) {
+cApp.controller('Home', function($scope, $rootScope,Blockchaininfo,Wallet, WalletManager, DecentralStorage) {
   
     $scope.pageClass = 'page-home';
     $scope.message = 'Choose Your Wallet';
     $scope.curWallet = WalletManager.getCurrentWallet();
 	$scope.wallets = WalletManager.getWallets();
+	$rootScope.curWallet = $scope.curWallet;
     $rootScope.$watch( 'balance', function() {
     $scope.balance = $rootScope.balance/100000000;
     })
@@ -62,15 +63,16 @@
       $scope.currentAddress =  WalletManager.getCurrentWallet().generatePublicAddress();
 	    WalletManager.update(WalletManager.curWallet);
     }
-	
+
 	$scope.generateWallet = function(WalletName) {
 		if(!WalletName || WalletName.length == 0) {
 			console.log("meh");
 		} else {
 			console.log(WalletName);
 			var wallet = new Wallet(WalletName);
-       $scope.wallets.push({name: WalletName});
 			WalletManager.addWallet(wallet);
+			$scope.wallets = WalletManager.getWallets();
+			$rootScope.curWallet = $scope.curWallet;
 			console.log(WalletManager.numWallets());
 		}
 	}
@@ -78,11 +80,12 @@
 	$scope.select = function(index) {
 		WalletManager.setWalletIndex(index);
 		$scope.curWallet = WalletManager.getCurrentWallet();
+		$rootScope.curWallet = $scope.curWallet;
 		console.log(index)
 	};
   $scope.remove = function(index) {
       data.push($scope.wallets.splice(index, 1)[0]);
   };
-	
+
   //} )
 });//end Home Controller

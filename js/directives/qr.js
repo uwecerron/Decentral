@@ -21,5 +21,3 @@
 
     };
   });
-//TO: replace element instead of appending it
-  
