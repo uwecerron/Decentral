@@ -110,7 +110,7 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
         if (data === undefined) {
           data = {}
         }
-          
+
         var addresses ={};
         addresses=data['wallet'][_name];
         var addresses2 = Object.keys(addresses );
@@ -152,7 +152,7 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
       var key = Bitcoin.ECKey.makeRandom();
       var hash=key.pub.getAddress().toString();
 	  var newAddress = {};
-	  newAddress['address'] = hash;
+	  newAddress[hash] = key;
 	  this.Addresses.push(newAddress);
       console.log(this.Addresses)
        //this.save(key.toWIF(),hash);
