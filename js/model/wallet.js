@@ -7,6 +7,7 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
 	    this.Assets=[];
       this.Name=Name;
       this.Addresses=[];
+      this.Book=[];
       this.Txs=[];
       this.Balance=0;
       this.CurrentAddress='';
@@ -148,18 +149,20 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
       return addressArr;
   }  
 
-    Wallet.prototype.generatePublicAddress =function() {
+  Wallet.prototype.generatePublicAddress =function() {
       var key = Bitcoin.ECKey.makeRandom();
       var hash=key.pub.getAddress().toString();
-	  var newAddress = {};
-	  newAddress[hash] = key;
-	  this.Addresses.push(newAddress);
-      console.log(this.Addresses)
-       //this.save(key.toWIF(),hash);
+	    var newAddress = {};
+      var bookEntry ={};
+	    newAddress["address"] = hash;
+      bookEntry[hash]= key.toWIF();
+      console.log(bookEntry)
+	    this.Addresses.push(newAddress);
+      this.Book.push(bookEntry);
       return hash;
-    }
+  }
     
-    Wallet.prototype.utxofetcher=function(Addresses, callback){
+  Wallet.prototype.utxofetcher=function(Addresses, callback){
 
     //  var addresses  = this.getAddresses(), 
       this.blockchain.getUnspent(Addresses,function(data){
@@ -177,11 +180,11 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
       }
       callback(unspents);
     });
-    }
-    Wallet.prototype.save= function(wifkey,hash){
+  }
+  Wallet.prototype.save= function(wifkey,hash){
     //  if (password !== undefined){
-        var encrypted= this.encrypt(wifkey,'hello');
-        var decrypted= this.decrypt(encrypted,'hello')
+      var encrypted= this.encrypt(wifkey,'hello');
+      var decrypted= this.decrypt(encrypted,'hello')
       // }else{
         //return false;
        //}
@@ -196,17 +199,17 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
         return false;
        }*/
       if(key !== undefined){
-       // this.storage.clear()
-        this.storage.save("wallet",this.Name,data);
-       // this.storage.getall();
-        //setTimeout(store, saveTimeOut);
-        return true;
+         // this.storage.clear()
+          this.storage.save("wallet",this.Name,data);
+         // this.storage.getall();
+          //setTimeout(store, saveTimeOut);
+          return true;
        }else
-        return false;
-       }
+       return false;
+  }
   
 //13Jw9vY5fHSe82qPwWhg6eShH7ZYAuRt1n
-    Wallet.prototype.buildTransaction= function(toAddress,callback){
+  Wallet.prototype.buildTransaction= function(toAddress,callback){
    
      //var addresses =this.getAllAddresses();
        var addresses =["1F6UU9EBPNyAFyPojDqHAtoCiNDX9mFmBP"];
@@ -224,7 +227,7 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
       });
      //change address
  
-    }//end build transaction
+  }//end build transaction
 
   function addInput(tx,unspent_output) {
       for ( var i = 0; i < unspent_output._tx_index.length; i++ ) {
@@ -236,36 +239,36 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
         console.log(index)
         tx.addInput(hash,index);
       }
-    }
+  }
 
-    function addOutput(tx,address,value){
-         tx.addOutput(address,value);
-         //change address
-        console.log(address);
+  function addOutput(tx,address,value){
+      tx.addOutput(address,value);
+       //change address
+      console.log(address);
         
-    }
+  }
 
  
 
-    function addFee(toAddress) {
+  function addFee(toAddress) {
       var Fee= 10000;
       var txValue =toAddress.value;
       return txValue+Fee;
-    }
+  }
 
-     function calculateChange(allunspents, addFee) {
+  function calculateChange(allunspents, addFee) {
       var balance=allunspents;
       return balance-addFee;
-    }
+  }
     //substract change when adding outputs
 
-    function sign(tx,unspent_outputs,key){
+  function sign(tx,unspent_outputs,key){
      for(var i=0;i<unspent_outputs._tx_index.length;i++){
        tx.sign(i, key);
       }
-    }
+  }
   
-    function getUnspents(addresses){
+  function getUnspents(addresses){
        var unspentOutputs = [];
        this.blockchain.getUnspent(addresses,function(result){
          //console.log(result)
@@ -282,10 +285,10 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
        })
        return unspentOutputs;          
       //end callback
-    }
+  }
 
     
-    function unspentsToAddresses(unspentOutputs) {
+  function unspentsToAddresses(unspentOutputs) {
       var addressStrs = [];
       for ( var i = 0; i < unspentOutputs.length; i++ ) {
         var unspent = unspentOutputs[ i ];
@@ -295,10 +298,10 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
         addressStrs.push( addressStr );
       }
       return addressStrs;
-    }
+  }
 
 
-    function retrievePvtKeys(walletAddresses, passwordDigest){
+  function retrievePvtKeys(walletAddresses, passwordDigest){
       var addresses=walletAddresses;
       var privateKeys = {};
       // if input address not in the address book throw an error
@@ -309,14 +312,14 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
       }
 
       return privateKeys;
-    }
+  }
 
     /*
      * Start a multisig structure out n participants public keys and m
      * m {number} needed participants 
      * n {Array} public keys of all participants
      */
-    Wallet.prototype.multisig= function(m, n){
+  Wallet.prototype.multisig= function(m, n){
       //Todo: make sure n is an array
         // Create script
         var redeemScript = Bitcoin.scripts.multisigOutput(m, n) // 2 of 3
@@ -328,38 +331,38 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
         console.log("multisigP2SH:", multisigAddress)
         
         return multisigAddress;
-    },
+  },
     /*
      *Import a multisig transaction
      */
-    Wallet.prototype.importMultiSig = function(data, version){
+  Wallet.prototype.importMultiSig = function(data, version){
         var script = new Bitcoin.Script(convert.hexToBytes(data));
         var hashed = Bitcoin.crypto.hash160(script.buffer);
         var address = Bitcoin.base58check.encode(hashed, version);
         var pubKeys = script.extractPubkeys();
         var m = script.chunks[0] - Bitcoin.Opcode.map.OP_1 + 1;
         //return {address: address, script: data, m: m, pubKeys: pubKeys};
-    },
+  },
 
 
-    Wallet.prototype.encrypt= function(privateKey,passwordDigest) {
+  Wallet.prototype.encrypt= function(privateKey,passwordDigest) {
       if (passwordDigest !== undefined ) {
         var encrypted = CryptoJS.AES.encrypt(privateKey, passwordDigest).toString();
         privateKey=encrypted;
         return encrypted;
       }
-    }
+  }
 
-    Wallet.prototype.decrypt= function(encrypted,passwordDigest) {
+  Wallet.prototype.decrypt= function(encrypted,passwordDigest) {
       var decrypted = CryptoJS.AES.decrypt(encrypted, passwordDigest);
        var privateKey = decrypted.toString(CryptoJS.enc.Utf8);
       if ((privateKey === "") || (typeof privateKey === 'undefined')){
         return false;
       }
       return privateKey;
-    }
+  }
 
-    	var reverse = function(str){
+  var reverse = function(str){
     	var ret = "";
     	var len = str.length;
     	if(len % 2 == 1){
@@ -372,7 +375,7 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
     		ret += str.charAt(i+1);
     	}
     	return ret;
-    	}
+  }
 
 return Wallet;
 }]);//end factory
