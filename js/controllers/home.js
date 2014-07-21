@@ -1,4 +1,4 @@
-cApp.controller('Home', function($scope, $rootScope,Blockchaininfo,Wallet, WalletManager, DecentralStorage) {
+cApp.controller('Home', function($scope,$rootScope,modals,Blockchaininfo,Wallet,WalletManager,DecentralStorage) {
   
     $scope.pageClass = 'page-home';
     $scope.message = 'Choose Your Wallet';
@@ -31,6 +31,7 @@ cApp.controller('Home', function($scope, $rootScope,Blockchaininfo,Wallet, Walle
     }
     //import wallet
     $scope.import = function(){
+        modals.open('modalpassword');
         var f = document.getElementById('file').files[0];
         if(!f){
             return;

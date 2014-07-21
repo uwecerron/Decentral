@@ -1,7 +1,8 @@
 
-function SendController($scope,$rootScope,Wallet){
+function SendController($scope,modals,$rootScope,Wallet){
   $scope.pageClass = 'page-send';
   $scope.item = {};
+
   console.log('logged');
   $scope.inputAddress='';
   $scope.inputAmount='';
@@ -28,7 +29,7 @@ function SendController($scope,$rootScope,Wallet){
       addr:$scope.inputAddress,
       amount:value
       }
-
+      modals.password();
       console.log(formData);
       wallet1.buildTransaction(formData,function(data){
         console.log(data);

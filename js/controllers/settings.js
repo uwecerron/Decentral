@@ -1,6 +1,6 @@
 'use strict';
 
-function SettingsController($scope,WalletManager,DecentralStorage){
+function SettingsController($scope,WalletManager,DecentralStorage,modals){
 	
     $scope.pageClass = 'page-settings';
     var storage = DecentralStorage;
@@ -11,6 +11,7 @@ function SettingsController($scope,WalletManager,DecentralStorage){
         {name: "USD" , base: '1' },
         {name: "EUR" , base: '2' }
     ];
+
     $scope.passwordChangedSubmit = function() {
       // replace with hasher algorithm sha256 or 3?
         var passDigest = CryptoJS.AES.encrypt("hello",$scope.currentpassword).toString();
@@ -49,21 +50,23 @@ function SettingsController($scope,WalletManager,DecentralStorage){
 
     //wallet buttons
     $scope.importWallet = function() {
+
         var f = document.getElementById('file').files[0];
         if(!f)
         {
             return;
         }
+
         r = new FileReader();
         r.onload = function(e){
             backupFile = e.target.result;
             console.log(backupFile)
             $scope.fileLoaded = true;
         } 
-
         r.readAsText(f);
     }
     var unlockImport= function(){
+          modals.password();
         var data;
         // decrypt
         try {
