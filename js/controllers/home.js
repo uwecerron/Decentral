@@ -36,7 +36,7 @@ cApp.controller('Home', function($scope,$rootScope,modals,Blockchaininfo,Wallet,
         if(!f){
             return;
           }
-        r = new FileReader();
+        var r = new FileReader();
         r.onload = function(e){
             backupFile = e.target.result;
             console.log(backupFile)

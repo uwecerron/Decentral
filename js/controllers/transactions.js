@@ -8,8 +8,9 @@ function TransactionsController($rootScope,$scope, $filter,TransactionFetcher, W
     $scope.pagedtransactions = [];
     $scope.currentPage = 0;
 
-    
-    $scope.transactions = WalletManager.getCurrentWallet().getTransactions();
+    console.log(WalletManager.getCurrentWallet());
+	$scope.transactions =[];
+    //$scope.transactions = WalletManager.getCurrentWallet().getTransactions();
 
     var searchMatch = function (haystack, needle) {
         if (!needle) {

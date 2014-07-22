@@ -26,6 +26,7 @@ cApp.service("WalletManager", function(DecentralStorage,Wallet) {
 				this.walletIndexer[counter++] = index;
 			}
 		}
+		this.walletIndexer[-1] = counter;
 	};
 	
 	this.getCurrentWallet = function() {
@@ -50,6 +51,7 @@ cApp.service("WalletManager", function(DecentralStorage,Wallet) {
 	this.addWallet = function (wallet) {
 		DecentralStorage.saveWallet(wallet, this.walletCounter);
 		this.wallets[this.walletCounter] = wallet;
+		this.walletIndexer[this.walletIndexer[-1]++] = this.walletCounter;
 		this.walletCounter += 1;
 	};
 	
