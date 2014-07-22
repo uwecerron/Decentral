@@ -3,7 +3,11 @@ function NavigationController($scope,$rootScope, $location,$timeout,$http) {
 	$scope.navClass = function (page) {
 		var currentRoute = $location.path().substring(1) || 'home';
 		return page === currentRoute ? 'active' : '';
-	};        
+	};
+
+	$scope.logout = function() {
+		$location.path("\login");
+	}
 /*	$scope.balance = "";
 
 	var balance= 0;

@@ -157,7 +157,7 @@ thead{
 	font-size: 0;
 	height: 55px;
 	/*height: 70px;*/
-	width: 100%;
+	width: 95%;
 	margin: 0;
 	padding: 0;
 
@@ -205,8 +205,18 @@ thead{
 }
 
 #topnavigation li a:hover{
-	
 	color: black;
+}
+
+#topnavlogout{
+	height: 100%;
+	margin-left: 95%;
+	font-size: 52px;
+}
+#topnavlogout div{
+	height: 100%;
+	padding-left: 20%;
+	font-size: 52px;
 }
 
 #lepanel{

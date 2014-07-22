@@ -16,11 +16,13 @@
 				<li ng-class="navClass('Trade')">
 				<a href="#Trade" class="entypo-switch"> Trade</a></li>
 				<li ng-class="navClass('Settings')">
-				<a href="#Settings" class="entypo-tools"> Settings</a></li>	
+				<a href="#Settings" class="entypo-tools"> Settings</a></li>
 			</ul>   
-			<!--<div class="navbar-balance">			
-				<div data-bal data-value="balance"></div>
-			</div>-->
+			<div id="topnavlogout">
+				<div ng-click="logout()">
+					<i class="fa fa-sign-out"></i>
+				</div>
+			</div>
 		</div>
 	</nav>
 </div>
