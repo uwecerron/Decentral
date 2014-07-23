@@ -95,5 +95,14 @@ cApp.service("WalletManager", function(DecentralStorage,Wallet) {
 		return ct;
 	};
 	
+	this.reset() {
+		this.wallets = {};
+		this.walletCounter = 0;
+		this.curWallet = 0;
+		this.isAuthenticated=false;
+		this.authenticate;
+		this.walletIndexer = {};
+	};
+	
 
 });
