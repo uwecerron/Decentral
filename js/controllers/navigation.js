@@ -1,4 +1,4 @@
-function NavigationController($scope,$rootScope, $location,$timeout,$http) {
+function NavigationController($scope,$rootScope, $location,$timeout,$http,Session) {
 
 	$scope.navClass = function (page) {
 		var currentRoute = $location.path().substring(1) || 'home';
@@ -6,7 +6,7 @@ function NavigationController($scope,$rootScope, $location,$timeout,$http) {
 	};
 
 	$scope.logout = function() {
-		$location.path("\login");
+		Session.end();
 	}
 /*	$scope.balance = "";
 

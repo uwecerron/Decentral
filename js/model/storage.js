@@ -11,18 +11,34 @@ cApp.service("DecentralStorage", function($location) {
 
 	this.WALLETDATABASE = "ZEBANK";
 	this.addresses = {};
-	    
+	var saveTimeOut = 0;
+    
 	//dummy array  
 	this.get=function(database, callback) {
 		chrome.storage.local.get(database, function(data) {
-		if ( data === undefined ) {
-			callback( {} );
-		} else {
-			callback(data);
-		}
+			if ( data === undefined ) {
+				callback( {} );
+			} else {
+				callback(data);
+			}
 		});
 	};
 
+	this.getSync=function(database, callback) {
+		var get = function(){
+			chrome.storage.local.get(database, function(data) {
+				if ( data === undefined ) {
+					callback( {} );
+				} else {
+					callback(data);
+				}
+			});
+			saveTimeOut -= 500;
+		};
+		saveTimeOut += 500;
+		setTimeout(get, saveTimeOut);	
+	};
+	
 	/*
 	  *Get All Addresses from the database
 	  *@param{Function} callback providing results 
@@ -50,11 +66,9 @@ cApp.service("DecentralStorage", function($location) {
 	 */
 	//dummy array {'security':{'wallet1': {key:'crapper',pass:'crapper2'}}}
 
-	var saveTimeOut = 0;
+	
  
-	this.save = function(database,walletName,data, callback) {
-		
-		
+	this.save = function(database,walletName,data, callback) {	
 		var self = this;
 		var _database = database;
 		var _name = walletName;
@@ -66,22 +80,41 @@ cApp.service("DecentralStorage", function($location) {
 
 			if (ledata[_database] === undefined) {
 				ledata[_database] = {};
-			}
-			
+			}		
 			ledata[_database][_name] = _data;
 			console.log(ledata);
-			//setObject[name]={}
-			//setObject.database.name=_name;
-			//setObject.database.name.data=_data;
-			//  console.log('set: '+JSON.stringify(setObject))
 			chrome.storage.local.set(ledata);
 			
 			});
 			saveTimeOut -= 1000;
 		}
 		saveTimeOut += 1000;
-		setTimeout(store, saveTimeOut);
+		setTimeout(store, saveTimeOut);	
+	};
+	
+	this.savePlus = function(database,walletName,data,func,callback) {	
+		var self = this;
+		var _database = database;
+		var _name = walletName;
+		var _data = data;
+		var _func = func;
 		
+		var store = function() {
+			self.get(_database, function(ledata) {
+			console.log("lewallet");
+
+			if (ledata[_database] === undefined) {
+				ledata[_database] = {};
+			}		
+			ledata[_database][_name] = _data;
+			console.log(ledata);
+			chrome.storage.local.set(ledata);
+			});
+			saveTimeOut -= 1000;
+			_func();
+		}
+		saveTimeOut += 1000;
+		setTimeout(store, saveTimeOut);	
 	};
 	
 	this.saveWallet = function(wallet, index, callback) {

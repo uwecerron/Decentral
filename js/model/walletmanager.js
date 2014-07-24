@@ -95,7 +95,7 @@ cApp.service("WalletManager", function(DecentralStorage,Wallet) {
 		return ct;
 	};
 	
-	this.reset() {
+	this.reset = function() {
 		this.wallets = {};
 		this.walletCounter = 0;
 		this.curWallet = 0;
