@@ -1,6 +1,6 @@
 'use strict';
 
-function SettingsController($scope,WalletManager,DecentralStorage,modals){
+function SettingsController($scope, $rootScope,WalletManager,DecentralStorage,modals){
 	
     $scope.pageClass = 'page-settings';
     var storage = DecentralStorage;
@@ -11,6 +11,7 @@ function SettingsController($scope,WalletManager,DecentralStorage,modals){
         {name: "USD" , base: '1' },
         {name: "EUR" , base: '2' }
     ];
+	$scope.wallets = WalletManager.getWallets();
 
     $scope.passwordChangedSubmit = function() {
       // replace with hasher algorithm sha256 or 3?
@@ -81,8 +82,10 @@ function SettingsController($scope,WalletManager,DecentralStorage,modals){
 
 
     //Delete current wallet
-    $scope.removeWallet = function() {
-     // wallet.clear(walletName);
+    $scope.removeWallet = function(index) {
+		WalletManager.removeWalletIndex(index);
+		$scope.wallets = WalletManager.getWallets();
+		console.log($scope.wallets);
     }
     //check boxes
     $scope.convert = function() {

@@ -13,20 +13,19 @@ cApp.service("WalletManager", function(DecentralStorage,Wallet) {
 	};
 	
 	this.init = function(rawData) {
-		this.wallets = rawData;
-		if(!this.wallets) this.wallets = {};
+		
 		var counter = 0;
-		for(var index in this.wallets)
+		for(var index in rawData)
 		{
-			if(index > this.walletCounter) this.walletCounter = index+1; 
-			if(this.wallets[index] != null) {
-				var nwallet = new Wallet(this.wallets[index].Name);
-				nwallet.initialize(this.wallets[index]);
-				this.wallets[index] = nwallet;
-				this.walletIndexer[counter++] = index;
+			var i = parseInt(index);
+			if(index > this.walletCounter) this.walletCounter = i+1; 
+			if(rawData[index]) {
+				var nwallet = new Wallet(rawData[index].Name);
+				nwallet.initialize(rawData[index]);
+				this.wallets[i] = nwallet;
+				this.walletIndexer[counter++] = i;
 			}
 		}
-		this.walletIndexer[-1] = counter;
 	};
 	
 	this.getCurrentWallet = function() {
@@ -51,7 +50,7 @@ cApp.service("WalletManager", function(DecentralStorage,Wallet) {
 	this.addWallet = function (wallet) {
 		DecentralStorage.saveWallet(wallet, this.walletCounter);
 		this.wallets[this.walletCounter] = wallet;
-		this.walletIndexer[this.walletIndexer[-1]++] = this.walletCounter;
+		this.walletIndexer[this.walletIndexer.length] = this.walletCounter;
 		this.walletCounter += 1;
 	};
 	
@@ -69,11 +68,15 @@ cApp.service("WalletManager", function(DecentralStorage,Wallet) {
 		}
 	};
 	
+	this.removeWalletIndex = function(index) {
+		this.removeWallet(this.walletIndexer[index]);
+	};
+	
 	this.removeWallet = function (index) {    
 		if(index in this.wallets && this.wallets[index] != null)
 		{
-			this.wallets[index] = null;
-			DecentralStorage.saveWallet(null, index);
+			delete this.wallets[index];
+			DecentralStorage.updateWallets(this.wallets);
 			return true;
 		}
 		return false;

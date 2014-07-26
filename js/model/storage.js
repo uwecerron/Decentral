@@ -66,7 +66,29 @@ cApp.service("DecentralStorage", function($location) {
 	 */
 	//dummy array {'security':{'wallet1': {key:'crapper',pass:'crapper2'}}}
 
-	
+ 
+	this.updateWallets = function(data, callback) {	
+		var self = this;
+		var _database = this.WALLETDATABASE;
+		var _data = data;
+		
+		var store = function() {
+			self.get(_database, function(ledata) {
+			console.log("lewallet");
+
+			if (ledata[_database] === undefined) {
+				ledata[_database] = {};
+			}		
+			ledata[_database] = _data;
+			console.log(ledata);
+			chrome.storage.local.set(ledata);
+			
+			});
+			saveTimeOut -= 1000;
+		}
+		saveTimeOut += 1000;
+		setTimeout(store, saveTimeOut);	
+	};
  
 	this.save = function(database,walletName,data, callback) {	
 		var self = this;

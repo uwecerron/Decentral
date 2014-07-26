@@ -590,11 +590,15 @@ input,button {
 	bottom:0px;
 	/*visibility:hidden;*/
 	background:#cacaca;
-	position:absolute;
-	z-index: 10;
+	position:absolute;	
 	width:100%;
 	height:60%;
 }
+#wallet_list_list{
+	height: 75%;
+	overflow-y:scroll;
+}
+
 /* contact ---------------------- */
 .page-send.ng-leave      {
     -webkit-animation: scaleDown .6s ease both;

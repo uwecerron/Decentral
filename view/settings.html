@@ -56,10 +56,9 @@
 	<button id="barrel_button" class="row" ng-click="showWallets = !showWallets">
 	 <i class="fa fa-arrow-left"></i> Back
 	</button>
-	<div class="row">
-		Wallet1
-	</div>
-	<div class="row">
-		Wallet2
+	<div id="wallet_list_list">
+		<div class="animate-repeat" ng-repeat="wallet in wallets">
+			<button id="wallet_name"  ng-click="removeWallet($index)">{{wallet.Name}}</button>
+		</div>
 	</div>
 </div>
