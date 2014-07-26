@@ -82,8 +82,8 @@ function SettingsController($scope, $rootScope,WalletManager,DecentralStorage,mo
 
 
     //Delete current wallet
-    $scope.removeWallet = function(index) {
-		WalletManager.removeWalletIndex(index);
+    $scope.removeWallet = function(walletRef) {
+		WalletManager.removeWalletR(walletRef);
 		$scope.wallets = WalletManager.getWallets();
 		console.log($scope.wallets);
     }

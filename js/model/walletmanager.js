@@ -35,8 +35,12 @@ cApp.service("WalletManager", function(DecentralStorage,Wallet) {
 		return null;
 	};
 	
-	this.setWalletIndex = function(i) {
-		return this.setWallet(this.walletIndexer[i]);
+	this.setWalletR = function(WalletRef) {
+		for(var i in this.wallets) {
+			if(this.wallets[i] == WalletRef) {
+				this.curWallet = i;
+			}
+		}
 	};
 	
 	this.setWallet = function(i) {
@@ -70,6 +74,15 @@ cApp.service("WalletManager", function(DecentralStorage,Wallet) {
 	
 	this.removeWalletIndex = function(index) {
 		this.removeWallet(this.walletIndexer[index]);
+	};
+	
+	this.removeWalletR = function(WalletRef)
+	{
+		for(var i in this.wallets) {
+			if(this.wallets[i] == WalletRef) {
+				this.removeWallet(i);
+			}
+		}
 	};
 	
 	this.removeWallet = function (index) {    

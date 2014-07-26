@@ -78,11 +78,11 @@ cApp.controller('Home', function($scope,$rootScope,modals,Blockchaininfo,Wallet,
 		}
 	}
 
-	$scope.select = function(index) {
-		WalletManager.setWalletIndex(index);
-		$scope.curWallet = WalletManager.getCurrentWallet();
+	$scope.select = function(walletRef) {
+		WalletManager.setWalletR(walletRef);
+		$scope.curWallet = walletRef;
 		$rootScope.curWallet = $scope.curWallet;
-		console.log(index)
+		console.log(walletRef);
 	};
   $scope.remove = function(index) {
       data.push($scope.wallets.splice(index, 1)[0]);
