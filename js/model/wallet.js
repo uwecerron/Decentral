@@ -1,5 +1,5 @@
 "use strict";
-cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchaininfo,DecentralStorage){
+cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchaininfo,DecentralStorage,Network){
 
 
   var Wallet = function(Name) {
@@ -9,6 +9,7 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
       this.Addresses=[];
       this.Book=[];
       this.Txs=[];
+      this.peerBook={};
       this.Balance=0;
       this.CurrentAddress='';
       this.privatekey;
