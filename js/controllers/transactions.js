@@ -1,4 +1,4 @@
-function TransactionsController($rootScope,$scope, $filter,TransactionFetcher) {
+function TransactionsController($rootScope,$scope, $filter,TransactionFetcher, WalletManager) {
     
     $scope.sortingOrder="";
     $scope.reverse = false;
@@ -8,17 +8,9 @@ function TransactionsController($rootScope,$scope, $filter,TransactionFetcher) {
     $scope.pagedtransactions = [];
     $scope.currentPage = 0;
 
-    
-    $scope.transactions = [
-        {"id":"1","from":"sad","to":"hash 2","amount":"tran hash","token":"2"},
-          {"id":"1","from":"qqw","to":"hash 2","amount":"tran hash","token":"5"},
-            {"id":"1","from":"weef","to":"hash 2","amount":"tran hash","token":"6"},
-              {"id":"1","from":"hash6","to":"hash 2","amount":"tran hash","token":"1"},
-                {"id":"1","from":"ffffhasffh5","to":"hash 2","amount":"tran hash","token":"2"},
-                  {"id":"1","from":"zzzzhash8","to":"hash 2","amount":"tran hash","token":"3"},
-                    {"id":"1","from":"aaaahash9","to":"hash 2","amount":"tran hash","token":"1"}
-         
-   ];
+    console.log(WalletManager.getCurrentWallet());
+	$scope.transactions =[];
+    //$scope.transactions = WalletManager.getCurrentWallet().getTransactions();
 
     var searchMatch = function (haystack, needle) {
         if (!needle) {

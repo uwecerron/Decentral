@@ -1,13 +1,17 @@
 <html>
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.11/angular-csp.css"/>
     <link rel="stylesheet" type="text/css" href="css/app.css"/>
     <link rel="stylesheet" type="text/css" href="http://angular-ui.github.com/ng-grid/css/ng-grid.css" />
     <script src="lib/aes.js"></script>
+    <script src="node_modules/sjcl/sjcl.js"></script>
     <script src="lib/bitcoinjs-min.js"></script>
     <script src="lib/qrcode.min.js"></script>
+    <script src="lib/peer.js"></script>
     <script src="lib/jquery-1.11.0.min.js"></script>
-    <script src="bower_components/angular//angular.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/mnemonic.js/mnemonic.js"></script>
     <script src="lib/bootstrap.min.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="lib/angular-animate.js"></script>
@@ -18,15 +22,23 @@
     <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
     <script src="js/app.js"></script>
     <script src="js/model/storage.js"></script>
-	<script src="lib/once.js"></script>
+	<script src="lib/once.js"></script>	
     <body ng-app='DecentralWallet'>
         <div ng-include="'view/header.html'"></div>
         <div class="page {{ pageClass }}" ng-view></div>
+        <script src="js/controllers/login.js"></script>
+        <script src="js/network/webrtc.js"></script>
+        <script src="js/services/modal.js"></script>
         <script src="js/model/wallet.js"></script>
-        <script src="js/model/txdb.js"></script>
+        <script src="js/model/colordef.js"></script>
+        <script src="js/model/colorvalue.js"></script>
+		<script src="js/model/walletmanager.js"></script>
+        <script src="js/model/txFetcher.js"></script>
+        <script src="js/model/transaction.js"></script>
         <script src="js/network/blockchaininfo.js"></script>
         <script src="js/controllers/navigation.js"></script> 
         <script src="js/controllers/home.js"></script>
+        <script src="js/controllers/passmodal.js"></script>
         <script src="js/controllers/settings.js"></script>
         <script src="js/controllers/addresses.js"></script>
         <script src="js/controllers/send.js"></script>
@@ -35,7 +47,8 @@
         <script src="js/controllers/issue.js"></script>
         <script src="js/directives/validation.js"></script>
         <script src="js/directives/qr.js"></script>
-        <script src="js/controllers/transactions.js"></script>
-        <script src="js/directives/navbalance.js"></script>
-    </body>
+        <script src="js/directives/animation.js"></script>
+		<script src="js/controllers/init.js"></script>
+		<script src="js/services/session.js"></script>
+	</body>
 </html>

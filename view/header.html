@@ -6,24 +6,23 @@
 		</div>-->
 
 		<div class="navbar-collapse collapse">		
-			<ul id="topnavigation" class="nav navbar-nav">				
+			<ul id="topnavigation" class="nav navbar-nav">
 				<li ng-class="navClass('Home')">
-				<a href="#Home" class="entypo-home">Home</a></li>
+				<a href="#Home" class="entypo-home"> Home</a></li>
 				<li ng-class="navClass('Assets')">
-				<a href="#Assets" class="entypo-qq">Assets</a></li>
+				<a href="#Assets" class="entypo-qq"> Assets</a></li>
 				<li ng-class="navClass('Send')">
-				<a href="#Send" class="entypo-right-bold">Send</a></li>
-				<li ng-class="navClass('Issue')">
-				<a href="#Issue" class="entypo-switch">Issue</a></li>
+				<a href="#Send" class="entypo-right-bold"> Send</a></li>
 				<li ng-class="navClass('Trade')">
-				<a href="#Trade" class="entypo-users">Trade</a></li>
+				<a href="#Trade" class="entypo-switch"> Trade</a></li>
 				<li ng-class="navClass('Settings')">
-				<a href="#Settings" class="entypo-tools">Settings</a></li>
-			
+				<a href="#Settings" class="entypo-tools"> Settings</a></li>
 			</ul>   
-			<!--<div class="navbar-balance">			
-				<div data-bal data-value="balance"></div>
-			</div>-->
+			<div id="topnavlogout">
+				<div ng-click="logout()">
+					<i class="fa fa-sign-out"></i>
+				</div>
+			</div>
 		</div>
 	</nav>
 </div>

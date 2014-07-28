@@ -1,13 +1,32 @@
-<div id="login" class="row">
-<div class="large-6 medium-6 columns">
-	                <h2>Login</h2>
-              <div class="box-signin radius">
-
-                <form name="loginForm" ng-submit="login(loginForm)" novalidate="">
-                  <input type="text" placeholder="Paste wallet secret here" name="connectionId" ng-model="connectionId" wallet-secret="" required="">
-                  <input type="password" placeholder="Choose your password" name="joinPassword" ng-model="$parent.joinPassword" check-strength="passwordStrength" >
-                  <input type="text" c placeholder="Your name (optional)" name="name" ng-model="name" >
-                  <div id="login_button"><button type="submit" class="btn btn-default btn-lg" ng-disabled="loginForm.$invalid || loading">Join</button></div>
-                </form>
-              </div>
+<div ng-if="page==1" id="login" class="row">
+<div class="col-xs-6 col-md-4"></div>
+<div class="col-xs-6 col-md-4">
+	<h2>Create a Wallet</h2>
+		<div class="box-signin radius">
+			<form name="loginForm" ng-submit="nextStep()" novalidate="">
+                  <input id="login_form" type="text" placeholder="Password" name="connectionId" ng-model="password1" wallet-secret="" required="">
+                  <input id="login_form" type="password" placeholder="Confirm Password" name="joinPassword" ng-model="password2" check-strength="passwordStrength" >
+                  <div id="login_button"><button ng-click="submit(password1,password2)" type="submit" class="btn btn-default btn-lg" >Join</button></div>
+                  <!--ng-disabled="loginForm.$invalid || loading"-->
+			</form>
+	</div>
 </div>
+  <div class="col-xs-6 col-md-4"></div>
+</div>
+
+ <div ng-if="page==2" id="passphrase" class="row">
+  <div class="col-xs-6 col-md-4"></div>
+<div class="col-xs-6 col-md-4">
+    <h1>Warning! Please Save Your Passphrase Before Continuing</h1>
+      <form name="form">
+              <p>Please write down these words.It will  unlock your private keys from your backupwallets</p>
+              <div class="row">
+                <textarea class="col-xs-6 col-md-12" readonly ng-model="mnemonic"></textarea>
+             </div>
+      </form>
+      <div class="row">
+            <input ng-click="wordsSubmit()" class="col-xs-6 col-md-12" type="button" value="I wrote it down!"/>
+      </div>     
+    </div>
+      <div class="col-xs-6 col-md-4"></div>
+  </div><!-- passphrase row -->

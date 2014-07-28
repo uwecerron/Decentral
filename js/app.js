@@ -3,6 +3,33 @@
 
 var cApp =angular.module('DecentralWallet', ['ngRoute','ngAnimate','xeditable','ngGrid',"ui.router", "ui.bootstrap",]);
 cApp.config(function ($routeProvider) {
+  //authentication
+    $routeProvider.when('/login',{
+        resolve:{
+          authenticate:function($location,$rootScope,WalletManager){
+              console.log("authentication called");
+              //return true;   
+              // Entry into App
+              if( authenticated === true ){
+                  InitController()
+                  $location.path("/Home");
+               }
+
+              if (!WalletManager.isAuthenticated)
+              {
+                  $location.path('/login');
+              }
+
+              WalletManager.isAuthenticated( function(authenticated){
+                     if ( authenticated === false )
+                     {
+                        $location.path( "/login" )
+                      }
+                 })            
+        }
+      }
+    });
+
     $routeProvider.
      when('/Home', {
         templateUrl: 'view/home.html',
@@ -27,45 +54,31 @@ cApp.config(function ($routeProvider) {
       when('/Settings',{
               templateUrl: 'view/settings.html',
         controller: 'SettingsController'
+      }).
+      when('/Passphrase',{
+              templateUrl: 'view/passphrase.html',
+        controller: 'PassphraseController'
+      }).
+	  when('/login',{
+            templateUrl: 'view/login.html',
+			controller: 'loginController'
       })
       .otherwise({
-        redirectTo: '/Home'
+        redirectTo: '/login'
       });
-  });
 
-//Add this to have access to a global variable
-cApp.run(function ($rootScope) {
-    $rootScope.globalVariable = 'Amadou'; //global variable
-});
+    $routeProvider.when( '/logout', {
+        resolve:{
+			logout: function($rootScope, $location,DecentralStorage) {
+			DecentralStorage.remove("security", "password");
+			return $location.path("/login");
+			}
+		}
+	})
 
-cApp.directive("selected", function($timeout) {
-  return function($scope, element, attrs) {
-    $scope.$watch('currentAddress', function() {
-      $(element).focus()
-      $(element).select()
-     // console.log(element);
-    })
-  }
-})
+});//end config
 
-cApp.directive('inlineEdit', function() {
-
-    return function(scope, element, attrs) {
-        element.bind('click', function(){
-            element.toggleClass('inactive');
-            if(element.hasClass('inactive')){
-                $(element).blur();
-            }
-        });
-         element.bind('keyup', function(event) {
-          if(event.keyCode==13) handler(event)
-        });
-     
-    };
-
-});
-
-
+  
 
 
 

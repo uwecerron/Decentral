@@ -8,12 +8,13 @@
 }
 
 
-
 /* BASE STYLES
 ============================================================================= */
 body{
-    background: #f5f5f5;
-
+    background: #f9f9f9;
+}
+#addwalletname{
+    border: 0;
 }
 
 textarea { resize:none; }
@@ -96,6 +97,12 @@ a{
 
 #wallet_name{
   color:#333;
+  cursor: pointer;
+  padding: 1rem;
+  box-shadow: 0 0 5px rgba(6, 2, 4, 0.05);
+}
+#wallet_name:hover{
+   background-color:#cacaca;
 }
 
 #walletsideheader{
@@ -138,7 +145,6 @@ thead{
 }
 
 #topnavigation{
-
 	position: relative;
 	/*float: right;*/
 	display: block;
@@ -151,7 +157,7 @@ thead{
 	font-size: 0;
 	height: 55px;
 	/*height: 70px;*/
-	width: 100%;
+	width: 95%;
 	margin: 0;
 	padding: 0;
 
@@ -163,7 +169,7 @@ thead{
 	list-style: none;
 	border: 0;
 	height: 100%;
-	width: 16.666%;
+	width: 20%;
 	text-align: center;
 	background-color: #f5f5f5;
 	margin: 0;
@@ -199,11 +205,24 @@ thead{
 }
 
 #topnavigation li a:hover{
-	
 	color: black;
 }
 
+#topnavlogout{
+	height: 100%;
+	margin-left: 95%;
+	font-size: 52px;
+}
+#topnavlogout div{
+	height: 100%;
+	padding-left: 20%;
+	font-size: 52px;
+}
+#topnavlogout div:hover{
+	color: white;
+}
 #lepanel{
+	background-color: #F7F7F7;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 	/*background: rgba(0,0,0,0.25);*/
 	border-radius: 7px;
@@ -229,10 +248,6 @@ hr {
 	border-color: #f0f0f0;
 }
 
-#user-info{
-	/*background: rgba(0,0,0,0.35);*/
-	height: auto;
-}
 #assets{
 	margin-top: -5%;
 }
@@ -242,21 +257,64 @@ hr {
 table{
 	color:#000;
 }
-#trade_main{
-	margin-left: 20px; 
-	margin-right: 20px;
+/*trade.html*/
+.panel {
+width: 100%;
+height: 120px;
+margin-bottom: 20px;
+/*background-color: #fff;
+box-shadow: 0 1px 1px rgba(0,0,0,0.05);*/
+border: 1px solid transparent;
+border-radius: 4px;
+-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+background: #F9F9F9;
+}
+.tbox {
+background-color: #C2C2C2;
+min-height: 120px;
+padding: 25px;
+}
+.box-icon {
+display: block;
+float: left;
+margin: 0 15px 10px 0;
+padding-top:20px;
+width: 70px;
+height: 70px;
+line-height: 60px;
+vertical-align: middle;
+text-align: center;
+font-size: 35px;
+border-radius: 4px;
+}
+.box-info p {
+margin: 0;
+font-size: 1.2em;
 }
 
 #overview{
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
-	/*background: rgba(0,0,0,0.35);*/
-	background: #fff;
-	margin-top: -16%;
-	margin-left: 30%;
+	background: #F9F9F9;
+	margin-left: 1%;
+	/*background: rgba(0,0,0,0.35);
+	margin-top: -8%;
+	margin-left: 30%;*/
 }
+
+
+#display_asset:hover{
+background-color: #BAC0C7;
+
+}
+
 
 /*send.html begins*/
 
+
+#sell{
+	width:300px;
+}
 #send_size{
 	width:80%;
 }
@@ -274,31 +332,7 @@ table{
 }
 
 /*send end*/
-/* settings.html*/
-#notifications_list{
-	display:block;
-	padding:0;
-	text-align: left;
-}
-#notifications_list label{
-	display:block;
-}
-#notifications_list input{
-	width:20px;
-}
 
-
-#settings_baseunits{
-	font-size:20px;
-}
-
-#settings_security_header{
-	margin-top:20px;
-}
-
-#sell{
-	width:300px;
-}
 
 #tradepane{
 	padding-left: 20%;
@@ -375,7 +409,6 @@ login.html
 
 #login{
 	margin-top:3%;
-	background-color: #fff;
 		border-radius: 0.5rem;
 }
 #login_button{
@@ -383,16 +416,78 @@ login.html
     background-color: transparent;
     text-align: center;
 }
-input {
+
+#login_form{
+	background-color: #E9E9E9;
+	color:#fff;
+}
+input,button {
 	width: 100%;
 	margin-bottom: 1.4rem;
 	padding: 1rem;
-	/*#ecf2f4*/
-	background-color: #0a9af3;
+	/*#ecf2f4
+		background-color: #0a9af3;*/
+
+    background-color: #BAC0C7;;
 	border-radius: 0.2rem;
 	border: none;
 }
 
+/* settings.html*/
+#notifications_list{
+	display:block;
+	padding:0;
+	text-align: left;
+	width:100%;
+}
+#notifications_list label{
+	display:block;
+}
+#notifications_list input{
+	width:20px;
+}
+
+#settings_baseunits{
+	font-size:20px;
+}
+
+#settings_security_header{
+	margin-top:20px;
+}
+
+.settingsfileupload{
+	width: 100%;
+    border-radius: 0.2rem;
+    background:#BAC0C7;
+    border: none;
+}
+.settingsfileupload span {
+	 position: absolute;
+	 text-align: left;
+	 margin-left: -50px;
+	 padding: 1rem;
+	}
+.settingsfileupload input {
+    cursor: pointer;
+    opacity: 0.0;
+    filter: alpha(opacity=0);
+}
+.fileupload {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 0.2rem;
+    background:#BAC0C7; /* and other things to make it pretty */
+}
+
+.fileupload input {
+    position: absolute;
+    top: 0;
+    right: 0; 
+    cursor: pointer;
+    opacity: 0.0;
+    filter: alpha(opacity=0);
+}
 /* PAGES
 ============================================================================= */
 
@@ -463,6 +558,47 @@ input {
     
 }
 
+/* settings --------------------- */
+.barrel.ng-hide-add.ng-hide-add-active,
+.barrel.ng-hide-remove.ng-hide-remove-active {
+  -webkit-transition:all linear 1.5s;
+  transition:all linear 1.5s;
+}
+
+.barrel.ng-hide {
+  opacity:0;
+}
+#barrel_button{
+    height:60px;
+    width:100%;
+    border-radius: 4px;
+    font-size: 2em;
+    color: #333;
+	background-color: #c9c9c9;
+	border-color: #ccc;
+	 border-bottom: 2px solid #A7A7A7;
+}
+
+#barrel_button:hover {
+    background: rgba(0,0,0,0.35);
+    height:60px;
+}
+
+#wallet_list{
+	  -webkit-transition: 0.5s linear all;
+	box-shadow: 0 0 5px;
+	bottom:0px;
+	/*visibility:hidden;*/
+	background:#cacaca;
+	position:absolute;	
+	width:100%;
+	height:60%;
+}
+#wallet_list_list{
+	height: 75%;
+	overflow-y:scroll;
+}
+
 /* contact ---------------------- */
 .page-send.ng-leave      {
     -webkit-animation: scaleDown .6s ease both;
@@ -505,6 +641,17 @@ input {
     -moz-animation: moveFromTop .6s ease both;
     animation: moveFromTop .6s ease both;
 }
+/* slide */
+
+.page-login.ng-enter {
+	-webkit-animation: moveToLeft .6s ease both;
+	animation: moveToLeft .6s ease both;
+}
+
+.page-login.ng-leave {
+	-webkit-animation: moveFromLeft .6s ease both;
+	animation: moveFromLeft .6s ease both;
+}
 
 @-webkit-keyframes scaleDown {
     to { opacity: 0; -webkit-transform: scale(.8); }
@@ -543,3 +690,24 @@ input {
 }
 @keyframes moveFromLeft {
     from { transform: translateX(-100%); }
+
+
+/* move from / to  */
+
+@-webkit-keyframes moveToLeft {
+	from { }
+	to { -webkit-transform: translateX(-100%); }
+}
+@keyframes moveToLeft {
+	from { }
+	to { -webkit-transform: translateX(-100%); transform: translateX(-100%); }
+}
+
+@-webkit-keyframes moveFromLeft {
+	from { -webkit-transform: translateX(-100%); }
+}
+@keyframes moveFromLeft {
+	from { -webkit-transform: translateX(-100%); transform: translateX(-100%); }
+}
+
+@-webki

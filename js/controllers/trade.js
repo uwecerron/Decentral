@@ -1,56 +1,39 @@
 function TradeController($scope,$http){
-   $scope.pageClass = 'page-trade';
-   $scope.message = 'This is Show trade screen';
+    $scope.pageClass = 'page-trade';
+    $scope.message = 'This is Show trade screen';
+    var ws = new WebSocket("ws://localhost:9402/socket/");
+    
+    ws.onopen = function(){  
+        console.log("Connected to peer");  
+    };
+    
+    ws.onmessage = function(message){
+        listener(JSON.parse(message.data));
+    };   
 
-     $scope.buy = function(item) {
-     	console.log(person1);
-      console.log('hero');
-      $http({
-        method  : 'POST',
-        url     : 'http:/localhost:8888',
-        data    : JSON.stringify({"method":"dump_config"}),  // pass in data as strings
-        headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
-    })
-        .success(function(data) {
-            console.log(data);
-         if (!data.success) {
-              // if not successful, bind errors to error variables
-               // $scope.errorName = data.errors.name;
-                //$scope.error=data.errors.name;
-                //$scope.errorSuperhero = data.errors.superheroAlias;
-            } else {
+    $scope.buy = function() {
 
-              // if successful, bind success message to message
-                $scope.message = data.message;
-            }
-        });
+    }
 
-     }
+    $scope.sell = function() {
+         console.log("sell"); 
+    }
 
-       $scope.sell = function(item) {
+    $scope.btcprice = function() {
+        $scope.View="herro"
+        console.log("price"); 
+    }
+    $scope.findtokens = function() {
+        $scope.View="token view"
+        console.log("tokens");  
+    }
+    $scope.multisign = function() {
+        console.log("multising");  
+    }
+    $scope.history = function() {
+        console.log("history");
+    }
 
-       	$http({
-        method  : 'POST',
-        url     : 'https:/localhost/mainpage/index.php',
-        data    : JSON.stringify({ name: 'caca'}),  // pass in data as strings
-        headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
-    })
-        .success(function(data) {
-            console.log(data);
-
-            if (!data.success) {
-              // if not successful, bind errors to error variables
-               // $scope.errorName = data.errors.name;
-                //$scope.error=data.errors.name;
-                //$scope.errorSuperhero = data.errors.superheroAlias;
-            } else {
-
-              // if successful, bind success message to message
-                $scope.message = data.message;
-            }
-        });
-
-       }
 
 
 }

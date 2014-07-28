@@ -1,51 +1,48 @@
- cApp.controller('Home', function($scope, $rootScope,Blockchaininfo,Wallet,TransactionFetcher) {
-         $scope.pageClass = 'page-home';
+cApp.controller('Home', function($scope,$rootScope,modals,Blockchaininfo,Wallet,WalletManager,DecentralStorage) {
+  
+    $scope.pageClass = 'page-home';
     $scope.message = 'Choose Your Wallet';
+    $scope.curWallet = WalletManager.getCurrentWallet();
+	$scope.wallets = WalletManager.getWallets();
+	$rootScope.curWallet = $scope.curWallet;
     $rootScope.$watch( 'balance', function() {
     $scope.balance = $rootScope.balance/100000000;
     })
-   $scope.currentAddress = "1Yj564jDqoB6L7hg5ETYKhqRsB65WrWPB";
-    var wallet1=new Wallet("uwe1");
-    wallet1.loadWallet(function(data){
-    //console.log(data)
+    var backupFile;
+	$scope.currentAddress = "1Yj564jDqoB6L7hg5ETYKhqRsB65WrWPB";
+    var wallet1=new Wallet("uwe1");	
 
-    });
-    console.log(wallet1.Addresses);
-    //var BlockD = new Decentralstorage();
-    //var fun1 = function(){BlockD.save( "security","name",{"4":"hash"})};
-    //var fun2 = function(){BlockD.save( "security","name",{"5":"hash"})};
-    //var fun3 = function(){BlockD.save( "security","name",{"6":"hash"})};
-    /*BlockD.save( "security","name",{"t0":"hash","pvtkey":"Lshafasjasbjasbjasjfbasjbajfsa"});
-    BlockD.save( "security","name",{"t1":"hash","pvtkey":"Lshafasjasbjasbjasjfbasjbajfsa"});
-    BlockD.save( "security","name",{"t2":"hash","pvtkey":"Lshafasjasbjasbjasjfbasjbajfsa"});
-    BlockD.save( "security","name",{"t3":"hash","pvtkey":"Lshafasjasbjasbjasjfbasjbajfsa"});
-    BlockD.save( "security","name",{"t4":"hash"});
-    BlockD.save( "security","name",{"t5":"hash"});
-    BlockD.save( "security","name",{"t6":"hash"});
-    BlockD.save( "security","name",{"t7":"hash"});
-    BlockD.save( "security","name",{"t8":"hash"});
-    BlockD.save( "security","name",{"t9":"hash"});
-    BlockD.save( "security","name",{"t10":"hash"});
-    BlockD.save( "security","name",{"t11":"hash"});
-    BlockD.save( "security","name",{"t12":"hash"});
-    */
     //var Block2= new Blockchaininfo();
     //var addresses=['1Af7Xx9hpqS2GBLY6swqe2fsMmNgPxzAPk','1Yj564jDqoB6L7hg5ETYKhqRsB65WrWPB'];
     //Block2.multiAddr(addresses);
 
-    function download(data) {
-    var a = document.createElement("a");
-     var backup = "data:text/csv;charset=utf-8,";
-        backup += escape(data);
-        a.href= backup;
+    /*export current wallet*/
+    function download(filename, data) {
+        var a = document.createElement('a');
+        a.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
+        a.setAttribute('download', filename);
         a.click();
-    };
-
-
+    }
 
     $scope.backup= function(){
-      var data =  wallet1.getWallet();
-      download(data);
+     var data = wallet1.getAddresses();
+     var fileName = wallet1.Name;
+     download(fileName+'.json', JSON.stringify(data)); 
+    }
+    //import wallet
+    $scope.import = function(){
+        modals.open('modalpassword');
+        var f = document.getElementById('file').files[0];
+        if(!f){
+            return;
+          }
+        var r = new FileReader();
+        r.onload = function(e){
+            backupFile = e.target.result;
+            console.log(backupFile)
+            $scope.fileLoaded = true;
+        } 
+        r.readAsText(f);
     }
     setTimeout(function() {
       var el = document.getElementById('first');
@@ -64,8 +61,32 @@
         
     }
    $scope.generateLeAddress = function() {
-      $scope.currentAddress =  wallet1.generatePublicAddress();
+      $scope.currentAddress =  WalletManager.getCurrentWallet().generatePublicAddress();
+	    WalletManager.update(WalletManager.curWallet);
     }
+
+	$scope.generateWallet = function(WalletName) {
+		if(!WalletName || WalletName.length == 0) {
+			console.log("meh");
+		} else {
+			console.log(WalletName);
+			var wallet = new Wallet(WalletName);
+			WalletManager.addWallet(wallet);
+			$scope.wallets = WalletManager.getWallets();
+			$rootScope.curWallet = $scope.curWallet;
+			console.log(WalletManager.numWallets());
+		}
+	}
+
+	$scope.select = function(walletRef) {
+		WalletManager.setWalletR(walletRef);
+		$scope.curWallet = walletRef;
+		$rootScope.curWallet = $scope.curWallet;
+		console.log(walletRef);
+	};
+  $scope.remove = function(index) {
+      data.push($scope.wallets.splice(index, 1)[0]);
+  };
 
   //} )
 });//end Home Controller

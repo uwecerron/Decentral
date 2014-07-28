@@ -1,34 +1,31 @@
 
 <div class="block-area" id="settings">
-	<div class="col-md-5 form-group">
+	<form name="form" class="col-md-4 form-group">
 		<div class="row">
 		<h2 class="pull-left">Currency</h2> 
 		</div>
 		<div class="row">
-		<select style="width: 400px;" class="pull-left" id="settings_baseunits" data-size="auto">
-			<option>USD</option>
-			<option>EURO</option>
-			<option>YEN</option>
-		</select>
+		 <select style="width: 100%;" class="pull-left" name="Btc" id="settings_baseunits" data-size="auto" ng-model="opt" ng-options="currency.name for currency in currencies" ng-change="changeCurrency(opt)">
+         </select>
 		</div>
 		<div id="settings_security_header" class="row">
 		<h2 class="pull-left">Security</h2> 
 		</div>
-		<div class="row">
+		<div name="form" class="row">
 			<label>Change Password</label>
-			<input type="text" class="input-sm validate[required] form-control" placeholder="Current Password">
+			<input novalidate ng-model="currentpassword" type="password" class="input-sm validate[required] form-control" placeholder="Current Password">
 		</div>
 		<div class="row">
-			<label>New Password</label>
-			<input type="text" class="input-sm validate[required] form-control" placeholder="New Password">
+			<label>New Password</label><span id="input_message" >  {{form.password.errorMessage}}</span>
+			<input novalidate new-password ng-model="newpassword" type="password" class="input-sm validate[required] form-control" placeholder="New Password">
 		</div>
 		<div class="row">
-			<input type="text" class="input-sm validate[required] form-control" placeholder="Confirm Password">
+			<input novalidate new-password ng-model="newpasswordConfirm" type="password" class="input-sm validate[required] form-control" placeholder="Confirm Password">
 		</div>
 		<div class="row">
-		<input type="button" value="Change Password" ng-click="window.alert('hello')">
+		<input type="button" value="Change Password" ng-click="passwordChangedSubmit()">
 		</div>
-	</div>
+	</form>
 	<div class="col-md-1">
 	</div>
 	<div class="col-md-5">
@@ -36,20 +33,32 @@
 		<h2 class="pull-left">Notifications</h2> 
 		</div>
 		<div class="row pull-left" id="notifications_list">
-			<label><input type="checkbox" />Convert to Base Unit Automatically</label>
-			<label><input type="checkbox"/>Disable Trade</label>
-			<label><input type="checkbox"/>Show Balance</label>
-			<label><input type="checkbox"/>Disable Multisignature Sharing service</label>
+			<label><input ng-click="convert()" type="checkbox" />Convert to Base Unit Automatically</label>
+			<label><input ng-click="showbalance()" type="checkbox"/>Show Balance</label>
+			<label><input ng-click="trade()" type="checkbox"/>Disable Trade</label>
+			<label><input ng-click="coinjoin()" type="checkbox"/>Disable Coinjoin</label>
 
 		</div>
+		<div class="row">
+		<h2 class="pull-left">Wallets</h2> 
+		</div>
+		<div class="row">
+			<div class="settingsfileupload"><span>Import Wallet</span><input class="upload" ng-click="importWallet()" type="file" id="file" name="file"/></div>
+			<input type="button" ng-click="backupWallet()" value="Backup Wallet">
+			<input type="button" ng-click="showWallets = !showWallets" value="Remove Wallet">
+		</div>
 	</div>
-	<div class="col-md-1">
+	<div class="col-md-2">	
 	</div>
-	<div class="row">
-	<div style="margin-top:40px"class="col-md-5">
-	<input type="button" value="Remove Wallet">
-	<input type="button" value="Backup Wallet">
-	<input type="button" value="Import Wallet">
-	</div>
+</div>
+
+<div class="barrel" id="wallet_list" ng-show="showWallets">
+	<button id="barrel_button" class="row" ng-click="showWallets = !showWallets">
+	 <i class="fa fa-arrow-left"></i> Back
+	</button>
+	<div id="wallet_list_list">
+		<div class="animate-repeat" ng-repeat="wallet in wallets">
+			<button id="wallet_name"  ng-click="removeWallet(wallet)">{{wallet.Name}}</button>
+		</div>
 	</div>
 </div>

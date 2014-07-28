@@ -1,4 +1,4 @@
-function AddressesController($scope,$rootScope, $filter,Wallet) {
+function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
     $scope.sortingOrder = 'name';
     $scope.reverse = false;
     $scope.filteredItems = [];
@@ -6,25 +6,21 @@ function AddressesController($scope,$rootScope, $filter,Wallet) {
     $scope.itemsPerPage = 5;
     $scope.pagedItems = [];
     $scope.currentPage = 0;
-    var items=[];
+ 
     var address={};
-    var wallet1=new Wallet("uwe1");
-    wallet1.loadWallet(function(data){
-//    console.log(data.length)
-    for(var i =0;i<data.length;i++){
-        address["address"]=data[i];
-        //hard coding asset
-        address["token"]="btc";
-        items.push(address);
-    }
-      // console.log(items)
-      
-});
-      
-     
-      $scope.items = items;
-   
-
+	var curWallet = WalletManager.getCurrentWallet();
+	console.log(curWallet);
+	if(curWallet != null){
+		$scope.items = curWallet.getAddresses();
+		//$scope.items = [];
+	}
+	else{
+		$scope.items = [];
+	}
+	
+	
+	
+ 
     var searchMatch = function (haystack, needle) {
         if (!needle) {
             return true;
@@ -90,7 +86,15 @@ function AddressesController($scope,$rootScope, $filter,Wallet) {
     $scope.setPage = function () {
         $scope.currentPage = this.n;
     };
-
+	
+	$rootScope.$watchCollection(
+		"curWallet",
+		function( newValue, oldValue ) {
+			$scope.items = newValue.getAddresses();
+			$scope.search();
+			console.log($scope.items);
+		}
+	);
     // functions have been describe process the data for display
     $scope.search();
 
@@ -112,4 +116,3 @@ function AddressesController($scope,$rootScope, $filter,Wallet) {
             $('th.'+new_sorting_order+' i').removeClass().addClass('icon-chevron-down');
     };
 };
-

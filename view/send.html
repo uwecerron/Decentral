@@ -5,12 +5,8 @@
 			<!-- Button and dropdown menu -->
 			<div id="send_cols" class="col-md-2 form-group">
 				<label>Token</label>
-				<select id="send_asset_selector"  name="sport" class="form-control input-sm validate[required]" data-size='auto'>
-					<option value="">BTC</option>
-					<option value="option1">LTC</option>
-					<option value="option2">XCP</option>
-					<option value="option3">Burger King</option>
-				</select>
+				<select id="send_asset_selector" class="form-control input-sm validate[required]" data-size='auto' ng-model="opt" ng-options="asset.moniker for asset in assets"  ng-change="changeAsset(opt)">
+                </select>
 			</div>
 			<div id="send_cols" class="col-md-10 form-group">
 				<label style="text-align:right;" class="col-md-6">
@@ -37,7 +33,7 @@
 				validate-address>
 			</div>
 		</div>
-		<div  class="col-xs-4" id="sendBalance">Available Balance: {{totalBTC}}</div>
+		<div  class="col-xs-4" data-bal data-value="balance"></div>
 		<span class="error" ng-show="form.min.$error.lowerThan">
 		Amount must be at least be .001 btc
 		</span>

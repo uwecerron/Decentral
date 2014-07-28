@@ -1,18 +1,20 @@
 
-<form ng-submit="processForm()" id="issue" role="form">
+<form name="form" ng-submit="processForm()" id="issue" role="form">
   <div class="form-group">
     <label for="exampleInputEmail1">Asset/currency name:</label>
     <input type="text" ng-model="formData.name" class="form-control" id="monikerinput" placeholder="Land">
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Amount:</label>
-    <input type="text" ng-model="formData.superheroAlias" class="form-control" id="amountinput" placeholder="10,000">
+    <label id="input_message" >{{form.tokens.message}}</label>
+    <input validate-tokens type="text" ng-model="tokensAmount" class="form-control" id="amountinput" placeholder="10,000">
   </div>
    <div class="form-group">
     <label for="exampleInputPassword1">Units:</label>
-    <input type="text" class="form-control" id="unitsinput" placeholder="10,000,000">
+    <label id="input_message" >{{form.units.message}}</label>
+    <input validate-units type="text" ng-model="unitsAmount" class="form-control" id="unitsinput" placeholder="10,000,000">
   </div>
   <button style="width: 300px;
-height:50px;" type="submit" class="btn btn-default">Issue</button>  <button style="width: 300px;
-height:50px;"  type="submit" class="btn btn-default">Cancel</button>
+height:50px;" type="submit" >Issue</button>  <button style="width: 300px;
+height:50px;"  type="submit" >Cancel</button>
 </form>
