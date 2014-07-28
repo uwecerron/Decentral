@@ -487,8 +487,6 @@ input,button {
     cursor: pointer;
     opacity: 0.0;
     filter: alpha(opacity=0);
- 
-    height: 200px;
 }
 /* PAGES
 ============================================================================= */
