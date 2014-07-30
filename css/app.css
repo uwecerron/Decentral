@@ -16,7 +16,10 @@ body{
 #addwalletname{
     border: 0;
 }
-
+#logo{
+	height:128px;
+	background:url(../img/icon128.png) no-repeat center;
+}
 textarea { resize:none; }
 .table th {
    text-align: center;   
