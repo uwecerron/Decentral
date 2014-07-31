@@ -12,7 +12,6 @@ function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
 	console.log(curWallet);
 	if(curWallet != null){
 		$scope.items = curWallet.getAddresses();
-		//$scope.items = [];
 	}
 	else{
 		$scope.items = [];

@@ -8,10 +8,24 @@ function TransactionsController($rootScope,$scope, $filter,TransactionFetcher, W
     $scope.pagedtransactions = [];
     $scope.currentPage = 0;
 
-    console.log(WalletManager.getCurrentWallet());
-	$scope.transactions =[];
-    //$scope.transactions = WalletManager.getCurrentWallet().getTransactions();
 
+	
+    var curWallet = WalletManager.getCurrentWallet();
+	if(curWallet != null){
+		$scope.transactions = curWallet.getTransactions();
+	}
+	else{
+		$scope.transactions =[];
+	}
+
+	$rootScope.$watchCollection(
+		"curWallet",
+		function( newValue, oldValue ) {
+			$scope.transactions = newValue.getTransactions();
+			$scope.search();
+		}
+	);
+	
     var searchMatch = function (haystack, needle) {
         if (!needle) {
             return true;
