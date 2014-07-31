@@ -1,0 +1,29 @@
+            <div class="row">
+                <h3>Create Multisig address</h3>
+                <label>Type Any Name or Label
+                  <input type="text" placeholder="Friends Bank" class="form-control input-sm ng-pristine ng-valid" ng-model="multisigName">
+                </label>
+                <div class="row">
+                  <div >
+                    <label>Your Wallet Password
+                    <input type="password" placeholder="Choose your password" class="form-control ng-scope ng-pristine ng-invalid ng-invalid-required" ng-model="$parent.walletPassword">
+                    </label>
+                  </div>
+                </div>
+                    <div>
+                      <label>Total number of participants
+                    <select ng-model="totalParticipants"  class="form-control input-sm">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                      </label>
+                    </div>
+                    <div>
+                      <label>Required participant signatures 
+                      <select ng-model="requiredParticipants" ng-options="" class="form-control input-sm"></select> 
+                       </label>               
+                    </div>
+            </div>

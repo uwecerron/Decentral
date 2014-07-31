@@ -273,8 +273,20 @@ border-radius: 4px;
 box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 background: #F9F9F9;
 }
+.trade_panel{
+	width: 100%;
+height: 100%;
+margin-bottom: 20px;
+/*background-color: #fff;
+box-shadow: 0 1px 1px rgba(0,0,0,0.05);*/
+border: 1px solid transparent;
+border-radius: 4px;
+-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+background: #F9F9F9;
+}
 .tbox {
-background-color: #C2C2C2;
+background-color: #C7CBCE;
 min-height: 120px;
 padding: 25px;
 }
@@ -296,6 +308,21 @@ margin: 0;
 font-size: 1.2em;
 }
 
+#totalbtcinfo {
+width: 250px;
+font-size: 15px;
+}
+.btcinfo {
+list-style-type: none;
+margin: 8px;
+padding: 1em;
+background-color: rgba(224, 224, 224, 0.2);
+}
+#btcprice{
+margin: 8px;
+padding: 1em;
+background-color: rgba(224, 224, 224, 0.2);
+}
 #overview{
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 	background: #F9F9F9;
