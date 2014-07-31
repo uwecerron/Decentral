@@ -1,26 +1,18 @@
 "use strict";
-
-
-function AssetsController($scope,DecentralStorage,WalletManager)  {
+cApp.controller("AssetsController",function($scope,Asset,DecentralStorage,WalletManager)  {
     $scope.pageClass = 'page-assets';
     $scope.items = WalletManager.getCurrentWallet().getAllAssets();
-    $scope.item = {};
+	
   	$scope.addAssetShow = false;
-    var ledecentral = DecentralStorage;
-   
-    var values ={Name: "Burger2 King2", BTC: "1200",Address:"mhRYQjHSu4QQRr8yi5m2eiSznsUt4HrJSy", Units: "5"};
-    ledecentral.save( "address", values);
-    ledecentral.getall();
-
-
     $scope.addItem = function(item) {
-      var key = Bitcoin.ECKey.makeRandom();
-      var hash=key.pub.getAddress().toString();
-       $scope.item.Address =hash;
-       $scope.item = {};    
-       $scope.itemForm.$setPristine();   
-      //$scope.$apply( function() {  
-    };
+		var hash = WalletManager.getCurrentWallet().generatePublicAddress();
+		var newAsset = new Asset(item["Name"],item["BTC"],item["Units"],hash);
+		$scope.itemForm.$setPristine();   
+		WalletManager.getCurrentWallet().addAsset(newAsset);
+		$scope.items = WalletManager.getCurrentWallet().getAllAssets();
+		WalletManager.updateCurrent();
+
+	};
    
     $scope.totalBTC = WalletManager.getCurrentWallet().getBalance();
     $scope.mySortFunction = function(item) {
@@ -29,11 +21,7 @@ function AssetsController($scope,DecentralStorage,WalletManager)  {
       return parseInt(item[$scope.sortExpression]);
     };
     
-      /*$scope.removeItem = function(index){
-      ReceiveTable.removeItem(index);
-    };*/
-    
     $scope.name=/^[a-zA-Z ]*$/;
     
 	$scope.integerval=/^\d*$/;
-}
+});

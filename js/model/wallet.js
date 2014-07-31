@@ -150,18 +150,18 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
       return addressArr;
   }  
 
-  Wallet.prototype.generatePublicAddress =function() {
-      var key = Bitcoin.ECKey.makeRandom();
-      var hash=key.pub.getAddress().toString();
-	    var newAddress = {};
-      var bookEntry ={};
-	    newAddress["address"] = hash;
-      bookEntry[hash]= key.toWIF();
-      console.log(bookEntry)
-	    this.Addresses.push(newAddress);
-      this.Book.push(bookEntry);
-      return hash;
-  }
+	Wallet.prototype.generatePublicAddress = function() {
+		var key = Bitcoin.ECKey.makeRandom();
+		var hash = key.pub.getAddress().toString();
+		var newAddress = {};
+		var bookEntry ={};
+		newAddress["address"] = hash;
+		bookEntry[hash]= key.toWIF();
+		console.log(bookEntry)
+		this.Addresses.push(newAddress);
+		this.Book.push(bookEntry);
+		return hash;
+	}
     
   Wallet.prototype.utxofetcher=function(Addresses, callback){
 
