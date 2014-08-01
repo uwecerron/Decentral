@@ -1,46 +1,33 @@
 
-function SendController($scope,modals,$rootScope,Wallet){
-  $scope.pageClass = 'page-send';
-  $scope.item = {};
+function SendController($scope,modals,$rootScope,Wallet,WalletManager){
+	
+	/****SendController init************/
+	$scope.pageClass = 'page-send';
+	$scope.item = {};
+	$scope.inputAddress='';
+	$scope.inputAmount='';
+	$scope.changeAsset= function(option){
 
-  console.log('logged');
-  $scope.inputAddress='';
-  $scope.inputAmount='';
-  var wallet1= new Wallet();
-  $scope.assets = [
-        {moniker: "burger" , colordef: 'acsr35gadgasf' },
-        {moniker: "mcdonalds" , colordef: 'Uac9r35gadgasfXdf' }
-    ];
-  $scope.changeAsset= function(option){
-     //change asset
-    }
-
+	};
+	/****SendController init end************/
     //check balance
     $rootScope.$watch( 'balance', function() {
-    $scope.balanceInt = $rootScope.balanceInt
-    $scope.balance = $rootScope.balance
-    })
+		$scope.balanceInt = $rootScope.balanceInt
+		$scope.balance = $rootScope.balance
+    });
 
     var satoshies=100000000;
 
     $scope.send = function(item) {
-      var value=$scope.inputAmount * satoshies;
-      var formData ={
-      addr:$scope.inputAddress,
-      amount:value
-      }
-      modals.password();
-      console.log(formData);
-      wallet1.buildTransaction(formData,function(data){
-        console.log(data);
-      });
-
-      console.log( $scope.inputAddress);
-
-     console.log('submitted');
-      //$scope.$apply( function() {
-     
-    };
-
-   
+		var value=$scope.inputAmount * satoshies;
+		var formData ={
+		addr:$scope.inputAddress,
+		amount:value
+		}
+		modals.password();
+		console.log(formData);
+		WalletManager.getCurrentWallet().buildTransaction(formData,function(data){
+		console.log(data);
+		});  
+    };  
 }
