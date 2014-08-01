@@ -1,5 +1,6 @@
 function TransactionsController($rootScope,$scope, $filter,TransactionFetcher, WalletManager) {
     
+	/********Transactions init**********/
     $scope.sortingOrder="";
     $scope.reverse = false;
     $scope.filteredtransactions = [];
@@ -7,8 +8,6 @@ function TransactionsController($rootScope,$scope, $filter,TransactionFetcher, W
     $scope.transactionsPerPage = 5;
     $scope.pagedtransactions = [];
     $scope.currentPage = 0;
-
-
 	
     var curWallet = WalletManager.getCurrentWallet();
 	if(curWallet != null){
@@ -16,13 +15,20 @@ function TransactionsController($rootScope,$scope, $filter,TransactionFetcher, W
 	}
 	else{
 		$scope.transactions =[];
+		throw new Error("Failed to get transactions of current wallet");
 	}
-
+	/********Transactions init end**********/
+	
 	$rootScope.$watchCollection(
 		"curWallet",
 		function( newValue, oldValue ) {
-			$scope.transactions = newValue.getTransactions();
-			$scope.search();
+			try{
+				$scope.transactions = newValue.getTransactions();
+				$scope.search();
+			}
+			catch(e){
+				alert("Failed to update wallet\n" + e.name + " " + e.message);
+			}
 		}
 	);
 	
@@ -127,5 +133,3 @@ function TransactionsController($rootScope,$scope, $filter,TransactionFetcher, W
 		download(outfile);
 	};
 };
-
-//TransactionsController.$inject = ['$scope', '$filter'];
