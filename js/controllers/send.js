@@ -1,4 +1,4 @@
-
+"use strict";
 function SendController($scope,modals,$rootScope,Wallet,WalletManager){
 	
 	/****SendController init************/
