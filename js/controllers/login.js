@@ -1,10 +1,14 @@
 'use strict';
 
 cApp.controller('loginController',function($scope,DecentralStorage,$location,$rootScope,WalletManager,Session){
+	
+	/**********login init***********/
 	$scope.pageClass = 'page-login';
 	var storage= DecentralStorage;
 	$scope.page = 1;
 	$scope.form = {};
+	/**********login init end***********/
+	
 	$scope.nextPage = function() {
 		$scope.page++;
 	};
