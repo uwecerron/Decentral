@@ -1,5 +1,7 @@
 function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
-    $scope.sortingOrder = 'name';
+    /******************Initialization**********/
+	
+	$scope.sortingOrder = 'name';
     $scope.reverse = false;
     $scope.filteredItems = [];
     $scope.groupedItems = [];
@@ -8,16 +10,19 @@ function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
     $scope.currentPage = 0;
  
     var address={};
+
 	var curWallet = WalletManager.getCurrentWallet();
 	console.log(curWallet);
+	
 	if(curWallet != null){
 		$scope.items = curWallet.getAddresses();
 	}
 	else{
 		$scope.items = [];
+		throw new Error("Failed to get addresses of current wallet");
 	}
 	
-	
+	/******************Initialization End**********/
 	
  
     var searchMatch = function (haystack, needle) {
@@ -29,7 +34,7 @@ function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
 
     // init the filtered items
     $scope.search = function () {
-        $scope.filteredItems = $filter('filter')($scope.items, function (item) {
+        $scope.filteredItems = $filter("filter")($scope.items, function (item) {
             for(var attr in item) {
                 if (searchMatch(item[attr], $scope.query))
                     return true;
@@ -37,7 +42,7 @@ function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
             return false;
         });
         // take care of the sorting order
-        if ($scope.sortingOrder !== '') {
+        if ($scope.sortingOrder !== "") {
             $scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sortingOrder, $scope.reverse);
         }
         $scope.currentPage = 0;
@@ -89,9 +94,13 @@ function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
 	$rootScope.$watchCollection(
 		"curWallet",
 		function( newValue, oldValue ) {
-			$scope.items = newValue.getAddresses();
-			$scope.search();
-			console.log($scope.items);
+			try {
+				$scope.items = newValue.getAddresses();
+				$scope.search();
+			}
+			catch(e) {
+				alert("Failed to update wallet\n" + e.name + " " + e.message);
+			}
 		}
 	);
     // functions have been describe process the data for display
@@ -99,6 +108,11 @@ function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
 
     // change sorting order
     $scope.sort_by = function(newSortingOrder) {
+		
+		if(!newSortingOrder) {
+			throw new Error("non existing sorting order");
+		}
+		
         if ($scope.sortingOrder == newSortingOrder)
             $scope.reverse = !$scope.reverse;
 
