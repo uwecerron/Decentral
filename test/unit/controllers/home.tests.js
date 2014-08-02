@@ -5,6 +5,7 @@ describe('HomeController', function(){
  
     //mock Application to allow us to inject our own dependencies
     beforeEach(angular.mock.module('DecentralWallet'));
+
     //mock the controller for the same reason and include $rootScope and $controller
     beforeEach(angular.mock.inject(function($rootScope, $controller){
         //create an empty scope
@@ -14,23 +15,64 @@ describe('HomeController', function(){
     }))
     // tests start here
     
-    it('Choose a Wallet', function(){
+    it('_Homeinit', function(){
         expect(scope.message).toBe('Choose Your Wallet');
+		expect(scope.pageClass).toBe('page-home');
     });
     
-    it('backup a Wallet', function(){
-        
-        //expect(scope.message).toBe('Choose Your Wallet');
+    it('backup', function(){
+		var getAddressesCalled = false;
+		var	getNameCalled = false;
+        scope.curWallet = {};
+		scope.curWallet.getAddresses = function(){
+			getAddressesCalled = true;
+		};
+		scope.curWallet.getName = function(){
+			getNameCalled = true;
+		};
+		
+		scope.backup();
+		expect(getAddressesCalled).toBe(true);
+		expect(getNameCalled).toBe(true);
     });
     
-    it('import a Wallet', function(){
+    it('import', function(){
         //expect(scope.message).toBe('Choose Your Wallet');
     });
 
-    it('Home Bitcoin Balance', function(){
-        //expect(scope.message).toBe('Choose Your Wallet');
-    });
-
+	it("generateWallet undefined", function() {
+		var WalletName;
+		try {
+			scope.generateWallet(WalletName);
+		} catch(e) {
+			expect(e.message).toBe("Improper Wallet Name");
+		}	
+	});
+	
+	it("generateWallet lengthzero", function() {
+		var WalletName = "";
+		try {
+			scope.generateWallet(WalletName);
+		} catch(e) {
+			expect(e.message).toBe("Improper Wallet Name");
+		}	
+	});
+	
+	it('select undefined', function(){
+        var WalletRef;
+		try {
+			scope.select(WalletRef);
+		} catch(e) {
+			expect(e.message).toBe("Undefined Wallet");
+		}
+	});
+	
+	it('select defined', function(){
+        var WalletRef = "changed";
+		scope.curWallet = "not changed";
+		scope.select(WalletRef);
+		expect(scope.curWallet).toBe("changed");
+	});
 
     /*it('generate an Address', function(){
        WalletManager.setWalletR('sad');

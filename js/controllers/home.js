@@ -27,13 +27,13 @@ cApp.controller('HomeController', function($scope,$rootScope,modals,Blockchainin
         a.click();
     }
 
-    $scope.backup= function(){
-		var data = wallet1.getAddresses();
-		var fileName = wallet1.Name;
+    $scope.backup = function() {
+		var data = $scope.curWallet.getAddresses();
+		var fileName = $scope.curWallet.getName();
 		download(fileName+'.json', JSON.stringify(data)); 
     }
 
-    $scope.import = function(){
+    $scope.import = function() {
         modals.open('modalpassword');
         var f = document.getElementById('file').files[0];
         if(!f){
@@ -68,7 +68,7 @@ cApp.controller('HomeController', function($scope,$rootScope,modals,Blockchainin
 			var wallet = new Wallet(WalletName);
 			WalletManager.addWallet(wallet);
 			$scope.wallets = WalletManager.getWallets();
-			$rootScope.curWallet = $scope.curWallet;
+			$rootScope.curWallet = $scope.curWallet = WalletManager.getCurrentWallet();
 		}
 	}
 
