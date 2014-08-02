@@ -27,7 +27,7 @@ module.exports = function(config) {
       'js/services/*.js',
       'js/network/blockchaininfo.js',
       'js/controllers/home.js',
-      '**/home.tests.js'
+      '**/*.tests.js'
     ],
 
 

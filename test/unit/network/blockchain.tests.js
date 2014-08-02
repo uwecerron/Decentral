@@ -1,8 +1,8 @@
 'use strict';
 
-  var _blockchain = require('../js/index')
+  //var _blockchain = require('../js/index')
   describe('Blockchain', function() {
-  var api;
+  var scope;
 
  //random data from blockchain replace if needed or replace with testnet blockchain
  /*var rawTx = {
@@ -19,7 +19,7 @@
   '17rJhbvxPhwp7Z51qQZYt97Jwzm46eRQ1n',
   '1C9FaLpWd5aMMhGL9r8L7tDPMay3Cs7uwH',
   ];*/
- var rawTx = 'b6f6991d03df0e2e04dafffcd6bc418aac66049e2cd74b80f14ac86db1e3f0da';
+  var rawTx = 'b6f6991d03df0e2e04dafffcd6bc418aac66049e2cd74b80f14ac86db1e3f0da';
 
   var addresses = ['1FgJgE5xvJhHYQG3GNp2qzU3oF5gWrLnhn'];
 
@@ -41,12 +41,18 @@
     confirmations: 1327
   }];
 
-  beforeEach(function() {
-    api = new _blockchain.blockchain.Blockchain();
-  })
+  beforeEach(angular.mock.module('DecentralWallet'));
+
+  //mock the controller for the same reason and include $rootScope and $controller
+    beforeEach(angular.mock.inject(function($rootScope, $controller){
+        //create an empty scope
+        scope = $rootScope.$new();
+        //declare the controller and inject our empty scope
+        $controller('Blockchaininfo', {$scope: scope});
+    }))
 
   it('multiAddr', function(done) {
-    api.multiAddr(['1F6UU9EBPNyAFyPojDqHAtoCiNDX9mFmBP'], function(error, response) {
+    scope.multiAddr(['1F6UU9EBPNyAFyPojDqHAtoCiNDX9mFmBP'], function(error, response) {
       expect(error).to.be.null
       expect(response).to.be.equal(
          rawTx['b79b1b3cd211e7f73cfa46ccd4501a36f6cec964070eadaa076dac6b7ce13234'])
@@ -56,7 +62,7 @@
   })
 
  /* it ('getUnspent', function(done) {
-    api.getUnspent('3432e17c6bac6d07aaad0e0764c9cef6361a50d4cc46fa3cf7e711d23c1b9bb7', function(error, response) {
+    scope.getUnspent('3432e17c6bac6d07aaad0e0764c9cef6361a50d4cc46fa3cf7e711d23c1b9bb7', function(error, response) {
       expect(error).to.be.null
       expect(response).to.deep.equal(
         //'3432e17c6bac6d07aaad0e0764c9cef6361a50d4cc46fa3cf7e711d23c1b9bb7'
@@ -65,7 +71,7 @@
   })
 
   it('should contain stuff', function(done) {
-    api.getUnspent('no Address', function(error, response) {
+    scope.getUnspent('no Address', function(error, response) {
     	//implement this
 
       })

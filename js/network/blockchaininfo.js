@@ -95,6 +95,6 @@ Blockchain.prototype.pushTx =function(tx_serialized, tx_hash, callback) {
 
   return Blockchain;
 });//end factory
-module.exports = {
+/*module.exports = {
 Blockchain: Blockchain
-}
+}*/
