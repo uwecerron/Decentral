@@ -262,7 +262,7 @@ table{
 }
 /*trade.html*/
 .panel {
-width: 100%;
+width: 90%;
 height: 120px;
 margin-bottom: 20px;
 /*background-color: #fff;
@@ -286,8 +286,9 @@ box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 background: #F9F9F9;
 }
 .tbox {
+margin-left: 20px;
 background-color: #C7CBCE;
-min-height: 120px;
+max-height: 118px;
 padding: 25px;
 }
 .box-icon {
@@ -414,7 +415,6 @@ select:not([multiple]) {
 .page {
 	background: rgba(0,0,0,0);
 	padding: 4em 0 2em;
-
 	/*background: -webkit-linear-gradient(70deg, #080f1f 30%, #2b4b5a 87%, #435e67 100%);
 	background: -o-linear-gradient(70deg, #080f1f 30%, #2b4b5a 87%, #435e67 100%);
 	background: -ms-linear-gradient(70deg, #080f1f 30%, #2b4b5a 87%, #435e67 100%);
@@ -423,13 +423,10 @@ select:not([multiple]) {
 	background-attachment: fixed;*/
 	color: #000;
 	text-align: center;
-    bottom:0; 
-    padding-top:0px;
     left:0px;
     position:absolute; 
     text-align:center;
-    top:70px;
-	overflow-y:scroll;	
+    top:10px;
     width:100%; 
     color:#000;
 }

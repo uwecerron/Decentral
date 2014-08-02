@@ -1,6 +1,6 @@
   <!--Asset Selector-->
   <div id="trade_main">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="trade_panel">
 
                     <ng-include src="subPage"></ng-include>
@@ -8,9 +8,8 @@
             </div>            
         </div>
         <!-- AssetHistory -->
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="row">
-                <div class="col-md-6">
                     <a id="first2" ng-click="subPage='view/partials/trade_price.html'"><div class="panel tbox">
                         <span class="box-icon rounded bg-info">
                             <i class="fa fa-btc"></i>
@@ -20,8 +19,7 @@
                             <p class="text-muted"><span data-i18n="Growth">BTC info</span></p>
                         </div>
                     </div></a>
-                </div>
-                <div class="col-md-6">
+         
                     <a ng-click="subPage='view/partials/trade_tokens.html'"><div class="panel tbox">
                         <span class="box-icon rounded bg-info">
                             <i class="fa fa-bank"></i>
@@ -30,11 +28,10 @@
                             <p class="size-h2">352</p>
                             <p class="text-muted"><span data-i18n="New users">Find Tokens</span></p>
                         </div>
-                    </div></a>
-                </div>
+                    </div></a>           
             </div>
             <div class="row">
-                <div class="col-md-6">
+    
                     <a ng-click="subPage='view/partials/trade_multisig.html'"><div class="panel tbox">
                         <span class="box-icon rounded bg-info">
                             <i class="fa fa-key"></i>
@@ -44,8 +41,8 @@
                             <p class="text-muted"><span data-i18n="Profit">Multisignatures</span></p>
                         </div>
                     </div></a>
-                </div>
-                <div class="col-md-6">
+           
+    
                     <a ng-click="subPage='view/partials/trade_history.html'"><div class="panel tbox">
                         <span class="box-icon rounded bg-info">
                             <i class="fa fa-bars"></i>
@@ -54,8 +51,7 @@
                             <p class="size-h2">313</p>
                             <p class="text-muted"><span data-i18n="Sales">History</span></p>
                         </div>
-                    </div></a>
-                </div>
+                    </div></a>            
             </div>
             <!-- end stats -->            
         </div>
