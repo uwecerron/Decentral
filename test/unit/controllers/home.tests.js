@@ -19,6 +19,7 @@ describe('HomeController', function(){
     });
     
     it('backup a Wallet', function(){
+        
         //expect(scope.message).toBe('Choose Your Wallet');
     });
     
