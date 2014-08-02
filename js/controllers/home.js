@@ -1,4 +1,4 @@
-cApp.controller('Home', function($scope,$rootScope,modals,Blockchaininfo,Wallet,WalletManager,DecentralStorage) {
+cApp.controller('HomeController', function($scope,$rootScope,modals,Blockchaininfo,Wallet,WalletManager,DecentralStorage) {
 	
 	/*******************Home init*********************/
     $scope.pageClass = 'page-home';

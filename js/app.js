@@ -1,7 +1,7 @@
 
 "use strict";
 
-var cApp =angular.module('DecentralWallet', ['ngRoute','ngAnimate','xeditable','ngGrid',"ui.router", "ui.bootstrap",]);
+var cApp =angular.module('DecentralWallet', ['ngRoute',"ui.router", "ui.bootstrap",]);
 cApp.config(function ($routeProvider) {
   //authentication
     $routeProvider.when('/login',{
@@ -11,8 +11,8 @@ cApp.config(function ($routeProvider) {
               //return true;   
               // Entry into App
               if( authenticated === true ){
-                  InitController()
-                  $location.path("/Home");
+                  //InitController()
+                 // $location.path("/Home");
                }
 
               if (!WalletManager.isAuthenticated)
@@ -23,7 +23,7 @@ cApp.config(function ($routeProvider) {
               WalletManager.isAuthenticated( function(authenticated){
                      if ( authenticated === false )
                      {
-                        $location.path( "/login" )
+                     ///   $location.path( "/login" )
                       }
                  })            
         }
@@ -33,7 +33,7 @@ cApp.config(function ($routeProvider) {
     $routeProvider.
      when('/Home', {
         templateUrl: 'view/home.html',
-        controller: 'Home'
+        controller: 'HomeController'
     }).
       when('/Assets', {
         templateUrl: 'view/assets.html',
@@ -61,7 +61,7 @@ cApp.config(function ($routeProvider) {
       }).
 	  when('/login',{
             templateUrl: 'view/login.html',
-			controller: 'loginController'
+			      controller: 'loginController'
       })
       .otherwise({
         redirectTo: '/login'
@@ -70,7 +70,7 @@ cApp.config(function ($routeProvider) {
     $routeProvider.when( '/logout', {
         resolve:{
 			logout: function($rootScope, $location,DecentralStorage) {
-			DecentralStorage.remove("security", "password");
+			//DecentralStorage.remove("security", "password");
 			return $location.path("/login");
 			}
 		}
