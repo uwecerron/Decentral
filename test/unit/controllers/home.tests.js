@@ -35,6 +35,7 @@ describe("HomeController", function(){
 	};
 	
     //mock Application to allow us to inject our own dependencies
+	beforeEach(angular.mock.module('DecentralWallet'));
 	beforeEach(function() {
 		module(function ($provide) {
 			$provide.value("WalletManager", mockWalletManager);
@@ -53,7 +54,7 @@ describe("HomeController", function(){
 	
 	/***
 	Everything here belongs to checking when the page is first initialized
-	*/
+	***/
     it("_Homeinit", function(){
         expect(scope.message).toBe("Choose Your Wallet");
 		expect(scope.pageClass).toBe("page-home");
@@ -66,7 +67,7 @@ describe("HomeController", function(){
 	This checks the backup function
 	$scope.curWallet.getAddresses() is called
 	$scope.curWallet.getName() is called
-	*/	
+	***/	
 	it("backup", function(){
 		spyOn(scope.curWallet, "getAddresses");
 		spyOn(scope.curWallet, "getName");
@@ -79,7 +80,7 @@ describe("HomeController", function(){
 	This checks the generateAddress method
 	WalletManager.updateCurrent() is called
 	$scope.curWallet.generatePublicAddress() is called
-	*/
+	***/
 	it("generateAddress", function() {
 		spyOn(mockWalletManager,"updateCurrent");
 		spyOn(scope.curWallet,"generatePublicAddress");
@@ -91,7 +92,7 @@ describe("HomeController", function(){
 	/***
 	This checks the generateWallet method
 	undefined input should throw an error
-	*/
+	***/
 	it("generateWallet undefined", function() {
 		var WalletName;
 		var message = "";
@@ -107,7 +108,7 @@ describe("HomeController", function(){
 	/***
 	This checks the generateWallet method
 	length zero string input should throw an error
-	*/
+	***/
 	it("generateWallet lengthzero", function() {
 		var WalletName = "";
 		var message = "";
@@ -126,7 +127,7 @@ describe("HomeController", function(){
 	WalletManager.addWallet() is called
 	WalletManager.getWallets() is called
 	WalletManager.getCurrentWallet() is called
-	*/
+	***/
 	it("generateWallet named", function() {
 		var WalletName = "Named";
 		spyOn(mockWalletManager,"addWallet");
@@ -141,7 +142,7 @@ describe("HomeController", function(){
 	/***
 	This checks the select method
 	undefined input should throw an error
-	*/
+	***/
 	it("select undefined", function(){
         var WalletRef;
 		var message = "";
@@ -159,7 +160,7 @@ describe("HomeController", function(){
 	good input should not throw an error
 	expects input to be stored in scope.curWallet
 	WalletManager.setWalletR is called
-	*/
+	***/
 	it("select defined", function(){
         var WalletRef = "changed";
 		scope.curWallet = "not changed";

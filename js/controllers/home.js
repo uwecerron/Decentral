@@ -29,7 +29,7 @@ cApp.controller("HomeController", function($scope,$rootScope,modals,Blockchainin
         a.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(data));
         a.setAttribute("download", filename);
         a.click();
-    }
+    };
 
 	/***
 	Controller to back up current wallet
@@ -41,7 +41,7 @@ cApp.controller("HomeController", function($scope,$rootScope,modals,Blockchainin
 		var data = $scope.curWallet.getAddresses();
 		var fileName = $scope.curWallet.getName();
 		download(fileName+".json", JSON.stringify(data)); 
-    }
+    };
 
 	/***
 	Controller to import a wallet that was previously backed up
@@ -61,7 +61,7 @@ cApp.controller("HomeController", function($scope,$rootScope,modals,Blockchainin
             $scope.fileLoaded = true;
         } 
         r.readAsText(f);
-    }
+    };
 	
 	/***
 	Controller to generate new address
@@ -73,7 +73,7 @@ cApp.controller("HomeController", function($scope,$rootScope,modals,Blockchainin
 	$scope.generateAddress = function() {
 		$scope.curWallet.generatePublicAddress();
 		WalletManager.updateCurrent();
-    }
+    };
 
 	/***
 	Controller to add a new wallet name after what user typed
@@ -90,7 +90,7 @@ cApp.controller("HomeController", function($scope,$rootScope,modals,Blockchainin
 			$scope.wallets = WalletManager.getWallets();
 			$rootScope.curWallet = $scope.curWallet = WalletManager.getCurrentWallet();
 		}
-	}
+	};
 
 	/***
 	Controller to select current wallet in sidemenu
