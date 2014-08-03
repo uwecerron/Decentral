@@ -54,7 +54,9 @@ cApp.service("WalletManager", function(DecentralStorage,Wallet) {
 	this.addWallet = function (wallet) {
 		DecentralStorage.saveWallet(wallet, this.walletCounter);
 		this.wallets[this.walletCounter] = wallet;
-		this.walletIndexer[this.walletIndexer.length] = this.walletCounter;
+		if(this.wallets.length == 1) {
+			this.curWallet = this.walletCounter;
+		}
 		this.walletCounter += 1;
 	};
 	
