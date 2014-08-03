@@ -14,7 +14,7 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
       this.CurrentAddress='';
       this.privatekey;
       this.storage= DecentralStorage;
-      this.blockchain=new Blockchaininfo();
+      this.blockchain=Blockchaininfo;
       this.Txfee =10000;
 
 	this.initialize=function(wallet)
@@ -32,47 +32,51 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
 	}
   
 	this.getName = function() {
-    return this.Name;
+      return this.Name;
   };
 
 	this.addAsset = function(asset) {
-		this.Assets.push(asset);
+		  this.Assets.push(asset);
 	};
 	
 	this.getAllAssets = function() {
-		return this.Assets;
+		  return this.Assets;
 	};
 	
 	this.addAddress = function(address) {
-		this.Addresses.push(address);
+		  this.Addresses.push(address);
 	}
 	  
-    this.getCurrentAddress = function(){
-          return CurrentAddress;
+  this.getCurrentAddress = function(){
+      return CurrentAddress;
 	};
      
-    this.setCurrentAddress = function(hash){
-          CurrentAddress = hash;
+  this.setCurrentAddress = function(hash){
+      CurrentAddress = hash;
 	};
 
 	this.getTransactions = function() {
-		return this.Txs;
+		  return this.Txs;
 	};
 	
 	this.addTransaction = function(transaction) {
-		this.Txs.push(transaction);
+		  this.Txs.push(transaction);
 	};
 	
-    this.getAddresses = function(){
+  this.getAddresses = function(){
       return this.Addresses;
-    }
+  }
 
-    this.setBalance = function(balance){
-        Balance = balance;
+  this.getBook = function() {
+      return this.Book;
+  };
+
+  this.setBalance = function(balance){
+      Balance = balance;
 	};
 	
 	this.getBalance = function() {
-		return this.Balance;
+		  return this.Balance;
 	};
 
 	this.updateBalance=function(balance) {
@@ -83,25 +87,6 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
 
    console.log('Wallet instantiated'+Name);
 }
-	
-  
-  //TODO: finish method and test it
-    Wallet.prototype.isAuthenticated=function(callback){
-      this.storage.get( "security", function(data) {
-    
-      })
-    }
-
-    Wallet.prototype.authenticate=function (password){
-      var passwordDigest = Crypto.SHA256(password);
-      var decrypted = this.Addresses[0].decrypt(passwordDigest);
-      if (decrypted === true) {
-        this.storage.set( "security", "passwordDigest", passwordDigest );
-        return true;
-      }
-      return false;
-    }
-
 
   Wallet.prototype.loadWallet= function(callback){
       var _name=this.Name;
@@ -133,15 +118,10 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
         // console.log(hello);
   }
 
-  Wallet.prototype.changePassword=function(){
-    
-  }
-
   Wallet.prototype.getCurrentAddress=function() {
       return this.CurrentAddress;
     }
 
-//todo: validate addresses
   Wallet.prototype.getAllAddresses=function(){
      var addressArr = [];
       for ( var i = 0; i < this.Addresses.length; i++ ) {
@@ -164,9 +144,9 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
 	}
     
   Wallet.prototype.utxofetcher=function(Addresses, callback){
-
     //  var addresses  = this.getAddresses(), 
-      this.blockchain.getUnspent(Addresses,function(data){
+      var _blockchain=Blockchaininfo;
+      _blockchain.getUnspent(Addresses,function(data){
       var unspents = {};
       unspents._value=[];
       unspents._script=[];
@@ -209,22 +189,19 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
        return false;
   }
   
-//13Jw9vY5fHSe82qPwWhg6eShH7ZYAuRt1n
-  Wallet.prototype.buildTransaction= function(toAddress,callback){
-   
-     //var addresses =this.getAllAddresses();
-       var addresses =["1F6UU9EBPNyAFyPojDqHAtoCiNDX9mFmBP"];
-     this.utxofetcher(addresses,function(data){
+ //TODO: make sure that sign function uses all selected private addresses in order
+  Wallet.prototype.buildTransaction= function(formData,callback){
+     //retrieve all addresses with unspent outputs no more addresses than required for balance
+     var unspentAddresses = this.selectUnspentAddresses(this.getAddresses(),formData.amount);
+     //retrieve all private keys from addresses with balances
+     var key = this.retrievePvtKeys(unspentAddresses);
+     this.utxofetcher(unspentAddresses,function(data){
      var tx = new Bitcoin.Transaction();
      addInput(tx,data);
-     //get pvt keys, iterate through addresses.pvtkey
-     //var key = Bitcoin.ECKey.fromWIF(keys);
-     console.log(toAddress.value)
-     addOutput(tx,toAddress.addr,toAddress.value);
-     console.log(key)
-     console.log(data._value.length)
+     addOutput(tx,formData.addr,formData.amount);
      sign(tx,data,key)
      console.log(tx.toHex())
+     return tx.toHex();
       });
      //change address
  
@@ -232,24 +209,14 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
 
   function addInput(tx,unspent_output) {
       for ( var i = 0; i < unspent_output._tx_index.length; i++ ) {
-        var unspent = unspent_output[ i ]
-        //reverse bytes for endianness
-        var hash= reverse(unspent_output._tx_hash[i]);
-
-        var index = unspent_output._tx_index[i];
-        console.log(index)
-        tx.addInput(hash,index);
+          var unspent = unspent_output[ i ]
+          //reverse bytes for endianness
+          var hash= reverse(unspent_output._tx_hash[i]);
+          var index = unspent_output._tx_index[i];
+          console.log(index)
+          tx.addInput(hash,index);
       }
   }
-
-  function addOutput(tx,address,value){
-      tx.addOutput(address,value);
-       //change address
-      console.log(address);
-        
-  }
-
- 
 
   function addFee(toAddress) {
       var Fee= 10000;
@@ -258,62 +225,81 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
   }
 
   function calculateChange(allunspents, addFee) {
-      var balance=allunspents;
-      return balance-addFee;
+
+      var result=allunspents-addFee;
+      return result;
   }
     //substract change when adding outputs
 
+  function addOutput(tx,address,value){
+
+      var fee = 10000;
+       //change address
+      console.log(address);
+      var changeValue = calculateChange(value,fee);
+      console.log(changeValue);
+      //generate change address
+     // var changeAddress=generatePublicAddress();
+      //console.log(changeAddress);
+      tx.addOutput(address,changeValue);
+
+  }
+
   function sign(tx,unspent_outputs,key){
+    console.log(key)
      for(var i=0;i<unspent_outputs._tx_index.length;i++){
-       tx.sign(i, key);
+       console.log("iteration: "+i)
+       tx.sign(i,key);
       }
   }
   
-  function getUnspents(addresses){
-       var unspentOutputs = [];
-       this.blockchain.getUnspent(addresses,function(result){
-         //console.log(result)
-          for (var i = 0; i < result.length; i++){
-              var unspent = result[i];         
-              if ( unspent >= 0 ) 
-              {
-                unspentOutputs=[unspent];
-              }else{
-                  unspentOutputs.push(unspent);
-                  console.log(unspentOutputsBigIntegers)
-             }
-          }
-       })
-       return unspentOutputs;          
-      //end callback
+
+  // change network callback scheme to just return data
+  Wallet.prototype.selectUnspentAddresses = function(addresses,amount){
+      var balance=0;
+      var addresses=[];
+      this.blockchain.multiAddr(addressess,function(data){
+        for(var i=0;i<data.addresses.length;i++){
+            if(balance<amount){
+                balance+=data.addresses[i].final_balance;
+                if(data.addresses[i].final_balance>0){
+                  addresses.push(data.addresses[i].address);
+                }
+           }
+        }
+          //console.log(addresses)
+      });  //end callback      
+      return addresses;
   }
 
     
-  function unspentsToAddresses(unspentOutputs) {
+  Wallet.prototype.unspentsToAddresses = function(unspentOutputs) {
       var addressStrs = [];
       for ( var i = 0; i < unspentOutputs.length; i++ ) {
-        var unspent = unspentOutputs[ i ];
-        var script = new Bitcoin.Script( Crypto.util.hexToBytes( unspent. script) );
-        var pubKeyHash = script.simpleOutPubKeyHash();
-        var addressStr = new Bitcoin.Address( pubKeyHash ).toString();
-        addressStrs.push( addressStr );
+          var unspent = unspentOutputs[i];
+          var script = new Bitcoin.Script( Crypto.util.hexToBytes(unspent. script) );
+          var pubKeyHash = script.simpleOutPubKeyHash();
+          var addressStr = new Bitcoin.Address( pubKeyHash ).toString();
+          addressStrs.push( addressStr );
       }
       return addressStrs;
   }
 
 
-  function retrievePvtKeys(walletAddresses, passwordDigest){
-      var addresses=walletAddresses;
+  Wallet.prototype.retrievePvtKeys = function(){
+    console.log("hello")
+      var addresses=this.getAddresses();
+      var walletBook=this.getBook();
+      console.log(walletBook)
       var privateKeys = {};
-      // if input address not in the address book throw an error
-      for ( var i = 0; i < addressStrs.length; i++ ) {
-        var address = addresses[i];
-        address.decrypt(passwordDigest);
-        privateKeys[address] = walletAddresses[address];
+      for ( var i = 0; i < addresses.length; i++ ) {
+          var publicAddress = addresses[i];
+          privateKeys = walletBook[publicAddress];
       }
-
+      console.log(privateKeys)
       return privateKeys;
   }
+
 
     /*
      * Start a multisig structure out n participants public keys and m
@@ -358,7 +344,7 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
       var decrypted = CryptoJS.AES.decrypt(encrypted, passwordDigest);
        var privateKey = decrypted.toString(CryptoJS.enc.Utf8);
       if ((privateKey === "") || (typeof privateKey === 'undefined')){
-        return false;
+          return false;
       }
       return privateKey;
   }

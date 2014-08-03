@@ -1,16 +1,16 @@
 'use strict';
-cApp.factory( "Blockchaininfo", function($http) {
+cApp.service( "Blockchaininfo", function($http) {
 
-var Blockchain= function($http){
+//var Blockchain= function($http){
   this.url='https://blockchain.info/';
-};
+//};
 /*
  * Retrieves multiple addresses info
  * @param {String} Bitcoin addresses array
  * @param {Function} callback Function that will be called with multiAddr
  */
 
-Blockchain.prototype.multiAddr=function(addresses, callback){
+ this.multiAddr=function(addresses, callback){
    var _url = this.url;
   $http({method: 'GET', url: _url+'/multiaddr?active='+addresses.join( '|' ),headers : { 'Content-Type': 'application/x-www-form-urlencoded' }}).
     success(function(data, status, headers, config) {
@@ -25,7 +25,7 @@ Blockchain.prototype.multiAddr=function(addresses, callback){
  * Gets latest block count in blockchain
  * @param {Function} callback Function that will be called with getBlockCount
  */
-Blockchain.prototype.getBlockCount = function(callback) {
+  this.getBlockCount = function(callback) {
   var _url = this.url;
   $http({method: 'GET', url: _url+'/latestblock',headers : { 'Content-Type': 'application/x-www-form-urlencoded' }}).
     success(function(data, status, headers, config) {
@@ -41,7 +41,7 @@ Blockchain.prototype.getBlockCount = function(callback) {
  * @param {String} tx Transaction hash in hex
  * @param {Function} callback Function that will be called with getTx
  */
-Blockchain.prototype.getTx = function(tx, callback) {
+  this.getTx = function(tx, callback) {
   var _url = this.url;
   $http({method: 'GET', url: _url+'/rawtx/'+tx,headers : { 'Content-Type': 'application/x-www-form-urlencoded' }}).
     success(function(data, status, headers, config) {
@@ -58,7 +58,7 @@ Blockchain.prototype.getTx = function(tx, callback) {
  * @param {Function} callback Function that will be called with getUnspent
  */
 
-  Blockchain.prototype.getUnspent= function(addresses, callback){
+  this.getUnspent= function(addresses, callback){
     var _url = this.url;
       $http({method: 'GET', url: _url + 'unspent?active='+addresses.join('|'),headers : { 'Content-Type': 'application/x-www-form-urlencoded' }}).
     success(function(data, status, headers, config) {
@@ -75,7 +75,7 @@ Blockchain.prototype.getTx = function(tx, callback) {
   * @param {String} tx_hash transaction hash
   * @param {function} callback Function that will be called with getUnspent
   */
-Blockchain.prototype.pushTx =function(tx_serialized, tx_hash, callback) {
+  this.pushTx =function(tx_serialized, tx_hash, callback) {
     var _url = this.url;
 
     var post_data = {
@@ -93,7 +93,7 @@ Blockchain.prototype.pushTx =function(tx_serialized, tx_hash, callback) {
   }
 
 
-  return Blockchain;
+ // return Blockchain;
 });//end factory
 /*module.exports = {
 Blockchain: Blockchain

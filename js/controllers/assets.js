@@ -1,5 +1,5 @@
 "use strict";
-cApp.controller("AssetsController",function($scope,Asset,DecentralStorage,WalletManager)  {
+cApp.controller("AssetsController",function($scope,Asset,WalletManager)  {
     
 	/************************Assets init*************************/
 	$scope.pageClass = 'page-assets';

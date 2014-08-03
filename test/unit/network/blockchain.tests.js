@@ -2,7 +2,11 @@
 
   //var _blockchain = require('../js/index')
   describe('Blockchain', function() {
+  
   var scope;
+  var blockchainInfo;
+  var $http;
+  var $httpBackend; 
 
  //random data from blockchain replace if needed or replace with testnet blockchain
  /*var rawTx = {
@@ -44,12 +48,21 @@
   beforeEach(angular.mock.module('DecentralWallet'));
 
   //mock the controller for the same reason and include $rootScope and $controller
-    beforeEach(angular.mock.inject(function($rootScope, $controller){
+    beforeEach(angular.mock.inject(function($rootScope, $controller,_$http_, _$httpBackend_, _blockchainInfo_){
         //create an empty scope
         scope = $rootScope.$new();
-        //declare the controller and inject our empty scope
+        //declare the stuff
+        blockchainInfo = _blockchainInfo_;
+        $http = _$http_
+        $httpBackend = _$httpBackend_
         $controller('Blockchaininfo', {$scope: scope});
     }))
+
+
+  it('should have a default root with the correct URL', function() {
+      var root = blockchainInfo.root
+      expect(root).toBe("https://blockchain.info/")
+  })
 
   it('multiAddr', function(done) {
     scope.multiAddr(['1F6UU9EBPNyAFyPojDqHAtoCiNDX9mFmBP'], function(error, response) {

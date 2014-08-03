@@ -16,13 +16,13 @@ function SendController($scope,modals,$rootScope,Wallet,WalletManager){
 		$scope.balance = $rootScope.balance
     });
 
-    var satoshies=100000000;
+
 
     $scope.send = function(item) {
-		var value=$scope.inputAmount * satoshies;
+    	var satoshies=100000000;
 		var formData ={
 		addr:$scope.inputAddress,
-		amount:value
+		amount:$scope.inputAmount*satoshies,
 		}
 		modals.password();
 		console.log(formData);
