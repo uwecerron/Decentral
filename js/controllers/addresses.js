@@ -12,9 +12,8 @@ function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
     var address={};
 
 	var curWallet = WalletManager.getCurrentWallet();
-	console.log(curWallet);
 	
-	if(curWallet != null){
+	if(curWallet){
 		$scope.items = curWallet.getAddresses();
 	}
 	else{
@@ -22,9 +21,12 @@ function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
 		throw new Error("Failed to get addresses of current wallet");
 	}
 	
-	/******************Initialization End**********/
+	setTimeout(function() {
+		$scope.search();
+    },0);
 	
- 
+	/******************Initialization End**********/
+
     var searchMatch = function (haystack, needle) {
         if (!needle) {
             return true;
@@ -33,7 +35,8 @@ function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
     };
 
     // init the filtered items
-    $scope.search = function () {
+	
+	$scope.search = function () {
         $scope.filteredItems = $filter("filter")($scope.items, function (item) {
             for(var attr in item) {
                 if (searchMatch(item[attr], $scope.query))
@@ -50,6 +53,7 @@ function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
         $scope.groupToPages();
     };
     
+	
     // calculate page in place
     $scope.groupToPages = function () {
         $scope.pagedItems = [];
@@ -103,8 +107,7 @@ function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
 			}
 		}
 	);
-    // functions have been describe process the data for display
-    $scope.search();
+    
 
     // change sorting order
     $scope.sort_by = function(newSortingOrder) {
@@ -128,4 +131,7 @@ function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
         else
             $('th.'+new_sorting_order+' i').removeClass().addClass('icon-chevron-down');
     };
+	
+	// functions have been describe process the data for display
+	//$scope.search();
 };

@@ -6,7 +6,10 @@
 			<form name="loginForm" ng-submit="nextStep()" novalidate="">
                   <input id="login_form" type="text" placeholder="Password" name="connectionId" ng-model="password1" wallet-secret="" required="">
                   <input id="login_form" type="password" placeholder="Confirm Password" name="joinPassword" ng-model="password2" check-strength="passwordStrength" >
-                  <div id="login_button"><button ng-click="submit(password1,password2)" type="submit" class="btn btn-default btn-lg" >Join</button></div>
+                  <div id="login_button">
+				  <button ng-click="login(password1,password2)" type="submit" class="btn btn-default btn-lg" >Login</button>
+				  <button ng-click="submit(password1,password2)" type="submit" class="btn btn-default btn-lg" >Join</button>
+				  </div>
                   <!--ng-disabled="loginForm.$invalid || loading"-->
 			</form>
 	</div>

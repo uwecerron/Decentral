@@ -1,10 +1,11 @@
 'use strict';
 
-cApp.controller('loginController',function($scope,DecentralStorage,$location,$rootScope,WalletManager,Session){
+cApp.controller('loginController',function($scope,DecentralStorage,$location,$rootScope,WalletManager,Session,Encryption){
 	
 	/**********login init***********/
 	$scope.pageClass = 'page-login';
 	var storage= DecentralStorage;
+	var password;
 	$scope.page = 1;
 	$scope.form = {};
 	/**********login init end***********/
@@ -19,45 +20,41 @@ cApp.controller('loginController',function($scope,DecentralStorage,$location,$ro
 
 	Session.isAuthenticated();
 	
-	$scope.submit=function(password1,password2){
+	
+	$scope.login=function(password1,password2) {
+		if(password1 && password2 && password1 === password2) {
+				DecentralStorage.get("password", function(database) {
+				if(database) {
+					var hash = database["password"]["password"];
+					console.log(hash + hash.length);
+					if(hash == Encryption.encrypt(password1)) {
+						Session.initialize();
+					}
+					else {
+						alert("incorrect password");
+					}
+				}
+				else {
+					console.log("failed to retrieve");
+				}
+			});
+		}
+	};
+	
+	$scope.submit=function(password1,password2) {
 		console.log(password1 + " " + password2);
-		
-		if(password1 == "admin" && password2 == "admin"){
-			Session.initialize();
-			console.log("BLEH");
+		if(password1 && password2 && password1 === password2) {
+			password = password1;
+			$scope.nextPage();
+			var mnemonic = new Mnemonic(128);
+			console.log(mnemonic.toWords().join(' '));
+			$scope.mnemonic = mnemonic.toWords().join(' ');
 		}
-		/*
-		if($scope.password1 == null || $scope.password2 == null){ 
-			$scope.message="please provide a password";	
-			return;
-		}
-		if ($scope.form.password1 != $scope.form.password2) {
-			$scope.csserror="error";
-			$scope.message="passwords do not match";
-			return;
-		}
-		$scope.page++;
-		DecentralStorage.save('security','password',$scope.password1);
-		return $location.path( "/Home" );	   
-		*/
-	}
-	
-	
+	};
 
-	$scope.wordsSubmit = function() {
-		DecentralStorage.get(DecentralStorage.WALLETDATABASE, function(database) {
-			if(database) {
-				var rawData = database[DecentralStorage.WALLETDATABASE];
-				WalletManager.init(rawData);
-				$rootScope.$apply(function() {
-					//$scope.page++;
-					//$location.path("/Home");
-				});
-			}
-			else {
-				console.log("failed to retrieve");
-			}
-		});	
-	}
+	$scope.wordsSubmit = function() { 
+		DecentralStorage.save("password","password",Encryption.encrypt(password));
+		Session.initialize();
+	};
 
-})//end login controller
+});//end login controller

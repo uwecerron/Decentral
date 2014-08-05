@@ -9,10 +9,6 @@ cApp.service('Session', function($rootScope,$location,DecentralStorage,WalletMan
 				var rawData = database[DecentralStorage.WALLETDATABASE];
 				WalletManager.init(rawData);
 				$rootScope.$apply(function() {
-					//$scope.page++;
-					//var mnemonic = new Mnemonic(128);
-					//console.log(mnemonic.toWords().join(' '));
-					//$scope.mnemonic = mnemonic.toWords().join(' ');
 					$location.path("/Home");
 				});
 			}
