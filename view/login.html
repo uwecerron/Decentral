@@ -1,25 +1,29 @@
 <div ng-if="page==1" id="login" class="row">
-<div class="col-xs-6 col-md-4"></div>
-<div class="col-xs-6 col-md-4">
-	<h2>Create a Wallet</h2>
+<div class="col-xs-6 col-md-1"></div>
+<div class="col-xs-6 col-md-10">
+	<h3>Create a Wallet</h3>
+   <div style="background: url(../img/icon.png) no-repeat center;
+width: 400px;
+height: 300px; background-size:cover; margin: auto;"></div>
 		<div class="box-signin radius">
-			<form name="loginForm" ng-submit="nextStep()" novalidate="">
-                  <input id="login_form" type="text" placeholder="Password" name="connectionId" ng-model="password1" wallet-secret="" required="">
-                  <input id="login_form" type="password" placeholder="Confirm Password" name="joinPassword" ng-model="password2" check-strength="passwordStrength" >
+			<form class="form-inline" name="loginForm" ng-submit="nextStep()" novalidate="">
+                  <input class="col-md-5" id="login_form" type="text" placeholder="Password" name="connectionId" ng-model="password1" wallet-secret="" required="">
+                  <div class="col-md-2"></div>
+                  <input class="col-md-5" id="login_form" type="password" placeholder="Confirm Password" name="joinPassword" ng-model="password2" check-strength="passwordStrength" >
                   <div id="login_button">
-				  <button ng-click="login(password1,password2)" type="submit" class="btn btn-default btn-lg" >Login</button>
-				  <button ng-click="submit(password1,password2)" type="submit" class="btn btn-default btn-lg" >Join</button>
+				  <button ng-click="login(password1,password2)" type="submit" class="btn btn-default btn-lg col-md-6" >Login</button>
+				  <button ng-click="submit(password1,password2)" type="submit" class="btn btn-default btn-lg col-md-6" >Join</button>
 				  </div>
                   <!--ng-disabled="loginForm.$invalid || loading"-->
 			</form>
 	</div>
 </div>
-  <div class="col-xs-6 col-md-4"></div>
+  <div class="col-xs-6 col-md-1"></div>
 </div>
 
  <div ng-if="page==2" id="passphrase" class="row">
-  <div class="col-xs-6 col-md-4"></div>
-<div class="col-xs-6 col-md-4">
+  <div class="col-xs-6 col-md-3"></div>
+<div class="col-xs-6 col-md-6">
     <h1>Warning! Please Save Your Passphrase Before Continuing</h1>
       <form name="form">
               <p>Please write down these words.It will  unlock your private keys from your backupwallets</p>
@@ -31,5 +35,5 @@
             <input ng-click="wordsSubmit()" class="col-xs-6 col-md-12" type="button" value="I wrote it down!"/>
       </div>     
     </div>
-      <div class="col-xs-6 col-md-4"></div>
+      <div class="col-xs-6 col-md-3"></div>
   </div><!-- passphrase row -->
