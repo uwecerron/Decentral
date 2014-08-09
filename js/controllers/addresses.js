@@ -14,7 +14,7 @@ function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
 	var curWallet = WalletManager.getCurrentWallet();
 	
 	if(curWallet){
-		$scope.items = curWallet.getAddresses();
+		$scope.items = curWallet.getAllAddresses();
 	}
 	else{
 		$scope.items = [];
@@ -99,7 +99,7 @@ function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
 		"curWallet",
 		function( newValue, oldValue ) {
 			try {
-				$scope.items = newValue.getAddresses();
+				$scope.items = newValue.getAllAddresses();
 				$scope.search();
 			}
 			catch(e) {

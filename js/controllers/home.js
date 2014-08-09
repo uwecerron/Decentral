@@ -38,7 +38,7 @@ cApp.controller("HomeController", function($scope,$rootScope,modals,Blockchainin
 	JSON is used to format wallet data
 	***/
     $scope.backup = function() {
-		var data = $scope.curWallet.getAddresses();
+		var data = $scope.curWallet.getAddresses(passphrase);
 		var fileName = $scope.curWallet.getName();
 		download(fileName+".json", JSON.stringify(data)); 
     };
@@ -71,8 +71,9 @@ cApp.controller("HomeController", function($scope,$rootScope,modals,Blockchainin
 	will update.
 	***/
 	$scope.generateAddress = function() {
-		$scope.curWallet.generatePublicAddress();
-		WalletManager.updateCurrent();
+		modals.open("modalpassword");
+		//$scope.curWallet.generatePublicAddress();
+		//WalletManager.updateCurrent();
     };
 
 	/***

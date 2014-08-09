@@ -25,21 +25,14 @@ cApp.service("Encryption" , function(){
 	* Encrypt with password derivation
 	*/
 	this._encrypt =  function(string,passphrase) {
-		var encrypted = CryptoJS.AES.encrypt(string, "passphrase");
-		var encryptedBase64 = encrypted.toString();
-		return encryptedBase64;
+		return sjcl.encrypt(passphrase,string);
 	};
 
 	/*
 	* Decrypt with password derivation 
 	*/
 	this._decrypt = function(encrypted, passphrase){
-		var decrypted = CryptoJS.AES.decrypt(encrypted, passwordDigest);
-		var privateKey = decrypted.toString(CryptoJS.enc.Utf8);
-		if ((privateKey === "") || (typeof privateKey === 'undefined')){
-			return false;
-		}
-		return privateKey;
+		return sjcl.decrypt(passphrase,encrypted);
 	};
   
 	this.intArrayToString = function(array) {

@@ -5,7 +5,7 @@ cApp.controller('loginController',function($scope,DecentralStorage,$location,$ro
 	/**********login init***********/
 	$scope.pageClass = 'page-login';
 	var storage= DecentralStorage;
-	var password;
+	var password,passphrase;
 	$scope.page = 1;
 	$scope.form = {};
 	/**********login init end***********/
@@ -49,11 +49,13 @@ cApp.controller('loginController',function($scope,DecentralStorage,$location,$ro
 			var mnemonic = new Mnemonic(128);
 			console.log(mnemonic.toWords().join(' '));
 			$scope.mnemonic = mnemonic.toWords().join(' ');
+			passphrase = $scope.mnemonic;
 		}
 	};
 
 	$scope.wordsSubmit = function() { 
 		DecentralStorage.save("password","password",Encryption.encrypt(password));
+		DecentralStorage.save("passphrase","passphrase",Encryption.encrypt(passphrase));
 		Session.initialize();
 	};
 
