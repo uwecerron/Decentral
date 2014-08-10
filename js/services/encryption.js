@@ -24,14 +24,14 @@ cApp.service("Encryption" , function(){
 	/*
 	* Encrypt with password derivation
 	*/
-	this._encrypt =  function(string,passphrase) {
+	this.encrypt =  function(string,passphrase) {
 		return sjcl.encrypt(passphrase,string);
 	};
 
 	/*
 	* Decrypt with password derivation 
 	*/
-	this._decrypt = function(encrypted, passphrase){
+	this.decrypt = function(encrypted, passphrase){
 		return sjcl.decrypt(passphrase,encrypted);
 	};
   
@@ -48,8 +48,9 @@ cApp.service("Encryption" , function(){
 		return str;
 	}
   
-	this.encrypt = function(password) {
+	this.hash = function(password) {
 		var hash = sjcl.hash.sha256.hash(sjcl.hash.sha256.hash(password));
+		console.log("in encrypt " + this.intArrayToString(hash));
 		return this.intArrayToString(hash);
 	}
 

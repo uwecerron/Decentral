@@ -27,7 +27,7 @@ cApp.controller('loginController',function($scope,DecentralStorage,$location,$ro
 				if(database) {
 					var hash = database["password"]["password"];
 					console.log(hash + hash.length);
-					if(hash == Encryption.encrypt(password1)) {
+					if(hash == Encryption.hash(password1)) {
 						Session.initialize();
 					}
 					else {
@@ -54,8 +54,8 @@ cApp.controller('loginController',function($scope,DecentralStorage,$location,$ro
 	};
 
 	$scope.wordsSubmit = function() { 
-		DecentralStorage.save("password","password",Encryption.encrypt(password));
-		DecentralStorage.save("passphrase","passphrase",Encryption.encrypt(passphrase));
+		DecentralStorage.save("password","password",Encryption.hash(password));
+		DecentralStorage.save("passphrase","passphrase",Encryption.hash(passphrase));
 		Session.initialize();
 	};
 

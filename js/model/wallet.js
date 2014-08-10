@@ -1,5 +1,5 @@
 "use strict";
-cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchaininfo,DecentralStorage,Encryption){
+cApp.factory("Wallet",["Blockchaininfo","DecentralStorage","Encryption",function(Blockchaininfo,DecentralStorage,Encryption){
 
 
 	var Wallet = function(Name) {
@@ -117,7 +117,7 @@ cApp.factory("Wallet",["Blockchaininfo","DecentralStorage",function(Blockchainin
 		var newAddress = {};
 		var bookEntry ={};
 		newAddress["address"] = hash;
-		bookEntry[hash]= Encryption._encrypt(key.toWIF(),passphrase);
+		bookEntry[hash]= Encryption.encrypt(key.toWIF(),passphrase);
 		console.log(bookEntry)
 		this.Addresses.push(newAddress);
 		this.Book.push(bookEntry);
