@@ -71,27 +71,23 @@ cApp.controller("HomeController", function($scope,$rootScope,modals,Blockchainin
 	will update.
 	***/
 	$scope.generateAddress = function() {
-		DecentralStorage.get("passphrase", function(database) {
-			
+		DecentralStorage.get("passphrase", function(database) {	
 			try {
-				var hash = database["passphrase"]["passphrase"];
-				//console.log(typeof(hash));
-				//console.log("rootScope " + $rootScope.passphrase);
-				
+				var hash = database["passphrase"]["passphrase"]		
 				if($rootScope.passphrase && hash === Encryption.hash($rootScope.passphrase)) {
-					//console.log("type of encrypt " + typeof(Encryption.hash($rootScope.passphrase)));
 					$scope.currentAddress = $scope.curWallet.generatePublicAddress($rootScope.passphrase);
 					WalletManager.updateCurrent();
 				}
 				else {
-					modals.open("modalpassword");
+					modals.open("modalpassword", {
+						"message":"Please input passphrase",
+						"databaseName":"passphrase",
+						"objectName":"passphrase"
+						});
 				}
 			} catch(e) {
 				console.log("failed to retrieve " + e);
 			} finally {
-				//console.log(database);
-				//console.log($rootScope.passphrase);
-				//console.log(Encryptio.hash)
 			}
 		});
     };

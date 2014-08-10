@@ -3,16 +3,15 @@
 cApp.service('modals', function($modal) {
 
 	this.open = function(template, data,callback) {
-		//var modalInstance = 
+		var modalInstance = 
 		$modal.open({templateUrl:'../view/modal/'+template+'.html',
-		controller: 'passModalCtrl',resolve:{}});
-		/*
-		modalInstance.result.then(function (passphrase) {
-				
-			}, function () {
-				
-		});*/
-
+		controller: 'passModalCtrl',resolve:{
+			
+			modalData: function () {
+				return data;
+			}
+			
+		}});
 	},
 
 	this.ok = function(val) {
@@ -33,3 +32,5 @@ cApp.service('modals', function($modal) {
 	}
 
 });
+
+

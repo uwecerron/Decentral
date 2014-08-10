@@ -1,7 +1,7 @@
 
 "use strict";
 
-var cApp =angular.module('DecentralWallet', ['ngRoute',"ui.router", "ui.bootstrap",]);
+var cApp =angular.module('DecentralWallet', ['ngRoute',"ui.router", "ui.bootstrap"]);
 cApp.config(function ($routeProvider) {
   //authentication
     $routeProvider.when('/login',{
@@ -62,6 +62,10 @@ cApp.config(function ($routeProvider) {
 	  when('/login',{
             templateUrl: 'view/login.html',
 			      controller: 'loginController'
+      }).
+	  when('/modalInstance',{
+            templateUrl: 'view/modal/modalpassword.html',
+			      controller: 'passModalCtrl'
       })
       .otherwise({
         redirectTo: '/login'
