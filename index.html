@@ -1,5 +1,5 @@
 <html>
-	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.11/angular-csp.css"/>
     <link rel="stylesheet" type="text/css" href="css/app.css"/>
@@ -18,9 +18,11 @@
     <script type="text/javascript" src="lib/ng-grid.debug.js"></script>
     <script data-require="angular-ui-bootstrap@*" data-semver="0.11.0" src="lib/ui-bootstrap-tpls.min.js"></script>
     <script src="lib/angular-ui-router.js"></script>
+    <script src=" lib/highstock.src.js"></script>
+    <script src="bower_components/highcharts-ng/src/highcharts-ng.js"></script>
     <script src="js/app.js"></script>
     <script src="js/model/storage.js"></script>
-	<script src="lib/once.js"></script>	
+    <script src="lib/once.js"></script> 
     <body ng-app='DecentralWallet'>
         <div ng-include="'view/header.html'"></div>
         <div class="page {{ pageClass }}" ng-view></div>
@@ -30,14 +32,15 @@
         <script src="js/model/wallet.js"></script>
         <script src="js/model/colordef.js"></script>
         <script src="js/model/colorvalue.js"></script>
-		<script src="js/model/walletmanager.js"></script>
+        <script src="js/model/walletmanager.js"></script>
         <script src="js/model/txFetcher.js"></script>
         <script src="js/model/transaction.js"></script>
-		<script src="js/model/asset.js"></script>
+        <script src="js/model/asset.js"></script>
         <script src="js/network/blockchaininfo.js"></script>
         <script src="js/controllers/navigation.js"></script> 
         <script src="js/controllers/home.js"></script>
         <script src="js/controllers/passmodal.js"></script>
+        <script src="js/controllers/btcprice.js"></script>
         <script src="js/controllers/settings.js"></script>
         <script src="js/controllers/addresses.js"></script>
         <script src="js/controllers/send.js"></script>
@@ -47,8 +50,8 @@
         <script src="js/directives/validation.js"></script>
         <script src="js/directives/qr.js"></script>
         <script src="js/directives/animation.js"></script>
-		<script src="js/services/session.js"></script>
+        <script src="js/services/session.js"></script>
         <script src="js/services/encryption.js"></script>
-		<script src="js/services/Security.js"></script>
-	</body>
+         <script src="bower_components/numeral/numeral.js"></script>
+    </body>
 </html>
