@@ -25,7 +25,14 @@ cApp.service("Encryption" , function(){
 	* Encrypt with password derivation
 	*/
 	this.encrypt =  function(string,passphrase) {
-		return sjcl.encrypt(passphrase,string);
+		try {
+			return sjcl.encrypt(passphrase,string);
+		} catch(e) {
+			console.log("encryption failed " + e);
+		} finally {
+			//console.log("ENC str " + string);
+			//console.log("ENC pass " + passphrase);
+		}
 	};
 
 	/*

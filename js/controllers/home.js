@@ -26,10 +26,15 @@ function($scope,$rootScope, Blockchaininfo,DecentralStorage, Encryption, modals,
 	should be created into module
 	***/
     function download(filename, data) {
-        var a = document.createElement("a");
-        a.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(data));
-        a.setAttribute("download", filename);
-        a.click();
+		try {
+			var a = document.createElement("a");
+			a.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(data));
+			a.setAttribute("download", filename);
+			a.click();
+		} catch(e) {
+			console.log("download failed " + e);
+		}
+		
     };
 	
 	/***
@@ -39,12 +44,18 @@ function($scope,$rootScope, Blockchaininfo,DecentralStorage, Encryption, modals,
 	JSON is used to format wallet data
 	***/
     $scope.backup = function() {
-		var _success = function() {
-			var data = Encryption.encrypt($scope.curWallet.getAllAddresses(), $rootScope.password);
+		var _success = function(password) {
+			try {
+			var _password = password || Security.get("password");
+			var data = Encryption.encrypt(JSON.stringify($scope.curWallet.getAllAddresses()), _password);
 			var fileName = $scope.curWallet.getName();
-			download(fileName+".json", JSON.stringify(data)); 
+			download(fileName+".json", data); 
+			} catch(e) {
+				console.log("backup failed " + e);
+			}
 		};
 		var checkPassword = {
+			check : Security.get("password"),
 			success : _success,
 			fail : function() {
 				modals.open("modalpassword", {
@@ -99,11 +110,13 @@ function($scope,$rootScope, Blockchaininfo,DecentralStorage, Encryption, modals,
 	will update.
 	***/
 	$scope.generateAddress = function() {
-		var _success = function() {
-			$scope.currentAddress = $scope.curWallet.generatePublicAddress($rootScope.passphrase);
+		var _success = function(passphrase) {
+			var _passphrase = passphrase || Security.get("passphrase");
+			$scope.currentAddress = $scope.curWallet.generatePublicAddress(_passphrase);
 			WalletManager.updateCurrent();
 		};
 		var checkPassword = {
+			check : Security.get("passphrase"),
 			success : _success,
 			fail : function() {
 				modals.open("modalpassword", {

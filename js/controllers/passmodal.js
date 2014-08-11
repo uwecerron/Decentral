@@ -1,7 +1,7 @@
 "use strict";
 
-cApp.controller("passModalCtrl", ["$scope", "$rootScope", "DecentralStorage", "Encryption", "modalData", "$modalInstance", 
-function($scope,$rootScope,DecentralStorage,Encryption,modalData,$modalInstance) {
+cApp.controller("passModalCtrl", ["$scope", "$rootScope", "DecentralStorage", "Encryption", "modalData", "$modalInstance", "Security", 
+function($scope,$rootScope,DecentralStorage,Encryption,modalData,$modalInstance, Security) {
 
 	/**********passModalCtrl init***********/
 	//$scope.editId=editId;
@@ -11,28 +11,17 @@ function($scope,$rootScope,DecentralStorage,Encryption,modalData,$modalInstance)
 	/**********passModalCtrl init end***********/	
 	
 	$scope.ok = function (submitInput) {
-		var _submitInput = submitInput;
-		var _data = modalData;
-		DecentralStorage.get(_data.databaseName, function(database) {
-			console.log(_submitInput);
-			console.log(database);
-			try {
-				var hash = database[_data.databaseName][_data.objectName];
-				console.log(hash);
-				
-				if(hash == Encryption.hash(_submitInput)) {
-					$rootScope[_data.objectName] = _submitInput;
-					console.log("passphrase " + $rootScope[_data.objectName]);
-					$modalInstance.close(_submitInput);
-				}
-				else {
-					$scope.passwordstatus = "incorrect password";
-					console.log("incorrect password");
-				}
-			} catch(e) {
-				console.log("failed to retrieve " + e.message);
+		var checkPassword = {
+			check : submitInput,
+			success : function() {
+				Security.set(modalData.objectName, submitInput);
+				$modalInstance.close(submitInput);
+			},
+			fail : function() {
+				$scope.passwordstatus = "incorrect password";
 			}
-		});
+		};
+		Security.check(checkPassword,modalData.databaseName,modalData.objectName);
 	};
 
 	$scope.cancel = function () {
