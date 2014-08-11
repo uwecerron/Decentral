@@ -1,29 +1,47 @@
-            <div class="row">
+            <div>
                 <h3>Create Multisig address</h3>
-                <label>Type Any Name or Label
-                  <input type="text" placeholder="Friends Bank" class="form-control input-sm ng-pristine ng-valid" ng-model="multisigName">
-                </label>
-                <div class="row">
+                <label>Type Any Name or Label </label>
+                  <input style="background: #F5F5F5;" type="text" placeholder="Friends Bank" class="form-control input-sm ng-pristine ng-valid" ng-model="multisigName">
+
+                <div>
                   <div >
-                    <label>Your Wallet Password
-                    <input type="password" placeholder="Choose your password" class="form-control ng-scope ng-pristine ng-invalid ng-invalid-required" ng-model="$parent.walletPassword">
-                    </label>
+                    <label>Your Wallet Password </label>
+                    <input style="background: #F5F5F5;" type="password" placeholder="Choose your password" class="input-sm form-control ng-scope ng-pristine ng-invalid ng-invalid-required" ng-model="$parent.walletPassword">
+              
                   </div>
                 </div>
                     <div>
-                      <label>Total number of participants
-                    <select ng-model="totalParticipants"  class="form-control input-sm">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                      <label>Total number of participants</label>
+                    <select style="background: #F5F7F7;" ng-model="totalParticipants"  class="form-control input-sm" style="text-indent: 50%;">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
                     </select>
-                      </label>
+          
                     </div>
                     <div>
-                      <label>Required participant signatures 
-                      <select ng-model="requiredParticipants" ng-options="" class="form-control input-sm"></select> 
-                       </label>               
+                      <label>Required participant signature</label>  
+                      <select style="background: #F5F7F7;" ng-model="requiredParticipants" ng-options="" class="form-control input-sm" style="text-indent: 50%;">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                      </select> 
+                                 
                     </div>
             </div>

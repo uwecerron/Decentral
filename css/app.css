@@ -24,6 +24,7 @@ textarea { resize:none; }
 .table th {
    text-align: center;   
 }
+
 .navbar-balance{
 	float: right;
 	color:#cacaca;
@@ -207,8 +208,8 @@ thead{
 	*/
 }
 
-#topnavigation li a:hover{
-	color: black;
+#topnavigation li:hover{
+	background-color: #E2E2E2;
 }
 
 #topnavlogout{
@@ -287,11 +288,21 @@ background: #F9F9F9;
 }
 .tbox {
 margin-left: 20px;
-background-color: #C7CBCE;
+background-color: #F3F3F3;
 max-height: 118px;
 padding: 25px;
 }
+ a{
+	color: #3F5364;
+	text-decoration: none;
+
+}
+.bg-info{
+	background-color: #CFCFCF;
+}
+
 .box-icon {
+color: #677480;
 display: block;
 float: left;
 margin: 0 15px 10px 0;
@@ -303,6 +314,9 @@ vertical-align: middle;
 text-align: center;
 font-size: 35px;
 border-radius: 4px;
+}
+.tbox:hover{
+	background-color: #E2E2E2;
 }
 .box-info p {
 margin: 0;
