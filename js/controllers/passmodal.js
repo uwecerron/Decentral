@@ -23,7 +23,7 @@ function($scope,$rootScope,DecentralStorage,Encryption,modalData,$modalInstance)
 				if(hash == Encryption.hash(_submitInput)) {
 					$rootScope[_data.objectName] = _submitInput;
 					console.log("passphrase " + $rootScope[_data.objectName]);
-					$modalInstance.close();
+					$modalInstance.close(_submitInput);
 				}
 				else {
 					$scope.passwordstatus = "incorrect password";

@@ -1,5 +1,6 @@
 "use strict";
-cApp.controller("HomeController", function($scope,$rootScope,modals,Blockchaininfo,DecentralStorage, Encryption,Wallet,WalletManager) {
+cApp.controller("HomeController", ["$scope", "$rootScope", "Blockchaininfo", "DecentralStorage", "Encryption", "modals", "Security", "Wallet", "WalletManager",
+function($scope,$rootScope, Blockchaininfo,DecentralStorage, Encryption, modals, Security, Wallet, WalletManager) {
 	
 	/*******************Home init*********************/
     $scope.pageClass = "page-home";
@@ -38,9 +39,22 @@ cApp.controller("HomeController", function($scope,$rootScope,modals,Blockchainin
 	JSON is used to format wallet data
 	***/
     $scope.backup = function() {
-		var data = $scope.curWallet.getAddresses(passphrase);
-		var fileName = $scope.curWallet.getName();
-		download(fileName+".json", JSON.stringify(data)); 
+		var _success = function() {
+			var data = Encryption.encrypt($scope.curWallet.getAllAddresses(), $rootScope.password);
+			var fileName = $scope.curWallet.getName();
+			download(fileName+".json", JSON.stringify(data)); 
+		};
+		var checkPassword = {
+			success : _success,
+			fail : function() {
+				modals.open("modalpassword", {
+					"message":"Please input password",
+					"databaseName":"password",
+					"objectName":"password"
+				}, _success);
+			}
+		};
+		Security.check(checkPassword,"password","password");
 	};
 
 	/***
@@ -49,38 +63,32 @@ cApp.controller("HomeController", function($scope,$rootScope,modals,Blockchainin
 	Only imports when file is properly opened
 	***/
     $scope.import = function() {
-		DecentralStorage.get("password", function(database) {	
-			try {
-				var hash = database["password"]["password"];
-				
-				if($rootScope.password && hash === Encryption.hash($rootScope.password)) {
-					console.log($rootScope.password);
-					var el = document.getElementById("fileUpload");
-					angular.element(el).trigger("click");
-					var f = document.getElementById("file").files[0];
-					if(!f) {
-						return;
-					}
-					var r = new FileReader();
-					r.onload = function(e){
-						backupFile = e.target.result;
-						console.log(backupFile)
-						$scope.fileLoaded = true;
-					} 
-					r.readAsText(f);
-				}
-				else {
-					modals.open("modalpassword", {
-						"message":"Please input password",
-						"databaseName":"password",
-						"objectName":"password"
-					});
-				}
-			} catch(e) {
-				console.log("failed to retrieve " + e);
-			} finally {
+		var _success = function() {
+			var el = document.getElementById("fileUpload");
+			angular.element(el).trigger("click");
+			var f = document.getElementById("file").files[0];
+			if(!f) {
+				return;
 			}
-		});       
+			var r = new FileReader();
+			r.onload = function(e){
+				backupFile = e.target.result;
+				console.log(backupFile)
+				$scope.fileLoaded = true;
+			} 
+			r.readAsText(f);
+		};
+		var checkPassword = {
+			success : _success,
+			fail : function() {
+				modals.open("modalpassword", {
+					"message":"Please input password",
+					"databaseName":"password",
+					"objectName":"password"
+				}, _success);
+			}
+		};
+		Security.check(checkPassword,"password","password");      
     };
 	
 	/***
@@ -91,25 +99,21 @@ cApp.controller("HomeController", function($scope,$rootScope,modals,Blockchainin
 	will update.
 	***/
 	$scope.generateAddress = function() {
-		DecentralStorage.get("passphrase", function(database) {	
-			try {
-				var hash = database["passphrase"]["passphrase"]		
-				if($rootScope.passphrase && hash === Encryption.hash($rootScope.passphrase)) {
-					$scope.currentAddress = $scope.curWallet.generatePublicAddress($rootScope.passphrase);
-					WalletManager.updateCurrent();
-				}
-				else {
-					modals.open("modalpassword", {
-						"message":"Please input passphrase",
-						"databaseName":"passphrase",
-						"objectName":"passphrase"
-					});
-				}
-			} catch(e) {
-				console.log("failed to retrieve " + e);
-			} finally {
+		var _success = function() {
+			$scope.currentAddress = $scope.curWallet.generatePublicAddress($rootScope.passphrase);
+			WalletManager.updateCurrent();
+		};
+		var checkPassword = {
+			success : _success,
+			fail : function() {
+				modals.open("modalpassword", {
+					"message":"Please input passphrase",
+					"databaseName":"passphrase",
+					"objectName":"passphrase"
+				}, _success);
 			}
-		});
+		};
+		Security.check(checkPassword,"passphrase","passphrase");
     };
 
 	/***
@@ -143,4 +147,4 @@ cApp.controller("HomeController", function($scope,$rootScope,modals,Blockchainin
 		$rootScope.curWallet = $scope.curWallet = walletRef;
 	};
 
-});//end Home Controller
+}]);//end Home Controller

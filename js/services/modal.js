@@ -2,7 +2,7 @@
 
 cApp.service('modals', function($modal) {
 
-	this.open = function(template, data,callback) {
+	this.open = function(template, data, result, callback) {
 		var modalInstance = 
 		$modal.open({templateUrl:'../view/modal/'+template+'.html',
 		controller: 'passModalCtrl',resolve:{
@@ -12,6 +12,11 @@ cApp.service('modals', function($modal) {
 			}
 			
 		}});
+		modalInstance.result.then(function (returnItem) {
+			result(returnItem);
+		}, function () {
+			console.log("Modal dismissed");
+		});
 	},
 
 	this.ok = function(val) {
