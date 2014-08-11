@@ -13,7 +13,7 @@ cApp.controller("HomeController", function($scope,$rootScope,modals,Blockchainin
     var backupFile;
 	$scope.currentAddress = "1Yj564jDqoB6L7hg5ETYKhqRsB65WrWPB";
 	$scope.isActive = true;
-	
+	var fileClicked = false;
 	setTimeout(function() {
 		var el = document.getElementById("first");
 		angular.element(el).triggerHandler("click");
@@ -30,7 +30,7 @@ cApp.controller("HomeController", function($scope,$rootScope,modals,Blockchainin
         a.setAttribute("download", filename);
         a.click();
     };
-
+	
 	/***
 	Controller to back up current wallet
 	View location is view\partials\main.html
@@ -41,7 +41,7 @@ cApp.controller("HomeController", function($scope,$rootScope,modals,Blockchainin
 		var data = $scope.curWallet.getAddresses(passphrase);
 		var fileName = $scope.curWallet.getName();
 		download(fileName+".json", JSON.stringify(data)); 
-    };
+	};
 
 	/***
 	Controller to import a wallet that was previously backed up
@@ -55,6 +55,8 @@ cApp.controller("HomeController", function($scope,$rootScope,modals,Blockchainin
 				
 				if($rootScope.password && hash === Encryption.hash($rootScope.password)) {
 					console.log($rootScope.password);
+					var el = document.getElementById("fileUpload");
+					angular.element(el).trigger("click");
 					var f = document.getElementById("file").files[0];
 					if(!f) {
 						return;
