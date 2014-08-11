@@ -1,12 +1,12 @@
             <div>
                 <h3>Create Multisig address</h3>
                 <label>Type Any Name or Label </label>
-                  <input style="background: #F5F5F5;" type="text" placeholder="Friends Bank" class="form-control input-sm ng-pristine ng-valid" ng-model="multisigName">
+                  <input style="background: #F5F5F5;text-indent:42%;" type="text" placeholder="Escrow with Friends" class="form-control input-sm ng-pristine ng-valid" ng-model="multisigName">
 
                 <div>
                   <div >
                     <label>Your Wallet Password </label>
-                    <input style="background: #F5F5F5;" type="password" placeholder="Choose your password" class="input-sm form-control ng-scope ng-pristine ng-invalid ng-invalid-required" ng-model="$parent.walletPassword">
+                    <input style="background: #F5F5F5;text-indent:42%;" type="password" placeholder="Choose your password" class="input-sm form-control ng-scope ng-pristine ng-invalid ng-invalid-required" ng-model="$parent.walletPassword">
               
                   </div>
                 </div>
@@ -43,5 +43,9 @@
                         <option value="11">11</option>
                       </select> 
                                  
+                    </div>
+                    <div>
+                     <label>  </label>  
+                    <input type="button" value="Create a Multisig Address" ng-click="createMultisig()">
                     </div>
             </div>

@@ -5,7 +5,7 @@
 		<h2 class="pull-left">Currency</h2> 
 		</div>
 		<div class="row">
-		 <select style="width: 100%;" class="pull-left" name="Btc" id="settings_baseunits" data-size="auto" ng-model="opt" ng-options="currency.name for currency in currencies" ng-change="changeCurrency(opt)">
+		 <select style="width: 100%;text-indent:40%;" class="pull-left" name="Btc" id="settings_baseunits" data-size="auto" ng-model="currentCurrency.ID" ng-selected="0" ng-options="currency.ID as currency.name for currency in currencies" ng-change="changeCurrency(currentCurrency)">
          </select>
 		</div>
 		<div id="settings_security_header" class="row">

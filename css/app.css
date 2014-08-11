@@ -462,6 +462,19 @@ login.html
 	background-color: #E9E9E9;
 	color:#fff;
 }
+
+.modal-content{
+	margin-top: 20%;
+	text-align: center;
+	background-color: #626568
+}
+
+#modal_button{
+width: 45%;
+padding: 1rem;
+margin-bottom: 1.4rem;
+border-radius: 0.2rem;
+}
 input,button {
 	width: 100%;
 	margin-bottom: 1.4rem;
