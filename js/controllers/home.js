@@ -49,18 +49,36 @@ cApp.controller("HomeController", function($scope,$rootScope,modals,Blockchainin
 	Only imports when file is properly opened
 	***/
     $scope.import = function() {
-        modals.open("modalpassword");
-        var f = document.getElementById("file").files[0];
-        if(!f) {
-            return;
-        }
-        var r = new FileReader();
-        r.onload = function(e){
-            backupFile = e.target.result;
-            console.log(backupFile)
-            $scope.fileLoaded = true;
-        } 
-        r.readAsText(f);
+		DecentralStorage.get("password", function(database) {	
+			try {
+				var hash = database["password"]["password"];
+				
+				if($rootScope.password && hash === Encryption.hash($rootScope.password)) {
+					console.log($rootScope.password);
+					var f = document.getElementById("file").files[0];
+					if(!f) {
+						return;
+					}
+					var r = new FileReader();
+					r.onload = function(e){
+						backupFile = e.target.result;
+						console.log(backupFile)
+						$scope.fileLoaded = true;
+					} 
+					r.readAsText(f);
+				}
+				else {
+					modals.open("modalpassword", {
+						"message":"Please input password",
+						"databaseName":"password",
+						"objectName":"password"
+					});
+				}
+			} catch(e) {
+				console.log("failed to retrieve " + e);
+			} finally {
+			}
+		});       
     };
 	
 	/***
@@ -83,7 +101,7 @@ cApp.controller("HomeController", function($scope,$rootScope,modals,Blockchainin
 						"message":"Please input passphrase",
 						"databaseName":"passphrase",
 						"objectName":"passphrase"
-						});
+					});
 				}
 			} catch(e) {
 				console.log("failed to retrieve " + e);

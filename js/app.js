@@ -35,6 +35,10 @@ cApp.config(function ($routeProvider) {
         templateUrl: 'view/home.html',
         controller: 'HomeController'
     }).
+	when('/Transactions', {
+        templateUrl: 'view/transactions.html',
+        controller: 'Transactions'
+    }).
       when('/Assets', {
         templateUrl: 'view/assets.html',
         controller: 'AssetsController'

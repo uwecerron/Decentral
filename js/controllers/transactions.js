@@ -1,4 +1,7 @@
-function TransactionsController($rootScope,$scope, $filter,TransactionFetcher, WalletManager) {
+"use strict";
+
+cApp.controller("TransactionsController", ["$filter", "$rootScope",
+"$scope", "TransactionFetcher", "WalletManager", function($filter,$rootScope, $scope, TransactionFetcher, WalletManager) {
     
 	/********Transactions init**********/
     $scope.sortingOrder="";
@@ -132,4 +135,4 @@ function TransactionsController($rootScope,$scope, $filter,TransactionFetcher, W
 		}
 		download(outfile);
 	};
-};
+}]);
