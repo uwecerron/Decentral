@@ -111,22 +111,22 @@ function($scope,$rootScope, Blockchaininfo,DecentralStorage, Encryption, modals,
 	***/
 	$scope.generateAddress = function() {
 		var _success = function(passphrase) {
-			var _passphrase = passphrase || Security.get("passphrase");
+			var _passphrase = passphrase || Security.get("password");
 			$scope.currentAddress = $scope.curWallet.generatePublicAddress(_passphrase);
 			WalletManager.updateCurrent();
 		};
 		var checkPassword = {
-			check : Security.get("passphrase"),
+			check : Security.get("password"),
 			success : _success,
 			fail : function() {
 				modals.open("modalpassword", {
-					"message":"Please input passphrase",
-					"databaseName":"passphrase",
-					"objectName":"passphrase"
+					"message":"Please input password",
+					"databaseName":"password",
+					"objectName":"password"
 				}, _success);
 			}
 		};
-		Security.check(checkPassword,"passphrase","passphrase");
+		Security.check(checkPassword,"password","password");
     };
 
 	/***
