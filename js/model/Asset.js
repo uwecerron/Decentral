@@ -1,36 +1,42 @@
-'use strict';
-
+"use strict";
 cApp.factory("Asset",function(){
 
-	function Asset(moniker){
+	var Asset = function(moniker,btc,tokens,hash){
 		this.moniker=moniker;
-		this.balance=0.00;
-		this.address="Add an Address";
-		this.colordef='';	
-	}
+		this.btc=btc;
+		this.address=[];
+		this.colordef=hash;
+		this.tokens=tokens;
+		
+		this.getMoniker = function(){
+			return this.moniker;
+		};
+	
+		this.setMoniker = function(moniker){
+			this.moniker=moniker;
+		};
+		
+		this.getBtc = function() {
+			return this.btc;
+		};
 
-	Asset.prototype.getMoniker= function(){
-		return this.moniker;
-	}
+		this.setBtc = function(balance){
+			this.balance=btc;
+		};
 
-	Asset.prototype.setMoniker= function(moniker){
-		this.moniker=moniker;
-	}
+		this.getAddresses = function(){
+			return address;
+		};
 
-	Asset.prototype.getBalance = function() {
-		return this.balance;
-	}
-
-	Asset.prototype.setBalance=function(balance){
-		this.balance=balance;
-	}
-
-	Asset.prototype.getAddress=function(){
-		return address;
-	}
-
-	Asset.prototype.colordef=function(){
-		return this.colordef;
-	}
-
+		this.colordef = function(){
+			return this.colordef;
+		};
+		
+		this.getTokens = function() {
+			return this.tokens;
+		};
+	
+	};
+	
+	return Asset;
 });

@@ -4,15 +4,11 @@ cApp.service('Session', function($rootScope,$location,DecentralStorage,WalletMan
 
 	this.initialize = function() {
 		DecentralStorage.save("session","session",1);
-		DecentralStorage.get(DecentralStorage.WALLETDATABASE, function(database) {
+		DecentralStorage.getSync(DecentralStorage.WALLETDATABASE, function(database) {
 			if(database) {
 				var rawData = database[DecentralStorage.WALLETDATABASE];
 				WalletManager.init(rawData);
 				$rootScope.$apply(function() {
-					//$scope.page++;
-					//var mnemonic = new Mnemonic(128);
-					//console.log(mnemonic.toWords().join(' '));
-					//$scope.mnemonic = mnemonic.toWords().join(' ');
 					$location.path("/Home");
 				});
 			}

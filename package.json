@@ -4,7 +4,7 @@
   "description": "A Decentralized Bitcoin Bank",
   "main": "./src/index.js",
   "scripts": {
-    "test": "./node_modules/.bin/istanbul test ./node_modules/.bin/_mocha -- --reporter spec test/*.js; true"
+    "test": "./node_modules/karma/bin/karma start karma.config.js --single-run"
   },
   "repository": {
     "type": "git",
@@ -33,6 +33,8 @@
     "grunt-mocha-test": "^0.11.0",
     "istanbul": "^0.3.0",
     "karma": "^0.12.16",
+    "karma-chrome-launcher": "^0.1.4",
+    "karma-cli": "0.0.4",
     "karma-jasmine": "^0.1.5",
     "mocha": "^1.20.1"
   },

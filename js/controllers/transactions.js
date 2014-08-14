@@ -1,5 +1,9 @@
-function TransactionsController($rootScope,$scope, $filter,TransactionFetcher, WalletManager) {
+"use strict";
+
+cApp.controller("TransactionsController", ["$filter", "$rootScope",
+"$scope", "TransactionFetcher", "WalletManager", function($filter,$rootScope, $scope, TransactionFetcher, WalletManager) {
     
+	/********Transactions init**********/
     $scope.sortingOrder="";
     $scope.reverse = false;
     $scope.filteredtransactions = [];
@@ -7,11 +11,30 @@ function TransactionsController($rootScope,$scope, $filter,TransactionFetcher, W
     $scope.transactionsPerPage = 5;
     $scope.pagedtransactions = [];
     $scope.currentPage = 0;
-
-    console.log(WalletManager.getCurrentWallet());
-	$scope.transactions =[];
-    //$scope.transactions = WalletManager.getCurrentWallet().getTransactions();
-
+	
+    var curWallet = WalletManager.getCurrentWallet();
+	if(curWallet != null){
+		$scope.transactions = curWallet.getTransactions();
+	}
+	else{
+		$scope.transactions =[];
+		throw new Error("Failed to get transactions of current wallet");
+	}
+	/********Transactions init end**********/
+	
+	$rootScope.$watchCollection(
+		"curWallet",
+		function( newValue, oldValue ) {
+			try{
+				$scope.transactions = newValue.getTransactions();
+				$scope.search();
+			}
+			catch(e){
+				alert("Failed to update wallet\n" + e.name + " " + e.message);
+			}
+		}
+	);
+	
     var searchMatch = function (haystack, needle) {
         if (!needle) {
             return true;
@@ -112,6 +135,4 @@ function TransactionsController($rootScope,$scope, $filter,TransactionFetcher, W
 		}
 		download(outfile);
 	};
-};
-
-//TransactionsController.$inject = ['$scope', '$filter'];
+}]);

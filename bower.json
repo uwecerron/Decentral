@@ -14,10 +14,11 @@
   "private": true,
  "dependencies": {
     "mnemonic.js": "~1.0.0",
-    "underscore": "~1.6.0",
-    "html5shiv": "~3.6",
     "bitcoinjs-lib": "git://github.com/bitcoinjs/bitcoinjs-lib#master",
     "angular": "~1.2.13",
-    "angular-route": "~1.2.14"
+    "angular-route": "~1.2.14",
+    "highcharts-ng":"0.0.6",
+    "numeral":"1.5.3"
+
   }
 }

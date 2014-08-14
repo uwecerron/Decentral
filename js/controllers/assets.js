@@ -1,39 +1,32 @@
 "use strict";
-
-
-function AssetsController($scope,DecentralStorage,WalletManager)  {
-    $scope.pageClass = 'page-assets';
+cApp.controller("AssetsController",function($scope,Asset,WalletManager)  {
+    
+	/************************Assets init*************************/
+	$scope.pageClass = 'page-assets';
     $scope.items = WalletManager.getCurrentWallet().getAllAssets();
-    $scope.item = {};
+	$scope.name=/^[a-zA-Z ]*$/;
+	$scope.integerval=/^\d*$/;
   	$scope.addAssetShow = false;
-    var ledecentral = DecentralStorage;
-   
-    var values ={Name: "Burger2 King2", BTC: "1200",Address:"mhRYQjHSu4QQRr8yi5m2eiSznsUt4HrJSy", Units: "5"};
-    ledecentral.save( "address", values);
-    ledecentral.getall();
-
-
-    $scope.addItem = function(item) {
-      var key = Bitcoin.ECKey.makeRandom();
-      var hash=key.pub.getAddress().toString();
-       $scope.item.Address =hash;
-       $scope.item = {};    
-       $scope.itemForm.$setPristine();   
-      //$scope.$apply( function() {  
-    };
-   
-    $scope.totalBTC = WalletManager.getCurrentWallet().getBalance();
+	$scope.totalBTC = WalletManager.getCurrentWallet().getBalance();
+	/************************Assets init end***********************/
+    
+	$scope.addItem = function(item) {
+		if(!item || !item["Name"] || !item["BTC"] || !item["Units"]) {
+			throw new Error("Improper input");
+		}
+		
+		var hash = WalletManager.getCurrentWallet().generatePublicAddress();
+		var newAsset = new Asset(item["Name"],item["BTC"],item["Units"],hash);
+		$scope.itemForm.$setPristine();   
+		WalletManager.getCurrentWallet().addAsset(newAsset);
+		$scope.items = WalletManager.getCurrentWallet().getAllAssets();
+		WalletManager.updateCurrent();
+	};
+    
     $scope.mySortFunction = function(item) {
       if(isNaN(item[$scope.sortExpression]))
         return item[$scope.sortExpression];
       return parseInt(item[$scope.sortExpression]);
     };
     
-      /*$scope.removeItem = function(index){
-      ReceiveTable.removeItem(index);
-    };*/
-    
-    $scope.name=/^[a-zA-Z ]*$/;
-    
-	$scope.integerval=/^\d*$/;
-}
+});

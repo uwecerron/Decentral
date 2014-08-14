@@ -1,5 +1,7 @@
 function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
-    $scope.sortingOrder = 'name';
+    /******************Initialization**********/
+	
+	$scope.sortingOrder = 'name';
     $scope.reverse = false;
     $scope.filteredItems = [];
     $scope.groupedItems = [];
@@ -8,19 +10,23 @@ function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
     $scope.currentPage = 0;
  
     var address={};
+
 	var curWallet = WalletManager.getCurrentWallet();
-	console.log(curWallet);
-	if(curWallet != null){
-		$scope.items = curWallet.getAddresses();
-		//$scope.items = [];
+	
+	if(curWallet){
+		$scope.items = curWallet.getAllAddresses();
 	}
 	else{
 		$scope.items = [];
+		throw new Error("Failed to get addresses of current wallet");
 	}
 	
+	setTimeout(function() {
+		$scope.search();
+    },0);
 	
-	
- 
+	/******************Initialization End**********/
+
     var searchMatch = function (haystack, needle) {
         if (!needle) {
             return true;
@@ -29,8 +35,9 @@ function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
     };
 
     // init the filtered items
-    $scope.search = function () {
-        $scope.filteredItems = $filter('filter')($scope.items, function (item) {
+	
+	$scope.search = function () {
+        $scope.filteredItems = $filter("filter")($scope.items, function (item) {
             for(var attr in item) {
                 if (searchMatch(item[attr], $scope.query))
                     return true;
@@ -38,7 +45,7 @@ function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
             return false;
         });
         // take care of the sorting order
-        if ($scope.sortingOrder !== '') {
+        if ($scope.sortingOrder !== "") {
             $scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sortingOrder, $scope.reverse);
         }
         $scope.currentPage = 0;
@@ -46,6 +53,7 @@ function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
         $scope.groupToPages();
     };
     
+	
     // calculate page in place
     $scope.groupToPages = function () {
         $scope.pagedItems = [];
@@ -90,16 +98,24 @@ function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
 	$rootScope.$watchCollection(
 		"curWallet",
 		function( newValue, oldValue ) {
-			$scope.items = newValue.getAddresses();
-			$scope.search();
-			console.log($scope.items);
+			try {
+				$scope.items = newValue.getAllAddresses();
+				$scope.search();
+			}
+			catch(e) {
+				alert("Failed to update wallet\n" + e.name + " " + e.message);
+			}
 		}
 	);
-    // functions have been describe process the data for display
-    $scope.search();
+    
 
     // change sorting order
     $scope.sort_by = function(newSortingOrder) {
+		
+		if(!newSortingOrder) {
+			throw new Error("non existing sorting order");
+		}
+		
         if ($scope.sortingOrder == newSortingOrder)
             $scope.reverse = !$scope.reverse;
 
@@ -115,4 +131,7 @@ function AddressesController($scope,$rootScope, $filter,Wallet,WalletManager) {
         else
             $('th.'+new_sorting_order+' i').removeClass().addClass('icon-chevron-down');
     };
+	
+	// functions have been describe process the data for display
+	//$scope.search();
 };

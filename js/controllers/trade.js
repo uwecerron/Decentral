@@ -1,8 +1,15 @@
 function TradeController($scope,$http){
-    $scope.pageClass = 'page-trade';
+    
+	/***********trade init**************/
+	$scope.pageClass = 'page-trade';
     $scope.message = 'This is Show trade screen';
     var ws = new WebSocket("ws://localhost:9402/socket/");
-    
+    setTimeout(function() {
+		var el = document.getElementById('first2');
+		angular.element(el).triggerHandler('click');
+    },0);
+	/***********trade init end**************/
+	
     ws.onopen = function(){  
         console.log("Connected to peer");  
     };
@@ -20,11 +27,11 @@ function TradeController($scope,$http){
     }
 
     $scope.btcprice = function() {
-        $scope.View="herro"
+        //$scope.View="herro"
         console.log("price"); 
     }
     $scope.findtokens = function() {
-        $scope.View="token view"
+        //$scope.View="token view"
         console.log("tokens");  
     }
     $scope.multisign = function() {

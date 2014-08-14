@@ -1,57 +1,53 @@
 <!--<div id="assets_main" class="panel col-md-offset-1 col-md-10">-->
-    <div id="display_asset" ng-click="addAssetShow = !addAssetShow"  class="panel-heading" >
-    	<span class="panel-title"><span class="fa fa-plus">
-    	</span>Add Asset</span>
-    </div>
-    <div class="panel-body" ng-show="addAssetShow">
-        <form name="itemForm" novalidate class="row form-columned" role="form">
-            <div class="col-md-4">
-                <label>Name</label>
-                <input name="name" class="form-control input-sm m-b-10" type="text" ng-model="item.Name" required ng-pattern="name"/>
-            </div>
-            <div class="col-md-4">
-                <label>BTC</label>
-                <input name="price" class="form-control input-sm m-b-10" type="number" ng-model="item.BTC" required  valid-price />
-            </div>
-            <div class="col-md-4">
-                <label>Token Amount</label>
-                <input name="quantity" class="form-control input-sm m-b-10" type="number" ng-model="item.Units"  ng-pattern="integerval" required />
-            </div>
-            <div class="col-md-12">
-                <label>Description</label>
-                <textarea class="form-control m-b-10" placeholder="Description"></textarea>
-            </div>
-            <div style="margin: 20px;" class="col-md-10">
-                <button ng-click="addItem(item)" ng-disabled="itemForm.$invalid" class="btn btn-default  btn-lg">Submit</button>
-            </div>
-        </form>
-	</div>
-	<div class="panel-body">
-		<div >
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<td ng-click='sortExpression = "Name"'>Name</td>
-						<td ng-click='sortExpression = "BTC"'>Balance</td>
-						<td ng-click='sortExpression = "Units"'>Units</td>
-						<td ng-click='sortExpression = "Address"'>Address</td>
-						<td>Remove</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="item in items | orderBy:mySortFunction | filter:search">
-						<td>{{item.Name}}</td>
-						<td>{{item.BTC | number:8}}</td>
-						<td>{{item.Units}}</td>
-						<td>{{item.Address}}</td>
-						<td><input type="button" value="Remove" ng-click="removeItem($index)" /></td>
-					</tr>
-				</tbody>
-			</table>
-			<br />
-			<div>Total Balance: {{totalBTC()}}</div>
-			<br />          
+<div id="display_asset" ng-click="addAssetShow = !addAssetShow"  class="panel-heading" >
+	<span class="panel-title"><span class="fa fa-plus">
+	</span>Add Asset</span>
+</div>
+<div class="panel-body" ng-show="addAssetShow">
+	<form name="itemForm" novalidate class="row form-columned" role="form">
+		<div class="col-md-4">
+			<label>Name</label>
+			<input name="name" class="form-control input-sm m-b-10" type="text" ng-model="item.Name" required ng-pattern="name"/>
 		</div>
-		<!--table-->
+		<div class="col-md-4">
+			<label>BTC</label>
+			<input name="price" class="form-control input-sm m-b-10" type="number" ng-model="item.BTC" required  valid-price />
+		</div>
+		<div class="col-md-4">
+			<label>Token Amount</label>
+			<input name="quantity" class="form-control input-sm m-b-10" type="number" ng-model="item.Units"  ng-pattern="integerval" required />
+		</div>
+		<div style="margin: 20px;" class="col-md-10">
+			<button ng-click="addItem(item)" ng-disabled="itemForm.$invalid" class="btn btn-default  btn-lg">Submit</button>
+		</div>
+	</form>
+</div>
+<div class="panel-body">
+	<div >
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<td ng-click='sortExpression = "Name"'>Name</td>
+					<td ng-click='sortExpression = "BTC"'>Balance</td>
+					<td ng-click='sortExpression = "Units"'>Units</td>
+					<td ng-click='sortExpression = "Address"'>Address</td>
+					<td>Remove</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in items | orderBy:mySortFunction | filter:search">
+					<td>{{item.moniker}}</td>
+					<td>{{item.btc | number:8}}</td>
+					<td>{{item.tokens}}</td>
+					<td>{{item.colordef}}</td>
+					<td><input type="button" value="Remove" ng-click="removeItem($index)" /></td>
+				</tr>
+			</tbody>
+		</table>
+		<br />
+		<div>Total Balance: {{totalBTC()}}</div>
+		<br />          
 	</div>
-    <!--end table panel-->
+	<!--table-->
+</div>
+<!--end table panel-->

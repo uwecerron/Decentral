@@ -1,0 +1,13 @@
+        <div ng-controller="TradePriceController" class="row">
+        	<div class="col-md-4">
+        	    <h3>Bitcoin Information</h3>
+                <div class="container"  id="totalbtcinfo">
+					<ul class="btcinfo" id="marketinfo"><div><span>Market Cap</span>&nbsp;&nbsp; <span>&nbsp;&nbsp;&nbsp;&nbsp;{{marketcap}}</span></div><div><span>Volume <span>(BTC)</span>&nbsp; </span><span>&nbsp;&nbsp;{{volume}}</span></div><div><span>Total <span>(BTC)</span> </span><span>&nbsp; {{totalbc}}</span></div></ul>
+					<ul class="btcinfo" id="mininginfo"><div><span>Block Time</span> <span>&nbsp;&nbsp;&nbsp;&nbsp;{{blocktime}}</span></div><div><span>Next Difficulty</span> <span>&nbsp; &nbsp; {{nextdifficulty}} Days</span></div><div><span>Hash Rate</span> <span>&nbsp;&nbsp; {{hashrate}}</span></div> </ul><!--mining info-->
+
+				</div>
+			</div>
+			<div class="col-md-8">
+              <highchart id="chart1" config="chartConfig" style="margin-right:5%;"></highchart>
+			</div>
+        </div>

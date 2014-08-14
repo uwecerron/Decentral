@@ -1,45 +1,23 @@
-function NavigationController($scope,$rootScope, $location,$timeout,$http,Session) {
+"use strict";
+cApp.controller("NavigationController", function($scope,$location,Session) {
 
+	/***
+	Controller to show currently selected page
+	View location is view\header.html
+	Checks all the pages on navbar and if it is equal to the input page, makes that page active
+	***/
 	$scope.navClass = function (page) {
-		var currentRoute = $location.path().substring(1) || 'home';
-		return page === currentRoute ? 'active' : '';
+		var currentRoute = $location.path().substring(1) || "home";
+		return page === currentRoute ? "active" : "";
 	};
 
+	/***
+	Controller to logout
+	View location is view\header.html
+	Session is called and does all the work
+	***/
 	$scope.logout = function() {
 		Session.end();
-	}
-/*	$scope.balance = "";
+	};
 
-	var balance= 0;
-	(function tick() {
-		$http({method:'GET', url:'https://blockchain.info/unspent?active=1GDHkj6EoeQiG3HeUgdUnxLgL8pj1A2yAp',headers : { 'Content-Type': 'application/x-www-form-urlencoded' }}).success(function(data, status, headers, config) {
-
-			for(var i in data.unspent_outputs){
-
-			balance +=data.unspent_outputs[i].value;
-			}
-			//console.log(balance);
-			$scope.balance=balance/ 100000000;
-			balance=0;
-
-			$rootScope.balance =$scope.balance*100000000;
-			console.log($scope.balance);
-			//console.log(data.unspent_outputs[1].value);
-			// $scope.value=data.unspent_outputs[0].value;
-			$timeout(tick, 10000);
-		}).
-
-
-		error(function(data, status, headers, config) {
-		console.log(data);
-		console.log(status);
-		console.log(headers);
-		$scope.balance=0;
-		$timeout(tick, 20000);
-		});
-	})();
-  */
-
-  //test
-
-}
+}); // end of NavigationController

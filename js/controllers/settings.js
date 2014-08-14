@@ -5,12 +5,16 @@ function SettingsController($scope, $rootScope,WalletManager,DecentralStorage,mo
     $scope.pageClass = 'page-settings';
     var storage = DecentralStorage;
     $scope.currenciesList;
-    $scope.currentCurrency;
 	$scope.showWallets = false;
     $scope.currencies = [
-        {name: "USD" , base: '1' },
-        {name: "EUR" , base: '2' }
+        {ID: '0', name: "USD" , base: '1' },
+        {ID: '1',name: "EUR" , base: '2' }
     ];
+    $scope.currentCurrency = {
+        "ID": "0",
+        "name": "USD",
+        "base": "1",
+    };
 	$scope.wallets = WalletManager.getWallets();
 
     $scope.passwordChangedSubmit = function() {
